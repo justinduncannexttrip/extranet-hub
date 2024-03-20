@@ -1,25 +1,67 @@
-<script setup lang="ts">
-import type { Referrals } from '@db/apps/ecommerce/types'
+<script setup>
 import paperImg from '@images/svg/paper.svg?raw'
 import rocketImg from '@images/svg/rocket.svg?raw'
 import userInfoImg from '@images/svg/user-info.svg?raw'
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 
-const rocketIcon = h('div', { innerHTML: rocketImg, style: 'font-size: 2.625rem; color: rgb(var(--v-theme-primary))' })
-const userInfoIcon = h('div', { innerHTML: paperImg, style: 'font-size: 2.625rem; color: rgb(var(--v-theme-primary))' })
-const paperIcon = h('div', { innerHTML: userInfoImg, style: 'font-size: 2.625rem; color: rgb(var(--v-theme-primary))' })
+const rocketIcon = h('div', {
+  innerHTML: rocketImg,
+  style: 'font-size: 2.625rem; color: rgb(var(--v-theme-primary))',
+})
+
+const userInfoIcon = h('div', {
+  innerHTML: paperImg,
+  style: 'font-size: 2.625rem; color: rgb(var(--v-theme-primary))',
+})
+
+const paperIcon = h('div', {
+  innerHTML: userInfoImg,
+  style: 'font-size: 2.625rem; color: rgb(var(--v-theme-primary))',
+})
 
 const widgetData = [
-  { title: 'Total Earning', value: '$24,983', icon: 'ri-money-dollar-circle-line', color: 'primary' },
-  { title: 'Unpaid Earning', value: '$8,647', icon: 'ri-gift-line', color: 'success' },
-  { title: 'Signups', value: '2,367', icon: 'ri-group-line', color: 'error' },
-  { title: 'Conversion Rate', value: '4.5%', icon: 'ri-refresh-line', color: 'info' },
+  {
+    title: 'Total Earning',
+    value: '$24,983',
+    icon: 'ri-money-dollar-circle-line',
+    color: 'primary',
+  },
+  {
+    title: 'Unpaid Earning',
+    value: '$8,647',
+    icon: 'ri-gift-line',
+    color: 'success',
+  },
+  {
+    title: 'Signups',
+    value: '2,367',
+    icon: 'ri-group-line',
+    color: 'error',
+  },
+  {
+    title: 'Conversion Rate',
+    value: '4.5%',
+    icon: 'ri-refresh-line',
+    color: 'info',
+  },
 ]
 
 const stepsData = [
-  { icon: rocketIcon, desc: 'Create & validate your referral link and get', value: '$50' },
-  { icon: paperIcon, desc: 'For every new signup you get', value: '10%' },
-  { icon: userInfoIcon, desc: 'Get other friends to generate link and get', value: '$100' },
+  {
+    icon: rocketIcon,
+    desc: 'Create & validate your referral link and get',
+    value: '$50',
+  },
+  {
+    icon: paperIcon,
+    desc: 'For every new signup you get',
+    value: '10%',
+  },
+  {
+    icon: userInfoIcon,
+    desc: 'Get other friends to generate link and get',
+    value: '$100',
+  },
 ]
 
 // Data table options
@@ -30,22 +72,35 @@ const orderBy = ref()
 
 // Data Table Headers
 const headers = [
-  { title: 'Users', key: 'users' },
-  { title: 'Referred ID', key: 'referred-id' },
-  { title: 'Status', key: 'status' },
-  { title: 'Value', key: 'value' },
-  { title: 'Earnings', key: 'earning' },
+  {
+    title: 'Users',
+    key: 'users',
+  },
+  {
+    title: 'Referred ID',
+    key: 'referred-id',
+  },
+  {
+    title: 'Status',
+    key: 'status',
+  },
+  {
+    title: 'Value',
+    key: 'value',
+  },
+  {
+    title: 'Earnings',
+    key: 'earning',
+  },
 ]
 
-// Update data table options
-const updateOptions = (options: any) => {
+const updateOptions = options => {
   page.value = options.page
   sortBy.value = options.sortBy[0]?.key
   orderBy.value = options.sortBy[0]?.order
 }
 
-// Fetching Referral Data
-const { data: referralData } = await useApi<any>(createUrl('/apps/ecommerce/referrals', {
+const { data: referralData } = await useApi(createUrl('/apps/ecommerce/referrals', {
   query: {
     page,
     itemsPerPage,
@@ -54,16 +109,25 @@ const { data: referralData } = await useApi<any>(createUrl('/apps/ecommerce/refe
   },
 }))
 
-const referrals = computed((): Referrals[] => referralData.value.referrals)
+const referrals = computed(() => referralData.value.referrals)
 const totalReferrals = computed(() => referralData.value.total)
 
-const resolveStatus = (status: string) => {
+const resolveStatus = status => {
   if (status === 'Rejected')
-    return { text: 'Rejected', color: 'error' }
+    return {
+      text: 'Rejected',
+      color: 'error',
+    }
   if (status === 'Unpaid')
-    return { text: 'Unpaid', color: 'warning' }
+    return {
+      text: 'Unpaid',
+      color: 'warning',
+    }
   if (status === 'Paid')
-    return { text: 'Paid', color: 'success' }
+    return {
+      text: 'Paid',
+      color: 'success',
+    }
 }
 </script>
 

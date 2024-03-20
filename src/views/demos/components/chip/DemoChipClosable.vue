@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const isDefaultChipVisible = ref(true)
 const isPrimaryChipVisible = ref(true)
 const isSecondaryChipVisible = ref(true)

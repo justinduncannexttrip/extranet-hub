@@ -1,5 +1,11 @@
-<script lang="ts" setup>
-const items = ['Gaming', 'Programming', 'Vue', 'Vuetify']
+<script setup>
+const items = [
+  'Gaming',
+  'Programming',
+  'Vue',
+  'Vuetify',
+]
+
 const selectedList = ref(['Vuetify'])
 const search = ref(null)
 

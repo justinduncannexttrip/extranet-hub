@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const currentPage = ref(1)
 </script>
 

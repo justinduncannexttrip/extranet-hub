@@ -1,6 +1,5 @@
-<script setup lang="ts">
+<script setup>
 import { useTheme } from 'vuetify'
-import { useConfigStore } from '@core/stores/config'
 import { hexToRgb } from '@layouts/utils'
 
 const vuetifyTheme = useTheme()
@@ -8,21 +7,14 @@ const vuetifyTheme = useTheme()
 const options = computed(() => {
   const currentTheme = ref(vuetifyTheme.current.value.colors)
   const variableTheme = ref(vuetifyTheme.current.value.variables)
-
-  const secondaryTextColor = `rgba(${hexToRgb(currentTheme.value['on-surface'])},${variableTheme.value['medium-emphasis-opacity']})`
-  const primaryTextColor = `rgba(${hexToRgb(currentTheme.value['on-surface'])},${variableTheme.value['high-emphasis-opacity']})`
-
+  const secondaryTextColor = `rgba(${ hexToRgb(currentTheme.value['on-surface']) },${ variableTheme.value['medium-emphasis-opacity'] })`
+  const primaryTextColor = `rgba(${ hexToRgb(currentTheme.value['on-surface']) },${ variableTheme.value['high-emphasis-opacity'] })`
+  
   return {
-    chart: {
-      sparkline: { enabled: true },
-    },
+    chart: { sparkline: { enabled: true } },
     labels: ['Cricket'],
     stroke: { lineCap: 'round' },
-    grid: {
-      padding: {
-        top: -10,
-      },
-    },
+    grid: { padding: { top: -10 } },
     colors: [currentTheme.value.info],
     fill: {
       type: 'gradient',
@@ -33,16 +25,15 @@ const options = computed(() => {
         inverseColors: false,
         opacityFrom: 1,
         opacityTo: 0.1,
-        stops: [0, 90],
+        stops: [
+          0,
+          90,
+        ],
       },
     },
     states: {
-      hover: {
-        filter: { type: 'none' },
-      },
-      active: {
-        filter: { type: 'none' },
-      },
+      hover: { filter: { type: 'none' } },
+      active: { filter: { type: 'none' } },
     },
     plotOptions: {
       radialBar: {
@@ -50,9 +41,7 @@ const options = computed(() => {
         startAngle: -180,
         inverseOrder: true,
         hollow: { size: '62%' },
-        track: {
-          background: currentTheme.value['track-bg'],
-        },
+        track: { background: currentTheme.value['track-bg'] },
         dataLabels: {
           name: { offsetY: 26 },
           value: {
@@ -60,7 +49,7 @@ const options = computed(() => {
             fontSize: '24px',
             fontWeight: 500,
             color: primaryTextColor,
-            formatter: (value: unknown) => `${value}k`,
+            formatter: value => `${ value }k`,
           },
           total: {
             show: true,

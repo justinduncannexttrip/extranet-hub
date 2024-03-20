@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const message = ref('Hey!')
 const marker = ref(true)
 const iconIndex = ref(0)

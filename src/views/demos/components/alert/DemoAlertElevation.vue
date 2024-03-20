@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const alertShadow = ref(5)
 </script>
 

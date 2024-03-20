@@ -1,6 +1,5 @@
-<script setup lang="ts">
+<script setup>
 import { useTheme } from 'vuetify'
-
 import { hexToRgb } from '@layouts/utils'
 
 const vuetifyTheme = useTheme()
@@ -8,9 +7,8 @@ const vuetifyTheme = useTheme()
 const options = computed(() => {
   const currentTheme = ref(vuetifyTheme.current.value.colors)
   const variableTheme = ref(vuetifyTheme.current.value.variables)
-
-  const secondaryTextColor = `rgba(${hexToRgb(currentTheme.value['on-surface'])},${variableTheme.value['medium-emphasis-opacity']})`
-
+  const secondaryTextColor = `rgba(${ hexToRgb(currentTheme.value['on-surface']) },${ variableTheme.value['medium-emphasis-opacity'] })`
+  
   return {
     chart: {
       parentHeightOffset: 0,
@@ -23,7 +21,11 @@ const options = computed(() => {
         opacityFrom: 1,
         shadeIntensity: 0,
         type: 'horizontal',
-        stops: [0, 100, 100],
+        stops: [
+          0,
+          100,
+          100,
+        ],
       },
     },
     stroke: {
@@ -44,21 +46,32 @@ const options = computed(() => {
     xaxis: {
       axisTicks: { show: false },
       axisBorder: { show: false },
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-      labels: {
-        style: {
-          colors: secondaryTextColor,
-        },
-      },
+      categories: [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+      ],
+      labels: { style: { colors: secondaryTextColor } },
     },
-    yaxis: {
-      labels: { show: false },
-    },
+    yaxis: { labels: { show: false } },
     tooltip: { enabled: false },
   }
 })
 
-const series = [{ name: 'Total Sales', data: [0, 258, 30, 240, 150, 400] }]
+const series = [{
+  name: 'Total Sales',
+  data: [
+    0,
+    258,
+    30,
+    240,
+    150,
+    400,
+  ],
+}]
 </script>
 
 <template>

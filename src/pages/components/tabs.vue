@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import * as demoCode from '@/views/demos/components/tabs/demoCodeTabs'
 </script>
 

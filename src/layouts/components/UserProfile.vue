@@ -1,13 +1,14 @@
-<script setup lang="ts">
+<script setup>
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
 
 const router = useRouter()
 const ability = useAbility()
 
 // TODO: Get type from backend
-const userData = useCookie<any>('userData')
+const userData = useCookie('userData')
 
 const logout = async () => {
+
   // Remove "accessToken" from cookie
   useCookie('accessToken').value = null
 
@@ -18,6 +19,7 @@ const logout = async () => {
   await router.push('/login')
 
   // ℹ️ We had to remove abilities in then block because if we don't nav menu items mutation is visible while redirecting user to login page
+
   // Remove "userAbilities" from cookie
   useCookie('userAbilityRules').value = null
 
@@ -31,20 +33,32 @@ const userProfileList = [
     type: 'navItem',
     icon: 'ri-user-line',
     title: 'Profile',
-    to: { name: 'apps-user-view-id', params: { id: 21 } },
+    to: {
+      name: 'apps-user-view-id',
+      params: { id: 21 },
+    },
   },
   {
     type: 'navItem',
     icon: 'ri-settings-4-line',
     title: 'Settings',
-    to: { name: 'pages-account-settings-tab', params: { tab: 'account' } },
+    to: {
+      name: 'pages-account-settings-tab',
+      params: { tab: 'account' },
+    },
   },
   {
     type: 'navItem',
     icon: 'ri-file-text-line',
     title: 'Billing Plan',
-    to: { name: 'pages-account-settings-tab', params: { tab: 'billing-plans' } },
-    badgeProps: { color: 'error', content: '4' },
+    to: {
+      name: 'pages-account-settings-tab',
+      params: { tab: 'billing-plans' },
+    },
+    badgeProps: {
+      color: 'error',
+      content: '4',
+    },
   },
   { type: 'divider' },
   {
@@ -60,7 +74,6 @@ const userProfileList = [
     to: { name: 'pages-faq' },
   },
   { type: 'divider' },
-
 ]
 </script>
 

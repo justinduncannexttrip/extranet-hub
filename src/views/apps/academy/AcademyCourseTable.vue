@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import type { Course } from '@db/apps/academy/types'
-
+<script setup>
 const searchQuery = ref('')
 
 // Data table options
@@ -9,22 +7,34 @@ const page = ref(1)
 const sortBy = ref()
 const orderBy = ref()
 
-// Update data table options
-const updateOptions = (options: any) => {
+const updateOptions = options => {
   page.value = options.page
   sortBy.value = options.sortBy[0]?.key
   orderBy.value = options.sortBy[0]?.order
 }
 
 const headers = [
-  { title: 'Course Name', key: 'courseName' },
-  { title: 'Time', key: 'time', sortable: false },
-  { title: 'Progress', key: 'progress' },
-  { title: 'Status', key: 'status', sortable: false },
+  {
+    title: 'Course Name',
+    key: 'courseName',
+  },
+  {
+    title: 'Time',
+    key: 'time',
+    sortable: false,
+  },
+  {
+    title: 'Progress',
+    key: 'progress',
+  },
+  {
+    title: 'Status',
+    key: 'status',
+    sortable: false,
+  },
 ]
 
-// Fetch course Data
-const { data: courseData } = await useApi<any>(createUrl('/apps/academy/courses', {
+const { data: courseData } = await useApi(createUrl('/apps/academy/courses', {
   query: {
     q: searchQuery,
     itemsPerPage,
@@ -34,7 +44,7 @@ const { data: courseData } = await useApi<any>(createUrl('/apps/academy/courses'
   },
 }))
 
-const courses = computed((): Course[] => courseData.value.courses)
+const courses = computed(() => courseData.value.courses)
 const totalCourse = computed(() => courseData.value.total)
 </script>
 

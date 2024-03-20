@@ -1,24 +1,34 @@
-<script setup lang="ts">
+<script setup>
 import CustomerBioPanel from '@/views/apps/ecommerce/customer/view/CustomerBioPanel.vue'
 import CustomerTabAddressAndBilling from '@/views/apps/ecommerce/customer/view/CustomerTabAddressAndBilling.vue'
 import CustomerTabNotification from '@/views/apps/ecommerce/customer/view/CustomerTabNotification.vue'
 import CustomerTabOverview from '@/views/apps/ecommerce/customer/view/CustomerTabOverview.vue'
 import CustomerTabSecurity from '@/views/apps/ecommerce/customer/view/CustomerTabSecurity.vue'
-import type { Customer } from '@db/apps/ecommerce/types'
 
 const route = useRoute('apps-ecommerce-customer-details-id')
-const customerData = ref<Customer>()
+const customerData = ref()
 const userTab = ref(null)
 
 const tabs = [
-  { icon: 'ri-group-line', title: 'Overview' },
-  { icon: 'ri-lock-line', title: 'Security' },
-  { icon: 'ri-map-pin-line', title: 'Address & Billing' },
-  { icon: 'ri-notification-3-line', title: 'Notifications' },
+  {
+    icon: 'ri-group-line',
+    title: 'Overview',
+  },
+  {
+    icon: 'ri-lock-line',
+    title: 'Security',
+  },
+  {
+    icon: 'ri-map-pin-line',
+    title: 'Address & Billing',
+  },
+  {
+    icon: 'ri-notification-3-line',
+    title: 'Notifications',
+  },
 ]
 
-const { data, error } = await useApi<Customer>(`/apps/ecommerce/customers/${route.params.id}`)
-
+const { data, error } = await useApi(`/apps/ecommerce/customers/${ route.params.id }`)
 if (error.value)
   console.log(error.value)
 else if (data.value)

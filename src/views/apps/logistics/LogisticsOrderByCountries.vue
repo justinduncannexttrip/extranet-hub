@@ -1,6 +1,11 @@
-<script setup lang="ts">
+<script setup>
 const currentTab = ref('New')
-const tabsData = ['New', 'Preparing', 'Shipping']
+
+const tabsData = [
+  'New',
+  'Preparing',
+  'Shipping',
+]
 </script>
 
 <template>

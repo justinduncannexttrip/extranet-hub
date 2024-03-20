@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import AnalyticsAward from '@/views/dashboards/analytics/AnalyticsAward.vue'
 import AnalyticsDepositWithdraw from '@/views/dashboards/analytics/AnalyticsDepositWithdraw.vue'
 import AnalyticsPerformance from '@/views/dashboards/analytics/AnalyticsPerformance.vue'

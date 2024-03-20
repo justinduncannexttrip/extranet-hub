@@ -1,5 +1,5 @@
-<script lang="ts" setup>
-const notifications = ref<number>()
+<script setup>
+const notifications = ref()
 </script>
 
 <template>

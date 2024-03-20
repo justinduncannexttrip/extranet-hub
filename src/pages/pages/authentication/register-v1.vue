@@ -1,8 +1,7 @@
-<script setup lang="ts">
+<script setup>
 import AuthProvider from '@/views/pages/authentication/AuthProvider.vue'
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 import { themeConfig } from '@themeConfig'
-
 import miscMaskDark from '@images/misc/misc-mask-dark.png'
 import miscMaskLight from '@images/misc/misc-mask-light.png'
 import tree1 from '@images/misc/tree1.png'
@@ -10,11 +9,7 @@ import tree3 from '@images/misc/tree3.png'
 
 const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
 
-definePage({
-  meta: {
-    layout: 'blank',
-  },
-})
+definePage({ meta: { layout: 'blank' } })
 
 const form = ref({
   username: '',

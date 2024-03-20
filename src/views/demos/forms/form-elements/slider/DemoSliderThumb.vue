@@ -1,5 +1,17 @@
-<script lang="ts" setup>
-const satisfactionEmojis = ['😭', '😢', '☹️', '🙁', '😐', '🙂', '😊', '😁', '😄', '😍']
+<script setup>
+const satisfactionEmojis = [
+  '😭',
+  '😢',
+  '☹️',
+  '🙁',
+  '😐',
+  '🙂',
+  '😊',
+  '😁',
+  '😄',
+  '😍',
+]
+
 const slider = ref(45)
 </script>
 

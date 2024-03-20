@@ -1,8 +1,8 @@
-<script lang="ts" setup>
+<script setup>
 const firstName = ref('')
 const email = ref('')
-const mobile = ref<number>()
-const password = ref<string>()
+const mobile = ref()
+const password = ref()
 const checkbox = ref(false)
 </script>
 

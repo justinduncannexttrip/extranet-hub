@@ -1,39 +1,27 @@
-<script setup lang="ts">
+<script setup>
 import usFlag from '@images/icons/countries/us.png'
 import americanExpress from '@images/icons/payments/img/american-express.png'
 import mastercard from '@images/icons/payments/img/mastercard.png'
 import visa from '@images/icons/payments/img/visa-light.png'
 
-interface CardDetails {
-  number: string
-  name: string
-  expiry: string
-  cvv: string
-  isPrimary: boolean
-  type: string
-}
+const show = ref([
+  true,
+  false,
+  false,
+])
 
-interface BillingAddress {
-  firstName: string
-  lastName: string
-  selectedCountry: string | null
-  addressLine1: string
-  addressLine2: string
-  landmark: string
-  contact: string
-  country: string | null
-  state: string
-  zipCode: number | null
-}
+const paymentShow = ref([
+  true,
+  false,
+  false,
+])
 
-const show = ref([true, false, false])
-const paymentShow = ref([true, false, false])
 const isEditAddressDialogVisible = ref(false)
 const isCardAddDialogVisible = ref(false)
 const isNewEditAddressDialogVisible = ref(false)
 const isNewCardAddDialogVisible = ref(false)
 
-const currentCardDetails: CardDetails = {
+const currentCardDetails = {
   number: '1234 5678 9012 3456',
   name: 'John Doe',
   expiry: '12/2028',
@@ -42,7 +30,7 @@ const currentCardDetails: CardDetails = {
   type: '',
 }
 
-const editBillingData: BillingAddress = {
+const editBillingData = {
   firstName: 'Gertrude',
   lastName: 'Jennings',
   selectedCountry: 'USA',

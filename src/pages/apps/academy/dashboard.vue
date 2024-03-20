@@ -1,27 +1,22 @@
-<script setup lang="ts">
+<script setup>
 import AcademyAssignmentProgress from '@/views/apps/academy/AcademyAssignmentProgress.vue'
 import AcademyCardInterestedTopics from '@/views/apps/academy/AcademyCardInterestedTopics.vue'
 import AcademyCardPopularInstructors from '@/views/apps/academy/AcademyCardPopularInstructors.vue'
 import AcademyCardTopCourses from '@/views/apps/academy/AcademyCardTopCourses.vue'
 import AcademyCourseTable from '@/views/apps/academy/AcademyCourseTable.vue'
 import AcademyUpcomingWebinar from '@/views/apps/academy/AcademyUpcomingWebinar.vue'
-
 import customCheck from '@images/svg/check.svg'
 import customLaptop from '@images/svg/laptop.svg'
 import customLightbulb from '@images/svg/lightbulb.svg'
 
 const borderColor = 'rgba(var(--v-border-color), var(--v-border-opacity))'
 
-// Topics Charts config
 const topicsChartConfig = {
   chart: {
     height: 270,
     type: 'bar',
-    toolbar: {
-      show: false,
-    },
+    toolbar: { show: false },
   },
-
   plotOptions: {
     bar: {
       horizontal: true,
@@ -30,67 +25,66 @@ const topicsChartConfig = {
       borderRadius: 7,
     },
   },
-
   colors: [
-    '#8C57FF', '#16B1FF', '#56CA00', '#8A8D93', '#FF4C51', '#FFB400',
+    '#8C57FF',
+    '#16B1FF',
+    '#56CA00',
+    '#8A8D93',
+    '#FF4C51',
+    '#FFB400',
   ],
-
   grid: {
     borderColor,
     strokeDashArray: 10,
-    xaxis: {
-      lines: {
-        show: true,
-      },
-    },
-    yaxis: {
-      lines: {
-        show: false,
-      },
-    },
+    xaxis: { lines: { show: true } },
+    yaxis: { lines: { show: false } },
     padding: {
       top: -35,
       bottom: -12,
     },
   },
-
   dataLabels: {
     enabled: true,
     style: {
       colors: ['#fff'],
       fontWeight: 200,
       fontSize: '13px',
-
     },
     offsetX: 0,
-    dropShadow: {
-      enabled: false,
-    },
-    formatter(val: string, opt: any) {
+    dropShadow: { enabled: false },
+    formatter(val, opt) {
       return topicsChartConfig.labels[opt.dataPointIndex]
     },
   },
-  labels: ['UI Design', 'UX Design', 'Music', 'Animation', 'Vue', 'SEO'],
-
+  labels: [
+    'UI Design',
+    'UX Design',
+    'Music',
+    'Animation',
+    'Vue',
+    'SEO',
+  ],
   xaxis: {
-    categories: ['6', '5', '4', '3', '2', '1'],
-    axisBorder: {
-      show: false,
-    },
-    axisTicks: {
-      show: false,
-    },
+    categories: [
+      '6',
+      '5',
+      '4',
+      '3',
+      '2',
+      '1',
+    ],
+    axisBorder: { show: false },
+    axisTicks: { show: false },
     labels: {
       style: {
         colors: 'rgba(var(--v-theme-on-background), var(--v-disabled-opacity))',
         fontSize: '13px',
       },
-      formatter(val: string) {
-        return `${val}%`
+      formatter(val) {
+        return `${ val }%`
       },
     },
   },
-
   yaxis: {
     max: 35,
     labels: {
@@ -100,23 +94,14 @@ const topicsChartConfig = {
       },
     },
   },
-
   tooltip: {
     enabled: true,
-    style: {
-      fontSize: '12px',
-    },
-    onDatasetHover: {
-      highlightDataSeries: false,
-    },
+    style: { fontSize: '12px' },
+    onDatasetHover: { highlightDataSeries: false },
   },
-  legend: {
-    show: false,
-  },
-
+  legend: { show: false },
 }
 
-// Donut Chart Colors
 const donutChartColors = {
   donut: {
     series1: '#22A95E',
@@ -128,7 +113,6 @@ const donutChartColors = {
   },
 }
 
-// Donuts Chart Config
 const timeSpendingChartConfig = {
   chart: {
     height: 157,
@@ -136,7 +120,14 @@ const timeSpendingChartConfig = {
     parentHeightOffset: 0,
     type: 'donut',
   },
-  labels: ['36h', '56h', '16h', '32h', '56h', '16h'],
+  labels: [
+    '36h',
+    '56h',
+    '16h',
+    '32h',
+    '56h',
+    '16h',
+  ],
   colors: [
     donutChartColors.donut.series1,
     donutChartColors.donut.series2,
@@ -145,26 +136,16 @@ const timeSpendingChartConfig = {
     donutChartColors.donut.series5,
     donutChartColors.donut.series6,
   ],
-  stroke: {
-    width: 0,
-  },
+  stroke: { width: 0 },
   dataLabels: {
     enabled: false,
-    formatter(val: string) {
-      return `${Number.parseInt(val)}%`
+    formatter(val) {
+      return `${ Number.parseInt(val) }%`
     },
   },
-  legend: {
-    show: false,
-  },
-  tooltip: {
-    theme: false,
-  },
-  grid: {
-    padding: {
-      top: 0,
-    },
-  },
+  legend: { show: false },
+  tooltip: { theme: false },
+  grid: { padding: { top: 0 } },
   plotOptions: {
     pie: {
       donut: {
@@ -176,13 +157,11 @@ const timeSpendingChartConfig = {
             color: 'rgba(var(--v-theme-on-background), var(--v-high-emphasis-opacity))',
             fontWeight: 500,
             offsetY: -15,
-            formatter(val: string) {
-              return `${Number.parseInt(val)}%`
+            formatter(val) {
+              return `${ Number.parseInt(val) }%`
             },
           },
-          name: {
-            offsetY: 20,
-          },
+          name: { offsetY: 20 },
           total: {
             show: true,
             fontSize: '.7rem',
@@ -198,7 +177,14 @@ const timeSpendingChartConfig = {
   },
 }
 
-const timeSpendingChartSeries = [23, 35, 10, 20, 35, 23]
+const timeSpendingChartSeries = [
+  23,
+  35,
+  10,
+  20,
+  35,
+  23,
+]
 </script>
 
 <template>

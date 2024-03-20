@@ -1,31 +1,69 @@
-<script setup lang="ts">
+<script setup>
 import data from '@/views/demos/forms/tables/data-table/datatable'
-import type { Data } from '@db/pages/datatable/types'
 
-const userList = ref<Data[]>([])
-const options = ref({ page: 1, itemsPerPage: 5, sortBy: [''], sortDesc: [false] })
+const userList = ref([])
+
+const options = ref({
+  page: 1,
+  itemsPerPage: 5,
+  sortBy: [''],
+  sortDesc: [false],
+})
 
 // headers
 const headers = [
-  { title: 'NAME', key: 'fullName' },
-  { title: 'EMAIL', key: 'email' },
-  { title: 'DATE', key: 'startDate' },
-  { title: 'SALARY', key: 'salary' },
-  { title: 'AGE', key: 'age' },
-  { title: 'STATUS', key: 'status' },
+  {
+    title: 'NAME',
+    key: 'fullName',
+  },
+  {
+    title: 'EMAIL',
+    key: 'email',
+  },
+  {
+    title: 'DATE',
+    key: 'startDate',
+  },
+  {
+    title: 'SALARY',
+    key: 'salary',
+  },
+  {
+    title: 'AGE',
+    key: 'age',
+  },
+  {
+    title: 'STATUS',
+    key: 'status',
+  },
 ]
 
-const resolveStatusVariant = (status: number) => {
+const resolveStatusVariant = status => {
   if (status === 1)
-    return { color: 'primary', text: 'Current' }
+    return {
+      color: 'primary',
+      text: 'Current',
+    }
   else if (status === 2)
-    return { color: 'success', text: 'Professional' }
+    return {
+      color: 'success',
+      text: 'Professional',
+    }
   else if (status === 3)
-    return { color: 'error', text: 'Rejected' }
+    return {
+      color: 'error',
+      text: 'Rejected',
+    }
   else if (status === 4)
-    return { color: 'warning', text: 'Resigned' }
+    return {
+      color: 'warning',
+      text: 'Resigned',
+    }
   else
-    return { color: 'info', text: 'Applied' }
+    return {
+      color: 'info',
+      text: 'Applied',
+    }
 }
 
 onMounted(() => {

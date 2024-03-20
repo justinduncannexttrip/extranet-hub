@@ -1,6 +1,14 @@
-<script lang="ts" setup>
+<script setup>
 const rating = ref(4)
-const ratingColors = ['primary', 'secondary', 'success', 'info', 'warning', 'error']
+
+const ratingColors = [
+  'primary',
+  'secondary',
+  'success',
+  'info',
+  'warning',
+  'error',
+]
 </script>
 
 <template>

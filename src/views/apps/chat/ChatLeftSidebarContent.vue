@@ -1,25 +1,29 @@
-<script lang="ts" setup>
+<script setup>
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
 import { useChat } from './useChat'
 import ChatContact from '@/views/apps/chat/ChatContact.vue'
 import { useChatStore } from '@/views/apps/chat/useChatStore'
-import type { ChatContact as TypeChatContact } from '@db/apps/chat/types'
 
-const props = defineProps<{
-  search: string
-  isDrawerOpen: boolean
-}>()
+const props = defineProps({
+  search: {
+    type: String,
+    required: true,
+  },
+  isDrawerOpen: {
+    type: Boolean,
+    required: true,
+  },
+})
 
-const emit = defineEmits<{
-  (e: 'openChatOfContact', id: TypeChatContact['id']): void
-  (e: 'showUserProfile'): void
-  (e: 'close'): void
-  (e: 'update:search', value: string): void
-}>()
+const emit = defineEmits([
+  'openChatOfContact',
+  'showUserProfile',
+  'close',
+  'update:search',
+])
 
 const { resolveAvatarBadgeVariant } = useChat()
 const search = useVModel(props, 'search', emit)
-
 const store = useChatStore()
 </script>
 

@@ -1,8 +1,7 @@
-<script setup lang="ts">
+<script setup>
 import { VForm } from 'vuetify/components/VForm'
 import AuthProvider from '@/views/pages/authentication/AuthProvider.vue'
 import { themeConfig } from '@themeConfig'
-
 import tree1 from '@images/misc/tree1.png'
 import authV2LoginIllustrationBorderedDark from '@images/pages/auth-v2-login-illustration-bordered-dark.png'
 import authV2LoginIllustrationBorderedLight from '@images/pages/auth-v2-login-illustration-bordered-light.png'
@@ -12,13 +11,7 @@ import authV2MaskDark from '@images/pages/mask-v2-dark.png'
 import authV2MaskLight from '@images/pages/mask-v2-light.png'
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 
-const authThemeImg = useGenerateImageVariant(
-  authV2LoginIllustrationLight,
-  authV2LoginIllustrationDark,
-  authV2LoginIllustrationBorderedLight,
-  authV2LoginIllustrationBorderedDark,
-  true)
-
+const authThemeImg = useGenerateImageVariant(authV2LoginIllustrationLight, authV2LoginIllustrationDark, authV2LoginIllustrationBorderedLight, authV2LoginIllustrationBorderedDark, true)
 const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
 
 definePage({
@@ -29,18 +22,16 @@ definePage({
 })
 
 const isPasswordVisible = ref(false)
-
 const route = useRoute()
 const router = useRouter()
-
 const ability = useAbility()
 
-const errors = ref<Record<string, string | undefined>>({
+const errors = ref({
   email: undefined,
   password: undefined,
 })
 
-const refVForm = ref<VForm>()
+const refVForm = ref()
 
 const credentials = ref({
   email: 'admin@demo.com',
@@ -66,27 +57,21 @@ const login = async () => {
 
     useCookie('userAbilityRules').value = userAbilityRules
     ability.update(userAbilityRules)
-
     useCookie('userData').value = userData
     useCookie('accessToken').value = accessToken
-
-    // Redirect to `to` query if exist or redirect to index route
-    // ❗ nextTick is required to wait for DOM updates and later redirect
     await nextTick(() => {
       router.replace(route.query.to ? String(route.query.to) : '/')
     })
-  }
-  catch (err) {
+  } catch (err) {
     console.error(err)
   }
 }
 
 const onSubmit = () => {
-  refVForm.value?.validate()
-    .then(({ valid: isValid }) => {
-      if (isValid)
-        login()
-    })
+  refVForm.value?.validate().then(({ valid: isValid }) => {
+    if (isValid)
+      login()
+  })
 }
 </script>
 

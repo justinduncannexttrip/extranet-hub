@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const chartColors = {
   line: {
     series1: '#FFB400',
@@ -14,12 +14,34 @@ const series = [
   {
     name: 'Shipment',
     type: 'column',
-    data: [38, 45, 33, 38, 32, 50, 48, 40, 42, 37],
+    data: [
+      38,
+      45,
+      33,
+      38,
+      32,
+      50,
+      48,
+      40,
+      42,
+      37,
+    ],
   },
   {
     name: 'Delivery',
     type: 'line',
-    data: [23, 28, 23, 32, 28, 44, 32, 38, 26, 34],
+    data: [
+      23,
+      28,
+      23,
+      32,
+      28,
+      44,
+      32,
+      38,
+      26,
+      34,
+    ],
   },
 ]
 
@@ -28,25 +50,22 @@ const shipmentConfig = {
     type: 'line',
     stacked: false,
     parentHeightOffset: 0,
-    toolbar: {
-      show: false,
-    },
-    zoom: {
-      enabled: false,
-    },
+    toolbar: { show: false },
+    zoom: { enabled: false },
   },
   markers: {
     size: 5,
     colors: '#fff',
     strokeColors: chartColors.line.series2,
-    hover: {
-      size: 6,
-    },
+    hover: { size: 6 },
     borderRadius: 4,
   },
   stroke: {
     curve: 'smooth',
-    width: [0, 3],
+    width: [
+      0,
+      3,
+    ],
     lineCap: 'round',
   },
   legend: {
@@ -74,15 +93,17 @@ const shipmentConfig = {
   grid: {
     strokeDashArray: 8,
     borderColor,
-    xaxis: {
-      lines: {
-        show: false,
-      },
-    },
+    xaxis: { lines: { show: false } },
   },
-  colors: [chartColors.line.series1, chartColors.line.series2],
+  colors: [
+    chartColors.line.series1,
+    chartColors.line.series2,
+  ],
   fill: {
-    opacity: [1, 1],
+    opacity: [
+      1,
+      1,
+    ],
   },
   plotOptions: {
     bar: {
@@ -91,12 +112,21 @@ const shipmentConfig = {
       borderRadiusApplication: 'around',
     },
   },
-  dataLabels: {
-    enabled: false,
-  },
+  dataLabels: { enabled: false },
   xaxis: {
     tickAmount: 10,
-    categories: ['1 Jan', '2 Jan', '3 Jan', '4 Jan', '5 Jan', '6 Jan', '7 Jan', '8 Jan', '9 Jan', '10 Jan'],
+    categories: [
+      '1 Jan',
+      '2 Jan',
+      '3 Jan',
+      '4 Jan',
+      '5 Jan',
+      '6 Jan',
+      '7 Jan',
+      '8 Jan',
+      '9 Jan',
+      '10 Jan',
+    ],
     labels: {
       style: {
         colors: labelColor,
@@ -109,9 +139,7 @@ const shipmentConfig = {
       show: false,
       offsetY: 8,
     },
-    axisTicks: {
-      show: false,
-    },
+    axisTicks: { show: false },
   },
   yaxis: {
     tickAmount: 4,
@@ -124,8 +152,8 @@ const shipmentConfig = {
         fontFamily: 'Inter',
         fontWeight: 400,
       },
-      formatter(val: string) {
-        return `${val}%`
+      formatter(val) {
+        return `${ val }%`
       },
     },
   },
@@ -133,16 +161,8 @@ const shipmentConfig = {
     {
       breakpoint: 1400,
       options: {
-        chart: {
-          height: 310,
-        },
-        xaxis: {
-          labels: {
-            style: {
-              fontSize: '10px',
-            },
-          },
-        },
+        chart: { height: 310 },
+        xaxis: { labels: { style: { fontSize: '10px' } } },
         legend: {
           itemMargin: {
             vertical: 0,
@@ -156,35 +176,19 @@ const shipmentConfig = {
     {
       breakpoint: 1025,
       options: {
-        chart: {
-          height: 415,
-        },
-        plotOptions: {
-          bar: {
-            columnWidth: '50%',
-          },
-        },
+        chart: { height: 415 },
+        plotOptions: { bar: { columnWidth: '50%' } },
       },
     },
     {
       breakpoint: 982,
-      options: {
-        plotOptions: {
-          bar: {
-            columnWidth: '30%',
-          },
-        },
-      },
+      options: { plotOptions: { bar: { columnWidth: '30%' } } },
     },
     {
       breakpoint: 480,
       options: {
-        chart: {
-          height: 250,
-        },
-        legend: {
-          offsetY: 7,
-        },
+        chart: { height: 250 },
+        legend: { offsetY: 7 },
       },
     },
   ],

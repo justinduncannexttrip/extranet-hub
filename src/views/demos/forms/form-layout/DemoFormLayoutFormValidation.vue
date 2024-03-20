@@ -1,13 +1,17 @@
-<script lang="ts" setup>
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import type { VForm } from 'vuetify/components/VForm'
-
+<script setup>
 const name = ref('')
 const email = ref('')
-const items = ['Item 1', 'Item 2', 'Item 3', 'Item 4'] as const
-const select = ref<typeof items[number]>()
+
+const items = [
+  'Item 1',
+  'Item 2',
+  'Item 3',
+  'Item 4',
+]
+
+const select = ref()
 const checkbox = ref(false)
-const form = ref<VForm>()
+const form = ref()
 </script>
 
 <template>

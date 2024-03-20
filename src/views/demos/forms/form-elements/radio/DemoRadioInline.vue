@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const columnRadio = ref('radio-1')
 const inlineRadio = ref('radio-1')
 </script>

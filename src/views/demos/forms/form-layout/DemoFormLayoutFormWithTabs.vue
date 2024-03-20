@@ -1,12 +1,32 @@
-<script lang="ts" setup>
+<script setup>
 const tab = ref('personal-info')
 const firstName = ref('')
 const lastName = ref('')
 const country = ref()
 const birthDate = ref('')
-const phoneNo = ref<number>()
-const countryList = ['USA', 'Canada', 'UK', 'Denmark', 'Germany', 'Iceland', 'Israel', 'Mexico']
-const languageList = ['English', 'German', 'French', 'Spanish', 'Portuguese', 'Russian', 'Korean'] as const
+const phoneNo = ref()
+
+const countryList = [
+  'USA',
+  'Canada',
+  'UK',
+  'Denmark',
+  'Germany',
+  'Iceland',
+  'Israel',
+  'Mexico',
+]
+
+const languageList = [
+  'English',
+  'German',
+  'French',
+  'Spanish',
+  'Portuguese',
+  'Russian',
+  'Korean',
+]
+
 const username = ref('')
 const email = ref('')
 const password = ref('')
@@ -17,7 +37,7 @@ const googlePlusLink = ref('')
 const linkedInLink = ref('')
 const instagramLink = ref('')
 const quoraLink = ref('')
-const languages = ref<typeof languageList[number][]>([])
+const languages = ref([])
 const isPasswordVisible = ref(false)
 const isCPasswordVisible = ref(false)
 </script>

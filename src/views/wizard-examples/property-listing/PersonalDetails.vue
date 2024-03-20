@@ -1,16 +1,14 @@
-<script setup lang="ts">
-import type { PersonalDetails } from './types'
-import type { CustomInputContent } from '@core/types'
+<script setup>
+const props = defineProps({
+  formData: {
+    type: null,
+    required: true,
+  },
+})
 
-const props = defineProps<{
-  formData: PersonalDetails
-}>()
+const emit = defineEmits(['update:formData'])
 
-const emit = defineEmits<{
-  (e: 'update:formData', value: PersonalDetails): void
-}>()
-
-const propertyRadioContent: CustomInputContent[] = [
+const propertyRadioContent = [
   {
     title: 'I am the builder',
     desc: 'List property as Builder, list your project and get highest reach fast.',
@@ -31,7 +29,7 @@ const propertyRadioContent: CustomInputContent[] = [
   },
 ]
 
-const formData = ref<PersonalDetails>(props.formData)
+const formData = ref(props.formData)
 
 watch(formData, () => {
   emit('update:formData', formData.value)

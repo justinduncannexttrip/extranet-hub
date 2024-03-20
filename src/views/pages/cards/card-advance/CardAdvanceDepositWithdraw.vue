@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import americanBank from '@images/logos/american-bank.png'
 import aws from '@images/logos/aws.png'
 import citiBank from '@images/logos/citi-bank.png'

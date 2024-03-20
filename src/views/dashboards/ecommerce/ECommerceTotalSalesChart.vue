@@ -1,8 +1,7 @@
-<script setup lang="ts">
+<script setup>
 import { useTheme } from 'vuetify'
 
 const vuetifyTheme = useTheme()
-
 const currentTheme = computed(() => vuetifyTheme.current.value.colors)
 
 const chartOptions = computed(() => {
@@ -18,9 +17,24 @@ const chartOptions = computed(() => {
     legend: { show: false },
     tooltip: { enabled: true },
     dataLabels: { enabled: false },
-    colors: [currentTheme.value.primary, currentTheme.value.info, currentTheme.value.warning, currentTheme.value.error],
-    labels: ['Comments', 'Replies', 'Shares', 'Likes'],
-    series: [45, 10, 18, 27],
+    colors: [
+      currentTheme.value.primary,
+      currentTheme.value.info,
+      currentTheme.value.warning,
+      currentTheme.value.error,
+    ],
+    labels: [
+      'Comments',
+      'Replies',
+      'Shares',
+      'Likes',
+    ],
+    series: [
+      45,
+      10,
+      18,
+      27,
+    ],
     grid: {
       padding: {
         top: -7,
@@ -28,12 +42,8 @@ const chartOptions = computed(() => {
       },
     },
     states: {
-      hover: {
-        filter: { type: 'none' },
-      },
-      active: {
-        filter: { type: 'none' },
-      },
+      hover: { filter: { type: 'none' } },
+      active: { filter: { type: 'none' } },
     },
     plotOptions: {
       pie: {
@@ -48,7 +58,7 @@ const chartOptions = computed(() => {
               fontWeight: 500,
               offsetY: -18,
               color: 'rgba(var(--v-theme-on-surface), var(--v-high-emphasis-opacity))',
-              formatter: (o: any) => `${Number.parseInt(o)}%`,
+              formatter: o => `${ Number.parseInt(o) }%`,
             },
             name: {
               offsetY: 18,

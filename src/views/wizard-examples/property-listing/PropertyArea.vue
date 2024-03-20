@@ -1,15 +1,14 @@
-<script setup lang="ts">
-import type { PropertyArea } from './types'
+<script setup>
+const props = defineProps({
+  formData: {
+    type: null,
+    required: true,
+  },
+})
 
-const props = defineProps<{
-  formData: PropertyArea
-}>()
+const emit = defineEmits(['update:formData'])
 
-const emit = defineEmits<{
-  (e: 'update:formData', value: PropertyArea): void
-}>()
-
-const formData = ref<PropertyArea>(props.formData)
+const formData = ref(props.formData)
 
 watch(formData, () => {
   emit('update:formData', formData.value)

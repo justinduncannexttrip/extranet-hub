@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const checkbox = ref(1)
 const checkboxString = ref('Show')
 </script>

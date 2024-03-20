@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const toggleCheckbox = ref(true)
 const toggleIndeterminateCheckbox = ref(true)
 const disabledCheckbox = ref(true)

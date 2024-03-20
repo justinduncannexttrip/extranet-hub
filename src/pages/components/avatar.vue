@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 import * as demoCode from '@/views/demos/components/avatar/demoCodeAvatar'
 </script>
 

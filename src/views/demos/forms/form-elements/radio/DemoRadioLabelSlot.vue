@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const radios = ref('DuckDuckGo')
 </script>
 

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const panel = ref(0)
 </script>
 

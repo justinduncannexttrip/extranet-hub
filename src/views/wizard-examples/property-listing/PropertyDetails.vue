@@ -1,16 +1,14 @@
-<script setup lang="ts">
-import type { PropertyDetails } from './types'
-import type { CustomInputContent } from '@core/types'
+<script setup>
+const props = defineProps({
+  formData: {
+    type: null,
+    required: true,
+  },
+})
 
-const props = defineProps<{
-  formData: PropertyDetails
-}>()
+const emit = defineEmits(['update:formData'])
 
-const emit = defineEmits<{
-  (e: 'update:formData', value: PropertyDetails): void
-}>()
-
-const radioContent: CustomInputContent[] = [
+const radioContent = [
   {
     title: 'Sell the property',
     desc: 'Post your property for sale. Unlimited free listing.',
@@ -25,7 +23,7 @@ const radioContent: CustomInputContent[] = [
   },
 ]
 
-const formData = ref<PropertyDetails>(props.formData)
+const formData = ref(props.formData)
 
 watch(formData, () => {
   emit('update:formData', formData.value)

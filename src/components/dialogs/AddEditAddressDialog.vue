@@ -1,43 +1,33 @@
-<script setup lang="ts">
-interface BillingAddress {
-  firstName: string
-  lastName: string
-  selectedCountry: string | null
-  addressLine1: string
-  addressLine2: string
-  landmark: string
-  contact: string
-  country: string | null
-  state: string
-  zipCode: number | null
-}
-interface Props {
-  billingAddress?: BillingAddress
-  isDialogVisible: boolean
-}
-interface Emit {
-  (e: 'update:isDialogVisible', value: boolean): void
-  (e: 'submit', value: BillingAddress): void
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  billingAddress: () => ({
-    firstName: '',
-    lastName: '',
-    selectedCountry: null,
-    addressLine1: '',
-    addressLine2: '',
-    landmark: '',
-    contact: '',
-    country: null,
-    state: '',
-    zipCode: null,
-  }),
+<script setup>
+const props = defineProps({
+  billingAddress: {
+    type: Object,
+    required: false,
+    default: () => ({
+      firstName: '',
+      lastName: '',
+      selectedCountry: null,
+      addressLine1: '',
+      addressLine2: '',
+      landmark: '',
+      contact: '',
+      country: null,
+      state: '',
+      zipCode: null,
+    }),
+  },
+  isDialogVisible: {
+    type: Boolean,
+    required: true,
+  },
 })
 
-const emit = defineEmits<Emit>()
+const emit = defineEmits([
+  'update:isDialogVisible',
+  'submit',
+])
 
-const billingAddress = ref<BillingAddress>(structuredClone(toRaw(props.billingAddress)))
+const billingAddress = ref(structuredClone(toRaw(props.billingAddress)))
 
 const resetForm = () => {
   emit('update:isDialogVisible', false)

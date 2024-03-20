@@ -1,15 +1,17 @@
-<script lang="ts" setup>
+<script setup>
 import { useChat } from '@/views/apps/chat/useChat'
 import { useChatStore } from '@/views/apps/chat/useChatStore'
-import type { ChatContact, ChatContactWithChat } from '@db/apps/chat/types'
 
-interface Props {
-  isChatContact?: boolean
-  user: ChatContact | ChatContactWithChat
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  isChatContact: false,
+const props = defineProps({
+  isChatContact: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  user: {
+    type: null,
+    required: true,
+  },
 })
 
 const store = useChatStore()
@@ -19,7 +21,7 @@ const isChatContactActive = computed(() => {
   const isActive = store.activeChat?.contact.id === props.user.id
   if (!props.isChatContact)
     return !store.activeChat?.chat && isActive
-
+  
   return isActive
 })
 </script>

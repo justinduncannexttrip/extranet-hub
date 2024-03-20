@@ -1,16 +1,10 @@
-<script setup lang="ts">
-import type { ConnectionsTab } from '@db/pages/profile/types'
-
+<script setup>
 const router = useRoute('pages-user-profile-tab')
-const connectionData = ref<ConnectionsTab[]>([])
+const connectionData = ref([])
 
 const fetchProjectData = async () => {
   if (router.params.tab === 'connections') {
-    const data = await $api('/pages/profile', {
-      query: {
-        tab: router.params.tab,
-      },
-    }).catch(err => console.log(err))
+    const data = await $api('/pages/profile', { query: { tab: router.params.tab } }).catch(err => console.log(err))
 
     connectionData.value = data
   }
@@ -19,10 +13,23 @@ const fetchProjectData = async () => {
 watch(router, fetchProjectData, { immediate: true })
 
 const moreBtnList = [
-  { title: 'Share connection', value: 'Share connection' },
-  { title: 'Block connection', value: 'Block connection' },
-  { type: 'divider', class: 'my-2' },
-  { title: 'Delete', value: 'Delete', class: 'text-error' },
+  {
+    title: 'Share connection',
+    value: 'Share connection',
+  },
+  {
+    title: 'Block connection',
+    value: 'Block connection',
+  },
+  {
+    type: 'divider',
+    class: 'my-2',
+  },
+  {
+    title: 'Delete',
+    value: 'Delete',
+    class: 'text-error',
+  },
 ]
 </script>
 

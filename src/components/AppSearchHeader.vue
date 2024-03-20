@@ -1,20 +1,29 @@
-<script setup lang="ts">
+<script setup>
 import AppSearchHeaderBgDark from '@images/pages/app-search-header-bg-dark.png'
 import AppSearchHeaderBgLight from '@images/pages/app-search-header-bg-light.png'
 
-interface Props {
-  title?: string
-  subtitle?: string
-  customClass?: string
-  placeholder?: string
-}
+const props = defineProps({
+  title: {
+    type: String,
+    required: false,
+  },
+  subtitle: {
+    type: String,
+    required: false,
+  },
+  customClass: {
+    type: String,
+    required: false,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+    default: 'Ask a question..',
+  },
+})
 
 defineOptions({
   inheritAttrs: false,
-})
-
-withDefaults(defineProps<Props>(), {
-  placeholder: 'Ask a question..',
 })
 
 const themeBackgroundImg = useGenerateImageVariant(AppSearchHeaderBgLight, AppSearchHeaderBgDark)

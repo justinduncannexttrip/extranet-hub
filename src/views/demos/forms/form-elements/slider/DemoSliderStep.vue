@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const value = ref(0)
 </script>
 

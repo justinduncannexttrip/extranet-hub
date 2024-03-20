@@ -1,17 +1,20 @@
-<script setup lang="ts">
+<script setup>
 import { useTheme } from 'vuetify'
 
 const vuetifyTheme = useTheme()
 
-const series = [
-  {
-    data: [28, 58, 40, 68],
-  },
-]
+const series = [{
+  data: [
+    28,
+    58,
+    40,
+    68,
+  ],
+}]
 
 const chartOptions = computed(() => {
   const currentTheme = vuetifyTheme.current.value.colors
-
+  
   return {
     grid: {
       show: false,
@@ -30,27 +33,21 @@ const chartOptions = computed(() => {
         color: currentTheme.primary,
         opacity: 0.09,
       },
-      toolbar: {
-        show: false,
-      },
+      toolbar: { show: false },
     },
     markers: {
       size: 6,
       colors: 'transparent',
       strokeColors: 'transparent',
       strokeWidth: 4,
-      discrete: [
-        {
-          seriesIndex: 0,
-          dataPointIndex: series[0].data.length - 1,
-          fillColor: currentTheme.surface,
-          strokeColor: currentTheme.primary,
-          size: 6,
-        },
-      ],
-      hover: {
-        size: 7,
-      },
+      discrete: [{
+        seriesIndex: 0,
+        dataPointIndex: series[0].data.length - 1,
+        fillColor: currentTheme.surface,
+        strokeColor: currentTheme.primary,
+        size: 6,
+      }],
+      hover: { size: 7 },
     },
     stroke: {
       width: 5,
@@ -58,25 +55,12 @@ const chartOptions = computed(() => {
       lineCap: 'round',
     },
     xaxis: {
-      axisBorder: {
-        show: false,
-      },
-      axisTicks: {
-        show: false,
-      },
-      labels: {
-        show: false,
-      },
+      axisBorder: { show: false },
+      axisTicks: { show: false },
+      labels: { show: false },
     },
-    yaxis: {
-      labels: {
-        show: false,
-      },
-    },
-    tooltip: {
-      enabled: false,
-    },
-
+    yaxis: { labels: { show: false } },
+    tooltip: { enabled: false },
     colors: [currentTheme.primary],
   }
 })

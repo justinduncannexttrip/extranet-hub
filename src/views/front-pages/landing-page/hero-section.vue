@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { useMouse } from '@vueuse/core'
 import { useTheme } from 'vuetify'
 import { useGenerateImageVariant } from '@/@core/composable/useGenerateImageVariant'
@@ -6,7 +6,6 @@ import darkBg from '@images/front-pages/backgrounds/hero-bg-dark.png'
 import lightBg from '@images/front-pages/backgrounds/hero-bg.png'
 import heroDashboardImgDark from '@images/front-pages/landing-page/hero-dashboard-dark.png'
 import heroDashboardImgLight from '@images/front-pages/landing-page/hero-dashboard-light.png'
-
 import heroElementsImgDark from '@images/front-pages/landing-page/hero-elements-dark.png'
 import heroElementsImgLight from '@images/front-pages/landing-page/hero-elements-light.png'
 
@@ -22,15 +21,14 @@ const heroBgUrl = computed(() => {
 
 const heroElementsImg = useGenerateImageVariant(heroElementsImgLight, heroElementsImgDark)
 const heroDashboardImg = useGenerateImageVariant(heroDashboardImgLight, heroDashboardImgDark)
-
 const { x, y } = useMouse({ touch: false })
 
-const translateMouse = computed(() => (speed: number) => {
+const translateMouse = computed(() => speed => {
   if (typeof window !== 'undefined') {
-    const positionX = computed (() => (window.innerWidth - (x.value * speed)) / 100)
-    const positionY = computed (() => Math.max((window.innerHeight - (y.value * speed)) / 100, -40))
-
-    return { transform: `translate(${positionX.value}px,${positionY.value}px` }
+    const positionX = computed(() => (window.innerWidth - x.value * speed) / 100)
+    const positionY = computed(() => Math.max((window.innerHeight - y.value * speed) / 100, -40))
+    
+    return { transform: `translate(${ positionX.value }px,${ positionY.value }px` }
   }
 })
 </script>

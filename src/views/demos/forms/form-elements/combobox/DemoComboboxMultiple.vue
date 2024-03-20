@@ -1,6 +1,15 @@
-<script lang="ts" setup>
-const selectedItem = ref(['Vuetify', 'Programming'])
-const items = ['Programming', 'Design', 'Vue', 'Vuetify']
+<script setup>
+const selectedItem = ref([
+  'Vuetify',
+  'Programming',
+])
+
+const items = [
+  'Programming',
+  'Design',
+  'Vue',
+  'Vuetify',
+]
 </script>
 
 <template>

@@ -1,15 +1,14 @@
-<script setup lang="ts">
-import type { PriceDetails } from './types'
+<script setup>
+const props = defineProps({
+  formData: {
+    type: null,
+    required: true,
+  },
+})
 
-const props = defineProps<{
-  formData: PriceDetails
-}>()
+const emit = defineEmits(['update:formData'])
 
-const emit = defineEmits<{
-  (e: 'update:formData', value: PriceDetails): void
-}>()
-
-const formData = ref<PriceDetails>(props.formData)
+const formData = ref(props.formData)
 
 watch(formData, () => {
   emit('update:formData', formData.value)

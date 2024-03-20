@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import avatar1 from '@images/avatars/avatar-1.png'
 import avatar10 from '@images/avatars/avatar-10.png'
 import avatar2 from '@images/avatars/avatar-2.png'
@@ -11,29 +11,16 @@ import avatar8 from '@images/avatars/avatar-8.png'
 import avatar9 from '@images/avatars/avatar-9.png'
 import poseM from '@images/pages/pose_m1.png'
 
-interface Permission {
-  name: string
-  read: boolean
-  write: boolean
-  create: boolean
-}
-
-interface RoleDetails {
-  name: string
-  permissions: Permission[]
-}
-
-interface Roles {
-  role: string
-  users: string[]
-  details: RoleDetails
-}
-
 // 👉 Roles List
-const roles = ref<Roles[]>([
+const roles = ref([
   {
     role: 'Administrator',
-    users: [avatar1, avatar2, avatar3, avatar4],
+    users: [
+      avatar1,
+      avatar2,
+      avatar3,
+      avatar4,
+    ],
     details: {
       name: 'Administrator',
       permissions: [
@@ -60,7 +47,15 @@ const roles = ref<Roles[]>([
   },
   {
     role: 'Manager',
-    users: [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7],
+    users: [
+      avatar1,
+      avatar2,
+      avatar3,
+      avatar4,
+      avatar5,
+      avatar6,
+      avatar7,
+    ],
     details: {
       name: 'Manager',
       permissions: [
@@ -87,7 +82,13 @@ const roles = ref<Roles[]>([
   },
   {
     role: 'Users',
-    users: [avatar1, avatar2, avatar3, avatar4, avatar5],
+    users: [
+      avatar1,
+      avatar2,
+      avatar3,
+      avatar4,
+      avatar5,
+    ],
     details: {
       name: 'Users',
       permissions: [
@@ -120,7 +121,14 @@ const roles = ref<Roles[]>([
   },
   {
     role: 'Support',
-    users: [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6],
+    users: [
+      avatar1,
+      avatar2,
+      avatar3,
+      avatar4,
+      avatar5,
+      avatar6,
+    ],
     details: {
       name: 'Support',
       permissions: [
@@ -147,7 +155,18 @@ const roles = ref<Roles[]>([
   },
   {
     role: 'Restricted User',
-    users: [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9, avatar10],
+    users: [
+      avatar1,
+      avatar2,
+      avatar3,
+      avatar4,
+      avatar5,
+      avatar6,
+      avatar7,
+      avatar8,
+      avatar9,
+      avatar10,
+    ],
     details: {
       name: 'Restricted User',
       permissions: [
@@ -181,12 +200,10 @@ const roles = ref<Roles[]>([
 ])
 
 const isRoleDialogVisible = ref(false)
-
-const roleDetail = ref<RoleDetails>()
-
+const roleDetail = ref()
 const isAddRoleDialogVisible = ref(false)
 
-const editPermission = (value: RoleDetails) => {
+const editPermission = value => {
   isRoleDialogVisible.value = true
   roleDetail.value = value
 }

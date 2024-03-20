@@ -1,6 +1,5 @@
-<script setup lang="ts">
+<script setup>
 import { useTheme } from 'vuetify'
-
 import { hexToRgb } from '@layouts/utils'
 
 const vuetifyTheme = useTheme()
@@ -8,10 +7,9 @@ const vuetifyTheme = useTheme()
 const options = computed(() => {
   const currentTheme = ref(vuetifyTheme.current.value.colors)
   const variableTheme = ref(vuetifyTheme.current.value.variables)
-
-  const disabledColor = `rgba(${hexToRgb(currentTheme.value['on-surface'])},${variableTheme.value['disabled-opacity']})`
-  const borderColor = `rgba(${hexToRgb(String(variableTheme.value['border-color']))},${variableTheme.value['border-opacity']})`
-
+  const disabledColor = `rgba(${ hexToRgb(currentTheme.value['on-surface']) },${ variableTheme.value['disabled-opacity'] })`
+  const borderColor = `rgba(${ hexToRgb(String(variableTheme.value['border-color'])) },${ variableTheme.value['border-opacity'] })`
+  
   return {
     chart: {
       stacked: true,
@@ -30,8 +28,22 @@ const options = computed(() => {
       axisTicks: { show: false },
       crosshairs: { opacity: 0 },
       axisBorder: { show: false },
-      categories: [2015, 2016, 2017, 2018, 2019, 2020, 2021],
-      labels: { style: { fontSize: '13px', colors: disabledColor, fontFamily: 'inter' } },
+      categories: [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+      ],
+      labels: {
+        style: {
+          fontSize: '13px',
+          colors: disabledColor,
+          fontFamily: 'inter',
+        },
+      },
     },
     yaxis: {
       labels: {
@@ -40,10 +52,14 @@ const options = computed(() => {
           colors: disabledColor,
           fontFamily: 'inter',
         },
-        formatter: (value: number) => (value > 999 ? `${(value / 1000).toFixed(0)}k` : `${value}`),
+        formatter: value => value > 999 ? `${ (value / 1000).toFixed(0) }k` : `${ value }`,
       },
     },
-    colors: ['rgba(var(--v-theme-primary),1)', currentTheme.value.success, currentTheme.value.secondary],
+    colors: [
+      'rgba(var(--v-theme-primary),1)',
+      currentTheme.value.success,
+      currentTheme.value.secondary,
+    ],
     grid: {
       xaxis: { lines: { show: false } },
       borderColor,
@@ -65,13 +81,7 @@ const options = computed(() => {
     responsive: [
       {
         breakpoint: 1560,
-        options: {
-          plotOptions: {
-            bar: {
-              columnWidth: '35%',
-            },
-          },
-        },
+        options: { plotOptions: { bar: { columnWidth: '35%' } } },
       },
       {
         breakpoint: 1441,
@@ -86,9 +96,7 @@ const options = computed(() => {
       },
       {
         breakpoint: 1280,
-        charts: {
-          height: 200,
-        },
+        charts: { height: 200 },
         options: {
           plotOptions: {
             bar: {
@@ -122,18 +130,11 @@ const options = computed(() => {
       },
       {
         breakpoint: 800,
-
         chart: {
           height: 250,
           offsetX: -10,
         },
-        options: {
-          plotOptions: {
-            bar: {
-              columnWidth: '40%',
-            },
-          },
-        },
+        options: { plotOptions: { bar: { columnWidth: '40%' } } },
       },
       {
         breakpoint: 650,
@@ -164,11 +165,7 @@ const options = computed(() => {
             height: 250,
             offsetX: -10,
           },
-          plotOptions: {
-            bar: {
-              columnWidth: '45%',
-            },
-          },
+          plotOptions: { bar: { columnWidth: '45%' } },
           xaxis: {
             labels: {
               rotate: 315,
@@ -179,13 +176,7 @@ const options = computed(() => {
       },
       {
         breakpoint: 420,
-        options: {
-          plotOptions: {
-            bar: {
-              columnWidth: '60%',
-            },
-          },
-        },
+        options: { plotOptions: { bar: { columnWidth: '60%' } } },
       },
     ],
   }
@@ -194,31 +185,64 @@ const options = computed(() => {
 const series = [
   {
     name: 'Revenue',
-    data: [29000, 22000, 25000, 18500, 29000, 20000, 34500],
+    data: [
+      29000,
+      22000,
+      25000,
+      18500,
+      29000,
+      20000,
+      34500,
+    ],
   },
   {
     name: 'Transactions',
-    data: [0, 16000, 11000, 15500, 0, 12500, 9500],
+    data: [
+      0,
+      16000,
+      11000,
+      15500,
+      0,
+      12500,
+      9500,
+    ],
   },
   {
     name: 'Total Profit',
-    data: [0, 0, 0, 14000, 0, 11500, 12000],
+    data: [
+      0,
+      0,
+      0,
+      14000,
+      0,
+      11500,
+      12000,
+    ],
   },
 ]
 
 const lastThreeTransactions = [
   {
-    avatar: { icon: 'ri-pie-chart-2-line', color: 'success' },
+    avatar: {
+      icon: 'ri-pie-chart-2-line',
+      color: 'success',
+    },
     title: '$48,568.20',
     subtitle: 'Total Profit',
   },
   {
-    avatar: { icon: 'ri-money-dollar-circle-line', color: 'primary' },
+    avatar: {
+      icon: 'ri-money-dollar-circle-line',
+      color: 'primary',
+    },
     title: '$38,453.25',
     subtitle: 'Total Income',
   },
   {
-    avatar: { icon: 'ri-bank-card-line', color: 'secondary' },
+    avatar: {
+      icon: 'ri-bank-card-line',
+      color: 'secondary',
+    },
     title: '$2,453.45',
     subtitle: 'Total Expense',
   },

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import ECommerceCongratulations from '@/views/dashboards/ecommerce/ECommerceCongratulations.vue'
 import ECommerceInvoiceTable from '@/views/dashboards/ecommerce/ECommerceInvoiceTable.vue'
 import ECommerceMeetingSchedule from '@/views/dashboards/ecommerce/ECommerceMeetingSchedule.vue'

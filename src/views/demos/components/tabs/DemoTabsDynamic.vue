@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const totalTabs = ref(3)
 const currentTab = ref(0)
 

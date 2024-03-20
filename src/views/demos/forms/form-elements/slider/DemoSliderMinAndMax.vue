@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const min = ref(-50)
 const max = ref(90)
 const slider = ref(40)

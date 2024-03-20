@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import chrome from '@images/logos/chrome.png'
 
 const isNewPasswordVisible = ref(false)
@@ -6,12 +6,23 @@ const isConfirmPasswordVisible = ref(false)
 const smsVerificationNumber = ref('+1(968) 819-2547')
 const isTwoFactorDialogOpen = ref(false)
 
-// Recent devices Headers
 const recentDeviceHeader = [
-  { title: 'BROWSER', key: 'browser' },
-  { title: 'DEVICE', key: 'device' },
-  { title: 'LOCATION', key: 'location' },
-  { title: 'RECENT ACTIVITY', key: 'activity' },
+  {
+    title: 'BROWSER',
+    key: 'browser',
+  },
+  {
+    title: 'DEVICE',
+    key: 'device',
+  },
+  {
+    title: 'LOCATION',
+    key: 'location',
+  },
+  {
+    title: 'RECENT ACTIVITY',
+    key: 'activity',
+  },
 ]
 
 const recentDevices = [

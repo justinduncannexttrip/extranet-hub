@@ -1,10 +1,9 @@
-<script lang="ts" setup>
+<script setup>
 const isDialogVisible = ref(false)
 
 watch(isDialogVisible, value => {
   if (!value)
     return
-
   setTimeout(() => {
     isDialogVisible.value = false
   }, 4000)

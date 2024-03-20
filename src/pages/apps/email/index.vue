@@ -1,32 +1,17 @@
-<script setup lang="ts">
+<script setup>
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
 import ComposeDialog from '@/views/apps/email/ComposeDialog.vue'
 import EmailLeftSidebarContent from '@/views/apps/email/EmailLeftSidebarContent.vue'
 import EmailView from '@/views/apps/email/EmailView.vue'
-import type { MoveEmailToAction } from '@/views/apps/email/useEmail'
 import { useEmail } from '@/views/apps/email/useEmail'
-import type { Email } from '@db/apps/email/types'
 
-definePage({
-  meta: {
-    layoutWrapperClasses: 'layout-content-height-fixed',
-  },
-})
+definePage({ meta: { layoutWrapperClasses: 'layout-content-height-fixed' } })
 
 const { isLeftSidebarOpen } = useResponsiveLeftSidebar()
 
 // Composables
-const route = useRoute<'apps-email-filter' | 'apps-email-label'>()
-
-const {
-  labels,
-  resolveLabelColor,
-  emailMoveToFolderActions,
-  shallShowMoveToActionFor,
-  moveSelectedEmailTo,
-  updateEmails,
-  updateEmailLabels,
-} = useEmail()
+const route = useRoute()
+const { labels, resolveLabelColor, emailMoveToFolderActions, shallShowMoveToActionFor, moveSelectedEmailTo, updateEmails, updateEmailLabels } = useEmail()
 
 // Compose dialog
 const isComposeDialogVisible = ref(false)
@@ -34,13 +19,15 @@ const isComposeDialogVisible = ref(false)
 // Ref
 const q = ref('')
 
-// ------------------------------------------------
 // Email Selection
-// ------------------------------------------------
-const selectedEmails = ref<Email['id'][]>([])
 
-// Fetch Emails
-const { data: emailData, execute: fetchEmails } = await useApi<any>(createUrl('/apps/email', {
+// ------------------------------------------------
+const selectedEmails = ref([])
+
+const {
+  data: emailData,
+  execute: fetchEmails,
+} = await useApi(createUrl('/apps/email', {
   query: {
     q,
     filter: () => 'filter' in route.params ? route.params.filter : undefined,
@@ -48,37 +35,29 @@ const { data: emailData, execute: fetchEmails } = await useApi<any>(createUrl('/
   },
 }))
 
-const emails = computed<Email[]>(() => emailData.value.emails)
+const emails = computed(() => emailData.value.emails)
 
-const toggleSelectedEmail = (emailId: Email['id']) => {
+const toggleSelectedEmail = emailId => {
   const emailIndex = selectedEmails.value.indexOf(emailId)
   if (emailIndex === -1)
     selectedEmails.value.push(emailId)
-  else selectedEmails.value.splice(emailIndex, 1)
+  else
+    selectedEmails.value.splice(emailIndex, 1)
 }
 
-const selectAllEmailCheckbox = computed(
-  () => emails.value.length && emails.value.length === selectedEmails.value.length,
-)
+const selectAllEmailCheckbox = computed(() => emails.value.length && emails.value.length === selectedEmails.value.length)
+const isSelectAllEmailCheckboxIndeterminate = computed(() => Boolean(selectedEmails.value.length) && emails.value.length !== selectedEmails.value.length)
 
-const isSelectAllEmailCheckboxIndeterminate = computed(
-  () =>
-    Boolean(selectedEmails.value.length)
-    && emails.value.length !== selectedEmails.value.length,
-)
-
-const isAllMarkRead = computed (() => {
+const isAllMarkRead = computed(() => {
   return selectedEmails.value.every(emailId => emails.value.find(email => email.id === emailId)?.isRead)
 })
 
 const selectAllCheckboxUpdate = () => {
-  selectedEmails.value = !selectAllEmailCheckbox.value
-    ? emails.value.map(email => email.id)
-    : []
+  selectedEmails.value = !selectAllEmailCheckbox.value ? emails.value.map(email => email.id) : []
 }
 
 // Email View
-const openedEmail = ref<Email | null>(null)
+const openedEmail = ref(null)
 
 const emailViewMeta = computed(() => {
   const returnValue = {
@@ -87,45 +66,36 @@ const emailViewMeta = computed(() => {
   }
 
   if (openedEmail.value) {
-    const openedEmailIndex = emails.value.findIndex(
-      e => e.id === openedEmail.value?.id,
-    )
+    const openedEmailIndex = emails.value.findIndex(e => e.id === openedEmail.value?.id)
 
     returnValue.hasNextEmail = !!emails.value[openedEmailIndex + 1]
     returnValue.hasPreviousEmail = !!emails.value[openedEmailIndex - 1]
   }
-
+  
   return returnValue
 })
 
 const refreshOpenedEmail = async () => {
   await fetchEmails()
-
   if (openedEmail.value)
-    openedEmail.value = emails.value.find(e => e.id === openedEmail.value?.id)!
+    openedEmail.value = emails.value.find(e => e.id === openedEmail.value?.id)
 }
 
-/*
-  ℹ️ You can optimize it so it doesn't fetch emails on each action.
-    Currently, if you just star the email, two API calls will get fired.
-      1. star the email
-      2. Fetch all latest emails
+/*ℹ️ You can optimize it so it doesn't fetch emails on each action.
+Currently, if you just star the email, two API calls will get fired.
+1. star the email
+2. Fetch all latest emails
 
-    You can limit this to single API call by:
-      - making API to star the email
-      - modify the state (set that email's isStarred property to true/false) in the store instead of making API for fetching emails
+You can limit this to single API call by:
+- making API to star the email
+- modify the state (set that email's isStarred property to true/false) in the store instead of making API for fetching emails
 
-  😊 For simplicity of the code and possible of modification, we kept it simple.
+😊 For simplicity of the code and possible of modification, we kept it simple.
 */
-
-const handleActionClick = async (
-  action: 'trash' | 'unread' | 'read' | 'spam' | 'star' | 'unstar',
-  emailIds: Email['id'][] = selectedEmails.value,
-) => {
+const handleActionClick = async (action, emailIds = selectedEmails.value) => {
   selectedEmails.value = []
   if (!emailIds.length)
     return
-
   if (action === 'trash')
     await updateEmails(emailIds, { isDeleted: true })
   else if (action === 'spam')
@@ -138,44 +108,33 @@ const handleActionClick = async (
     await updateEmails(emailIds, { isStarred: true })
   else if (action === 'unstar')
     await updateEmails(emailIds, { isStarred: false })
-
   await fetchEmails()
-
   if (openedEmail.value)
     refreshOpenedEmail()
 }
 
-// Email actions
-const handleMoveMailsTo = async (action: MoveEmailToAction) => {
+const handleMoveMailsTo = async action => {
   moveSelectedEmailTo(action, selectedEmails.value)
   await fetchEmails()
 }
 
-// Email view
-const changeOpenedEmail = (dir: 'previous' | 'next') => {
+const changeOpenedEmail = dir => {
   if (!openedEmail.value)
     return
-
-  const openedEmailIndex = emails.value.findIndex(
-    e => e.id === openedEmail.value?.id,
-  )
-
+  const openedEmailIndex = emails.value.findIndex(e => e.id === openedEmail.value?.id)
   const newEmailIndex = dir === 'previous' ? openedEmailIndex - 1 : openedEmailIndex + 1
 
   openedEmail.value = emails.value[newEmailIndex]
 }
 
-const openEmail = async (email: Email) => {
+const openEmail = async email => {
   openedEmail.value = email
-
   await handleActionClick('read', [email.id])
 }
 
-watch(
-  () => route.params,
-  () => { selectedEmails.value = [] },
-  { deep: true },
-)
+watch(() => route.params, () => {
+  selectedEmails.value = []
+}, { deep: true })
 </script>
 
 <template>

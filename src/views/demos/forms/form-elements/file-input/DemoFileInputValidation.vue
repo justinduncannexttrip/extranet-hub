@@ -1,7 +1,5 @@
-<script lang="ts" setup>
-const rules = [
-  (fileList: FileList) => !fileList || !fileList.length || fileList[0].size < 1000000 || 'Avatar size should be less than 1 MB!',
-]
+<script setup>
+const rules = [fileList => !fileList || !fileList.length || fileList[0].size < 1000000 || 'Avatar size should be less than 1 MB!']
 </script>
 
 <template>

@@ -1,5 +1,5 @@
-<script lang="ts" setup>
-const files = ref<File[]>([])
+<script setup>
+const files = ref([])
 </script>
 
 <template>

@@ -1,16 +1,10 @@
-<script setup lang="ts">
-import type { ProjectsTab } from '@db/pages/profile/types'
-
+<script setup>
 const router = useRoute('pages-user-profile-tab')
-const projectData = ref<ProjectsTab[]>([])
+const projectData = ref([])
 
 const fetchProjectData = async () => {
   if (router.params.tab === 'projects') {
-    const data = await $api('/pages/profile', {
-      query: {
-        tab: router.params.tab,
-      },
-    }).catch(err => console.log(err))
+    const data = await $api('/pages/profile', { query: { tab: router.params.tab } }).catch(err => console.log(err))
 
     projectData.value = data
   }
@@ -19,11 +13,27 @@ const fetchProjectData = async () => {
 watch(router, fetchProjectData, { immediate: true })
 
 const moreList = [
-  { title: 'Rename Project', value: 'Rename Project' },
-  { title: 'View Details', value: 'View Details' },
-  { title: 'Add to favorites', value: 'Add to favorites' },
-  { type: 'divider', class: 'my-2' },
-  { title: 'Leave Project', value: 'Leave Project', class: 'text-error' },
+  {
+    title: 'Rename Project',
+    value: 'Rename Project',
+  },
+  {
+    title: 'View Details',
+    value: 'View Details',
+  },
+  {
+    title: 'Add to favorites',
+    value: 'Add to favorites',
+  },
+  {
+    type: 'divider',
+    class: 'my-2',
+  },
+  {
+    title: 'Leave Project',
+    value: 'Leave Project',
+    class: 'text-error',
+  },
 ]
 </script>
 

@@ -1,12 +1,30 @@
-<script setup lang="ts">
-defineProps<{
-  title: string
-  value: string
-  change: number
-  desc: string
-  icon: string
-  iconColor: string
-}>()
+<script setup>
+const props = defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+  value: {
+    type: String,
+    required: true,
+  },
+  change: {
+    type: Number,
+    required: true,
+  },
+  desc: {
+    type: String,
+    required: true,
+  },
+  icon: {
+    type: String,
+    required: true,
+  },
+  iconColor: {
+    type: String,
+    required: true,
+  },
+})
 </script>
 
 <template>

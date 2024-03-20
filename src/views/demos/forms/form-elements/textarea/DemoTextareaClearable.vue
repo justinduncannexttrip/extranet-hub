@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const textareaValue = ref('This is clearable text.')
 </script>
 

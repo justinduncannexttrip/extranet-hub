@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const isDialogVisible = ref(false)
 const firstName = ref('')
 const middleName = ref('')
@@ -6,7 +6,7 @@ const lastName = ref('')
 const email = ref('')
 const password = ref('')
 const age = ref()
-const interest = ref<string[]>([])
+const interest = ref([])
 </script>
 
 <template>

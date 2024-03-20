@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { VForm } from 'vuetify/components/VForm'
 
 const numberedSteps = [
@@ -20,9 +20,9 @@ const currentStep = ref(0)
 const isPasswordVisible = ref(false)
 const isCPasswordVisible = ref(false)
 const isCurrentStepValid = ref(true)
-const refAccountForm = ref<VForm>()
-const refPersonalForm = ref<VForm>()
-const refSocialLinkForm = ref<VForm>()
+const refAccountForm = ref()
+const refPersonalForm = ref()
+const refSocialLinkForm = ref()
 
 const accountForm = ref({
   username: '',
@@ -43,7 +43,6 @@ const socialForm = ref({
   facebook: '',
   googlePlus: '',
   linkedIn: '',
-
 })
 
 const validateAccountForm = () => {
@@ -51,8 +50,9 @@ const validateAccountForm = () => {
     if (valid.valid) {
       currentStep.value++
       isCurrentStepValid.value = true
+    } else {
+      isCurrentStepValid.value = false
     }
-    else { isCurrentStepValid.value = false }
   })
 }
 
@@ -61,8 +61,9 @@ const validatePersonalForm = () => {
     if (valid.valid) {
       currentStep.value++
       isCurrentStepValid.value = true
+    } else {
+      isCurrentStepValid.value = false
     }
-    else { isCurrentStepValid.value = false }
   })
 }
 
@@ -70,14 +71,14 @@ const validateSocialLinkForm = () => {
   refSocialLinkForm.value?.validate().then(valid => {
     if (valid.valid) {
       isCurrentStepValid.value = true
-
       console.log({
         ...accountForm.value,
         ...personalForm.value,
         ...socialForm.value,
       })
+    } else {
+      isCurrentStepValid.value = false
     }
-    else { isCurrentStepValid.value = false }
   })
 }
 </script>

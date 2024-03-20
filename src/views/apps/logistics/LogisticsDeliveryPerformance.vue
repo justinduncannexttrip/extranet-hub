@@ -1,11 +1,47 @@
-<script setup lang="ts">
+<script setup>
 const deliveryData = [
-  { title: 'Packages in transit', value: '10k', change: 25.8, icon: 'ri-gift-line', color: 'primary' },
-  { title: 'Packages out for delivery', value: '5k', change: 4.3, icon: 'ri-car-line', color: 'info' },
-  { title: 'Packages delivered', value: '15k', change: -12.5, icon: 'ri-check-line', color: 'success' },
-  { title: 'Delivery success rate', value: '95%', change: 35.6, icon: 'ri-home-line', color: 'warning' },
-  { title: 'Average delivery time', value: '2.5 Days', change: -2.15, icon: 'ri-timer-line', color: 'secondary' },
-  { title: 'Customer satisfaction', value: '4.5/5', change: 5.7, icon: 'ri-user-line', color: 'error' },
+  {
+    title: 'Packages in transit',
+    value: '10k',
+    change: 25.8,
+    icon: 'ri-gift-line',
+    color: 'primary',
+  },
+  {
+    title: 'Packages out for delivery',
+    value: '5k',
+    change: 4.3,
+    icon: 'ri-car-line',
+    color: 'info',
+  },
+  {
+    title: 'Packages delivered',
+    value: '15k',
+    change: -12.5,
+    icon: 'ri-check-line',
+    color: 'success',
+  },
+  {
+    title: 'Delivery success rate',
+    value: '95%',
+    change: 35.6,
+    icon: 'ri-home-line',
+    color: 'warning',
+  },
+  {
+    title: 'Average delivery time',
+    value: '2.5 Days',
+    change: -2.15,
+    icon: 'ri-timer-line',
+    color: 'secondary',
+  },
+  {
+    title: 'Customer satisfaction',
+    value: '4.5/5',
+    change: 5.7,
+    icon: 'ri-user-line',
+    color: 'error',
+  },
 ]
 </script>
 

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import message from '@images/cards/comment-alt-lines.svg'
 import chart from '@images/cards/graph-bar.svg'
 import heart from '@images/cards/heart-medical.svg'

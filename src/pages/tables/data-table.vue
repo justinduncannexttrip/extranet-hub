@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import * as demoCode from '@/views/demos/forms/tables/data-table/demoCodeDataTable'
 </script>
 

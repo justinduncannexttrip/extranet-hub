@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import briefcase from '@images/cards/briefcase.png'
 import logoCreditCard2 from '@images/cards/logo-credit-card-2.png'
 import logoMastercardSmall from '@images/cards/logo-mastercard-small.png'

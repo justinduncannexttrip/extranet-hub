@@ -1,20 +1,19 @@
-<script setup lang="ts">
-interface Props {
-  searchQuery: string
-}
+<script setup>
+const props = defineProps({
+  searchQuery: {
+    type: String,
+    required: true,
+  },
+})
 
-const props = defineProps<Props>()
-
-// Data table options
 const itemsPerPage = ref(6)
 const page = ref(1)
 const sortBy = ref()
 const orderBy = ref()
-
 const hideCompleted = ref(true)
 const label = ref('All Courses')
 
-const { data: coursesData } = await useApi<any>(createUrl('/apps/academy/courses', {
+const { data: coursesData } = await useApi(createUrl('/apps/academy/courses', {
   query: {
     q: () => props.searchQuery,
     hideCompleted,
@@ -29,11 +28,15 @@ const { data: coursesData } = await useApi<any>(createUrl('/apps/academy/courses
 const courses = computed(() => coursesData.value.courses)
 const totalCourse = computed(() => coursesData.value.total)
 
-watch([hideCompleted, label, () => props.searchQuery], () => {
+watch([
+  hideCompleted,
+  label,
+  () => props.searchQuery,
+], () => {
   page.value = 1
 })
 
-const resolveChipColor = (tags: string) => {
+const resolveChipColor = tags => {
   if (tags === 'Web')
     return 'primary'
   if (tags === 'Art')

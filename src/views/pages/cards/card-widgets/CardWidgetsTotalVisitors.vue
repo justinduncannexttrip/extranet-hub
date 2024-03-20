@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { useTheme } from 'vuetify'
 import { hexToRgb } from '@layouts/utils'
 
@@ -7,10 +7,9 @@ const vuetifyTheme = useTheme()
 const options = computed(() => {
   const currentTheme = ref(vuetifyTheme.current.value.colors)
   const variableTheme = ref(vuetifyTheme.current.value.variables)
-
-  const secondaryTextColor = `rgba(${hexToRgb(currentTheme.value['on-surface'])},${variableTheme.value['medium-emphasis-opacity']})`
-  const primaryTextColor = `rgba(${hexToRgb(currentTheme.value['on-surface'])},${variableTheme.value['high-emphasis-opacity']})`
-
+  const secondaryTextColor = `rgba(${ hexToRgb(currentTheme.value['on-surface']) },${ variableTheme.value['medium-emphasis-opacity'] })`
+  const primaryTextColor = `rgba(${ hexToRgb(currentTheme.value['on-surface']) },${ variableTheme.value['high-emphasis-opacity'] })`
+  
   return {
     colors: [
       'rgba(var(--v-theme-primary),1)',
@@ -29,7 +28,12 @@ const options = computed(() => {
       },
       labels: { colors: secondaryTextColor },
     },
-    labels: ['FR', 'UK', 'ESP', 'USA'],
+    labels: [
+      'FR',
+      'UK',
+      'ESP',
+      'USA',
+    ],
     states: {
       hover: { filter: { type: 'none' } },
       active: { filter: { type: 'none' } },
@@ -50,15 +54,14 @@ const options = computed(() => {
               fontWeight: 500,
               fontSize: '24px',
               color: primaryTextColor,
-              formatter: (value: unknown) => `${value}%`,
+              formatter: value => `${ value }%`,
             },
             total: {
               show: true,
               label: 'Weekly Visits',
               fontSize: '15px',
               color: secondaryTextColor,
-
-              formatter: (value: { globals: { seriesTotals: any[] } }) => `${value.globals.seriesTotals.reduce((total: number, num: number) => total + num)}%`,
+              formatter: value => `${ value.globals.seriesTotals.reduce((total, num) => total + num) }%`,
             },
           },
         },
@@ -67,7 +70,12 @@ const options = computed(() => {
   }
 })
 
-const series = [12, 25, 13, 50]
+const series = [
+  12,
+  25,
+  13,
+  50,
+]
 </script>
 
 <template>

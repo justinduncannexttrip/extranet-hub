@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const selectedOption1 = ref('Florida')
 const selectedOption2 = ref('Texas')
 

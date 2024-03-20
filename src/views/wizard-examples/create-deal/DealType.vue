@@ -1,14 +1,14 @@
-<script setup lang="ts">
-import type { DealType } from './types'
+<script setup>
 import ShoppingGirl from '@images/pages/shopping-girl.png'
 
-const props = defineProps<{
-  formData: DealType
-}>()
+const props = defineProps({
+  formData: {
+    type: null,
+    required: true,
+  },
+})
 
-const emit = defineEmits<{
-  (e: 'update:formData', value: DealType): void
-}>()
+const emit = defineEmits(['update:formData'])
 
 const discountOffers = [
   {
@@ -31,7 +31,7 @@ const discountOffers = [
   },
 ]
 
-const formData = ref<DealType>(props.formData)
+const formData = ref(props.formData)
 
 watch(formData, () => {
   emit('update:formData', formData.value)

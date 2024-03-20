@@ -1,36 +1,21 @@
-<script setup lang="ts">
+<script setup>
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
+
+const emit = defineEmits(['toggleComposeDialogVisibility'])
 
 defineOptions({
   inheritAttrs: false,
 })
 
-defineEmits<{
-  (e: 'toggleComposeDialogVisibility'): void
-}>()
-
-interface Folder {
-  title: string
-  prependIcon: string
-  to: any
-  badge?: {
-    content: string
-    color: string
-  }
-}
-
-interface Label {
-  title: string
-  color: string
-  to: any
-}
-
-const folders: Folder[] = [
+const folders = [
   {
     title: 'Inbox',
     prependIcon: 'ri-mail-line',
     to: { name: 'apps-email' },
-    badge: { content: '21', color: 'primary' },
+    badge: {
+      content: '21',
+      color: 'primary',
+    },
   },
   {
     title: 'Sent',
@@ -47,7 +32,10 @@ const folders: Folder[] = [
       name: 'apps-email-filter',
       params: { filter: 'draft' },
     },
-    badge: { content: '2', color: 'warning' },
+    badge: {
+      content: '2',
+      color: 'warning',
+    },
   },
   {
     title: 'Starred',
@@ -64,7 +52,10 @@ const folders: Folder[] = [
       name: 'apps-email-filter',
       params: { filter: 'spam' },
     },
-    badge: { content: '4', color: 'error' },
+    badge: {
+      content: '4',
+      color: 'error',
+    },
   },
   {
     title: 'Trash',
@@ -76,7 +67,7 @@ const folders: Folder[] = [
   },
 ]
 
-const labels: Label[] = [
+const labels = [
   {
     title: 'Personal',
     color: 'success',

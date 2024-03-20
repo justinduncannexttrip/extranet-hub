@@ -1,7 +1,13 @@
-<script lang="ts" setup>
+<script setup>
 const value = ref(0)
 const fruits = ref(1)
-const ticksLabels = { 0: 'Figs', 1: 'Lemon', 2: 'Pear', 3: 'Apple' }
+
+const ticksLabels = {
+  0: 'Figs',
+  1: 'Lemon',
+  2: 'Pear',
+  3: 'Apple',
+}
 </script>
 
 <template>

@@ -1,13 +1,15 @@
-<script setup lang="ts">
-import type { Customer } from '@db/apps/ecommerce/types'
+<script setup>
 import rocketImg from '@images/eCommerce/rocket.png'
 
-const props = defineProps<Props>()
+const props = defineProps({
+  customerData: {
+    type: null,
+    required: true,
+  },
+})
+
 const isUserInfoEditDialogVisible = ref(false)
 const isUpgradePlanDialogVisible = ref(false)
-interface Props {
-  customerData: Customer
-}
 </script>
 
 <template>

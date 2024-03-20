@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const bpm = ref(40)
 const min = 40
 const max = 218
@@ -13,12 +13,12 @@ const color = computed(() => {
     return 'info'
   if (bpm.value < 175)
     return 'warning'
-
+  
   return 'error'
 })
 
 const animationDuration = computed(() => {
-  return `${60 / bpm.value}s`
+  return `${ 60 / bpm.value }s`
 })
 
 const decrement = () => {

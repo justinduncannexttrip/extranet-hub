@@ -1,6 +1,5 @@
-<script setup lang="ts">
+<script setup>
 import { useTheme } from 'vuetify'
-
 import { hexToRgb } from '@layouts/utils'
 
 const vuetifyTheme = useTheme()
@@ -8,16 +7,23 @@ const vuetifyTheme = useTheme()
 const options = computed(() => {
   const currentTheme = ref(vuetifyTheme.current.value.colors)
   const variableTheme = ref(vuetifyTheme.current.value.variables)
-
-  const secondaryTextColor = `rgba(${hexToRgb(currentTheme.value['on-surface'])},${variableTheme.value['medium-emphasis-opacity']})`
-  const primaryTextColor = `rgba(${hexToRgb(currentTheme.value['on-surface'])},${variableTheme.value['high-emphasis-opacity']})`
-
+  const secondaryTextColor = `rgba(${ hexToRgb(currentTheme.value['on-surface']) },${ variableTheme.value['medium-emphasis-opacity'] })`
+  const primaryTextColor = `rgba(${ hexToRgb(currentTheme.value['on-surface']) },${ variableTheme.value['high-emphasis-opacity'] })`
+  
   return {
     chart: { sparkline: { enabled: true } },
-    labels: ['Returning', 'New Users', 'Referrals'],
+    labels: [
+      'Returning',
+      'New Users',
+      'Referrals',
+    ],
     legend: { show: false },
     stroke: { lineCap: 'round' },
-    colors: ['rgba(var(--v-theme-primary),1)', currentTheme.value.success, currentTheme.value.warning],
+    colors: [
+      'rgba(var(--v-theme-primary),1)',
+      currentTheme.value.success,
+      currentTheme.value.warning,
+    ],
     states: {
       hover: { filter: { type: 'none' } },
       active: { filter: { type: 'none' } },
@@ -38,18 +44,18 @@ const options = computed(() => {
             fontSize: '1.75rem',
             offsetY: -12,
             color: primaryTextColor,
-            formatter(value: unknown) {
-              return `${value}k`
+            formatter(value) {
+              return `${ value }k`
             },
           },
           total: {
             show: true,
-            label: `${new Date().getFullYear()}`,
+            label: `${ new Date().getFullYear() }`,
             color: secondaryTextColor,
             fontSize: '13px',
             fontWeight: 400,
-            formatter(value: { globals: { seriesTotals: any[] } }) {
-              return `${value.globals.seriesTotals.reduce((total: number, num: number) => total + num)}k`
+            formatter(value) {
+              return `${ value.globals.seriesTotals.reduce((total, num) => total + num) }k`
             },
           },
         },
@@ -58,12 +64,28 @@ const options = computed(() => {
   }
 })
 
-const series = [71, 78, 86]
+const series = [
+  71,
+  78,
+  86,
+]
 
 const revenueData = [
-  { title: 'New User', value: 856, color: 'success' },
-  { title: 'Returning', value: 345, color: 'primary' },
-  { title: 'Referrals', value: 258, color: 'warning' },
+  {
+    title: 'New User',
+    value: 856,
+    color: 'success',
+  },
+  {
+    title: 'Returning',
+    value: 345,
+    color: 'primary',
+  },
+  {
+    title: 'Referrals',
+    value: 258,
+    color: 'warning',
+  },
 ]
 </script>
 

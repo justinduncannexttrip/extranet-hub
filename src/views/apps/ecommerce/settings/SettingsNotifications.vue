@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const customerNotifications = ref([
   {
     type: 'New customer sign up',
@@ -15,7 +15,6 @@ const customerNotifications = ref([
     email: false,
     app: false,
   },
-
 ])
 
 const shippingNotifications = ref([
@@ -34,7 +33,6 @@ const shippingNotifications = ref([
     email: false,
     app: false,
   },
-
 ])
 
 const ordersNotification = ref([
@@ -63,7 +61,6 @@ const ordersNotification = ref([
     email: false,
     app: true,
   },
-
 ])
 </script>
 

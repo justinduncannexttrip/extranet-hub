@@ -1,20 +1,15 @@
-<script setup lang="ts">
-import type { CustomInputContent } from '@core/types'
+<script setup>
 import registerMultiStepIllustration from '@images/pages/register-multi-step-illustration.png'
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 import { themeConfig } from '@themeConfig'
 
-definePage({
-  meta: {
-    layout: 'blank',
-  },
-})
+definePage({ meta: { layout: 'blank' } })
 
 const currentStep = ref(0)
 const isPasswordVisible = ref(false)
 const isConfirmPasswordVisible = ref(false)
 
-const radioContent: CustomInputContent[] = [
+const radioContent = [
   {
     title: 'Starter',
     desc: 'A simple start for everyone.',
@@ -69,6 +64,7 @@ const form = ref({
 })
 
 const onSubmit = () => {
+
   // eslint-disable-next-line no-alert
   alert('Submitted..!!')
 }

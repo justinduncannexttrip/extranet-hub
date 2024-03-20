@@ -1,27 +1,27 @@
-<script setup lang="ts">
+<script setup>
 import FlatPickr from 'vue-flatpickr-component'
 import { useTheme } from 'vuetify'
+import {
+  VField,
+  filterFieldProps,
+  makeVFieldProps,
+} from 'vuetify/lib/components/VField/VField'
+import {
+  VInput,
+  makeVInputProps,
+} from 'vuetify/lib/components/VInput/VInput'
 
-// @ts-expect-error There won't be declaration file for it
-import { VField, filterFieldProps, makeVFieldProps } from 'vuetify/lib/components/VField/VField'
-
-// @ts-expect-error There won't be declaration file for it
-import { VInput, makeVInputProps } from 'vuetify/lib/components/VInput/VInput'
-
-// @ts-expect-error There won't be declaration file for it
 import { filterInputAttrs } from 'vuetify/lib/util/helpers'
-
 import { useConfigStore } from '@core/stores/config'
-
-// inherit Attribute make false
-defineOptions({
-  inheritAttrs: false,
-})
 
 const props = defineProps({
   autofocus: Boolean,
-  counter: [Boolean, Number, String] as PropType<true | number | string>,
-  counterValue: Function as PropType<(value: any) => number>,
+  counter: [
+    Boolean,
+    Number,
+    String,
+  ],
+  counterValue: Function,
   prefix: String,
   placeholder: String,
   persistentPlaceholder: Boolean,
@@ -31,7 +31,7 @@ const props = defineProps({
     type: String,
     default: 'text',
   },
-  modelModifiers: Object as PropType<Record<string, boolean>>,
+  modelModifiers: Object,
   ...makeVInputProps({
     density: 'comfortable',
     hideDetails: 'auto',
@@ -42,24 +42,28 @@ const props = defineProps({
   }),
 })
 
-const emit = defineEmits<Emit>()
+const emit = defineEmits([
+  'click:control',
+  'mousedown:control',
+  'update:focused',
+  'update:modelValue',
+  'click:clear',
+])
 
-interface Emit {
-  (e: 'click:control', val: MouseEvent): true
-  (e: 'mousedown:control', val: MouseEvent): true
-  (e: 'update:focused', val: MouseEvent): true
-  (e: 'update:modelValue', val: string): void
-  (e: 'click:clear', el: MouseEvent): void
-}
+defineOptions({
+  inheritAttrs: false,
+})
 
 const configStore = useConfigStore()
 const attrs = useAttrs()
-
 const [rootAttrs, compAttrs] = filterInputAttrs(attrs)
 
-const { modelValue: _, ...inputProps } = VInput.filterProps(props)
-const fieldProps = filterFieldProps(props)
+const {
+  modelValue: _,
+  ...inputProps
+} = VInput.filterProps(props)
 
+const fieldProps = filterFieldProps(props)
 const refFlatPicker = ref()
 const { focused } = useFocus(refFlatPicker)
 const isCalendarOpen = ref(false)
@@ -71,40 +75,35 @@ if (compAttrs.config && compAttrs.config.inline) {
   Object.assign(compAttrs, { altInputClass: 'inlinePicker' })
 }
 
-// v-field clear prop
-const onClear = (el: MouseEvent) => {
+const onClear = el => {
   el.stopPropagation()
-
   nextTick(() => {
     emit('update:modelValue', '')
-
     emit('click:clear', el)
   })
 }
 
 const vuetifyTheme = useTheme()
-
 const vuetifyThemesName = Object.keys(vuetifyTheme.themes.value)
 
 // Themes class added to flat-picker component for light and dark support
 const updateThemeClassInCalendar = () => {
+
   // ℹ️ Flatpickr don't render it's instance in mobile and device simulator
   if (!refFlatPicker.value.fp.calendarContainer)
     return
-
   vuetifyThemesName.forEach(t => {
-    refFlatPicker.value.fp.calendarContainer.classList.remove(`v-theme--${t}`)
+    refFlatPicker.value.fp.calendarContainer.classList.remove(`v-theme--${ t }`)
   })
-  refFlatPicker.value.fp.calendarContainer.classList.add(`v-theme--${vuetifyTheme.global.name.value}`)
+  refFlatPicker.value.fp.calendarContainer.classList.add(`v-theme--${ vuetifyTheme.global.name.value }`)
 }
 
 watch(() => configStore.theme, updateThemeClassInCalendar)
-
 onMounted(() => {
   updateThemeClassInCalendar()
 })
 
-const emitModelValue = (val: string) => {
+const emitModelValue = val => {
   emit('update:modelValue', val)
 }
 </script>

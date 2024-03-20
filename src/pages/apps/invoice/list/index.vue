@@ -1,11 +1,7 @@
-<script setup lang="ts">
-import type { Invoice } from '@db/apps/invoice/types'
-
-type invoiceStatus = 'Downloaded' | 'Draft' | 'Paid' | 'Sent' | 'Partial Payment' | 'Past Due' | null
-
+<script setup>
 const searchQuery = ref('')
-const selectedStatus = ref<invoiceStatus>(null)
-const selectedRows = ref<string[]>([])
+const selectedStatus = ref(null)
+const selectedRows = ref([])
 
 // Data table options
 const itemsPerPage = ref(10)
@@ -13,33 +9,73 @@ const page = ref(1)
 const sortBy = ref()
 const orderBy = ref()
 
-// Update data table options
-const updateOptions = (options: any) => {
+const updateOptions = options => {
   page.value = options.page
   sortBy.value = options.sortBy[0]?.key
   orderBy.value = options.sortBy[0]?.order
 }
 
 const widgetData = ref([
-  { title: 'Clients', value: 24, icon: 'ri-user-line' },
-  { title: 'Invoices', value: 165, icon: 'ri-pages-line' },
-  { title: 'Paid', value: '$2.46k', icon: 'ri-wallet-line' },
-  { title: 'Unpaid', value: '$876', icon: 'ri-money-dollar-circle-line' },
+  {
+    title: 'Clients',
+    value: 24,
+    icon: 'ri-user-line',
+  },
+  {
+    title: 'Invoices',
+    value: 165,
+    icon: 'ri-pages-line',
+  },
+  {
+    title: 'Paid',
+    value: '$2.46k',
+    icon: 'ri-wallet-line',
+  },
+  {
+    title: 'Unpaid',
+    value: '$876',
+    icon: 'ri-money-dollar-circle-line',
+  },
 ])
 
 // 👉 headers
 const headers = [
-  { title: '#', key: 'id' },
-  { title: 'Status', key: 'trending', sortable: false },
-  { title: 'Client', key: 'client' },
-  { title: 'Total', key: 'total' },
-  { title: 'Issued Date', key: 'date' },
-  { title: 'Balance', key: 'balance' },
-  { title: 'Actions', key: 'actions', sortable: false },
+  {
+    title: '#',
+    key: 'id',
+  },
+  {
+    title: 'Status',
+    key: 'trending',
+    sortable: false,
+  },
+  {
+    title: 'Client',
+    key: 'client',
+  },
+  {
+    title: 'Total',
+    key: 'total',
+  },
+  {
+    title: 'Issued Date',
+    key: 'date',
+  },
+  {
+    title: 'Balance',
+    key: 'balance',
+  },
+  {
+    title: 'Actions',
+    key: 'actions',
+    sortable: false,
+  },
 ]
 
-// 👉 Fetch Invoices
-const { data: invoiceData, execute: fetchInvoices } = await useApi<any>(createUrl('/apps/invoice', {
+const {
+  data: invoiceData,
+  execute: fetchInvoices,
+} = await useApi(createUrl('/apps/invoice', {
   query: {
     q: searchQuery,
     status: selectedStatus,
@@ -50,55 +86,92 @@ const { data: invoiceData, execute: fetchInvoices } = await useApi<any>(createUr
   },
 }))
 
-const invoices = computed((): Invoice[] => invoiceData.value.invoices)
+const invoices = computed(() => invoiceData.value.invoices)
 const totalInvoices = computed(() => invoiceData.value.totalInvoices)
 
 // 👉 Invoice balance variant resolver
-const resolveInvoiceBalanceVariant = (balance: string | number, total: number) => {
+const resolveInvoiceBalanceVariant = (balance, total) => {
   if (balance === total)
-    return { status: 'Unpaid', chip: { color: 'error' } }
-
+    return {
+      status: 'Unpaid',
+      chip: { color: 'error' },
+    }
   if (balance === 0)
-    return { status: 'Paid', chip: { color: 'success' } }
-
-  return { status: balance, chip: { variant: 'text' } }
+    return {
+      status: 'Paid',
+      chip: { color: 'success' },
+    }
+  
+  return {
+    status: balance,
+    chip: { variant: 'text' },
+  }
 }
 
-// 👉 Invoice status variant resolver
-const resolveInvoiceStatusVariantAndIcon = (status: string) => {
+const resolveInvoiceStatusVariantAndIcon = status => {
   if (status === 'Partial Payment')
-    return { variant: 'warning', icon: 'ri-line-chart-line' }
+    return {
+      variant: 'warning',
+      icon: 'ri-line-chart-line',
+    }
   if (status === 'Paid')
-    return { variant: 'success', icon: 'ri-check-line' }
+    return {
+      variant: 'success',
+      icon: 'ri-check-line',
+    }
   if (status === 'Downloaded')
-    return { variant: 'info', icon: 'ri-arrow-down-line' }
+    return {
+      variant: 'info',
+      icon: 'ri-arrow-down-line',
+    }
   if (status === 'Draft')
-    return { variant: 'secondary', icon: 'ri-save-line' }
+    return {
+      variant: 'secondary',
+      icon: 'ri-save-line',
+    }
   if (status === 'Sent')
-    return { variant: 'primary', icon: 'ri-mail-line' }
+    return {
+      variant: 'primary',
+      icon: 'ri-mail-line',
+    }
   if (status === 'Past Due')
-    return { variant: 'error', icon: 'ri-error-warning-line' }
-
-  return { variant: 'secondary', icon: 'ri-close-line' }
+    return {
+      variant: 'error',
+      icon: 'ri-error-warning-line',
+    }
+  
+  return {
+    variant: 'secondary',
+    icon: 'ri-close-line',
+  }
 }
 
 const computedMoreList = computed(() => {
-  return (paramId: number) => ([
-    { title: 'Download', value: 'download', prependIcon: 'ri-download-line' },
+  return paramId => [
+    {
+      title: 'Download',
+      value: 'download',
+      prependIcon: 'ri-download-line',
+    },
     {
       title: 'Edit',
       value: 'edit',
       prependIcon: 'ri-pencil-line',
-      to: { name: 'apps-invoice-edit-id', params: { id: paramId } },
+      to: {
+        name: 'apps-invoice-edit-id',
+        params: { id: paramId },
+      },
     },
-    { title: 'Duplicate', value: 'duplicate', prependIcon: 'ri-stack-line' },
-  ])
+    {
+      title: 'Duplicate',
+      value: 'duplicate',
+      prependIcon: 'ri-stack-line',
+    },
+  ]
 })
 
-// 👉 Delete Invoice
-const deleteInvoice = async (id: number) => {
-  await $api(`/apps/invoice/${id}`, { method: 'DELETE' })
-
+const deleteInvoice = async id => {
+  await $api(`/apps/invoice/${ id }`, { method: 'DELETE' })
   fetchInvoices()
 }
 </script>

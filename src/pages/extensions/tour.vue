@@ -1,16 +1,18 @@
-<script setup lang="ts">
+<script setup>
 import { useShepherd } from 'vue-shepherd'
 
 const route = useRoute()
 
 // 👉 Hotkey
+
 // eslint-disable-next-line camelcase
 const { ctrl_k, meta_k } = useMagicKeys()
 
 // 👉 Tour initialization
-let tour: any = null
+let tour = null
 
 // 👉 watch command palette and route change
+
 /* eslint-disable camelcase */
 watch([
   ctrl_k,
@@ -20,8 +22,8 @@ watch([
   if (tour.isActive())
     tour.cancel()
 })
-/* eslint-enable */
 
+/* eslint-enable */
 onMounted(() => {
   const navbar = document.querySelector('.layout-navbar')
 
@@ -30,9 +32,7 @@ onMounted(() => {
     stepsContainer: document.querySelector('.layout-wrapper'),
     modelContainer: document.querySelector('.layout-wrapper'),
     defaultStepOptions: {
-      cancelIcon: {
-        enabled: true,
-      },
+      cancelIcon: { enabled: true },
       modalOverlayOpeningPadding: 2,
       modalOverlayOpeningRadius: 5,
     },
@@ -44,7 +44,10 @@ onMounted(() => {
       id: 'welcome',
       title: 'Welcome',
       arrow: true,
-      attachTo: { element: navbar, on: 'bottom' },
+      attachTo: {
+        element: navbar,
+        on: 'bottom',
+      },
       text: 'Welcome to our tour page, Guide users to the key features of the product.',
       buttons: [
         {
@@ -63,7 +66,10 @@ onMounted(() => {
       id: 'notification',
       title: 'Notifications',
       arrow: true,
-      attachTo: { element: document.querySelector('#notification-btn'), on: 'bottom' },
+      attachTo: {
+        element: document.querySelector('#notification-btn'),
+        on: 'bottom',
+      },
       text: 'Manage your notifications and stay up-to-date with latest updates.',
       buttons: [
         {
@@ -84,7 +90,10 @@ onMounted(() => {
       id: 'footer',
       title: 'Footer',
       arrow: true,
-      attachTo: { element: document.querySelector('.layout-footer'), on: 'bottom' },
+      attachTo: {
+        element: document.querySelector('.layout-footer'),
+        on: 'bottom',
+      },
       text: 'Footer section of the page.',
       buttons: [
         {
@@ -101,7 +110,6 @@ onMounted(() => {
         },
       ],
     },
-
   ])
 })
 </script>

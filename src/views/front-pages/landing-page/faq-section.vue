@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import sittingGirlWithLaptop from '@images/front-pages/landing-page/sitting-girl-with-laptop.png'
 import sectionTitleIcon from '@images/pages/section-title-icon.png'
 

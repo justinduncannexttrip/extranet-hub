@@ -1,8 +1,7 @@
-<script lang="ts" setup>
+<script setup>
 const tRefInstagramBadge = ref()
 const tRefTwitterBadge = ref()
 const tRefWhatsappBadge = ref()
-
 const showTwitterBadgeOnHover = useElementHover(tRefTwitterBadge)
 const showInstagramBadgeOnHover = useElementHover(tRefInstagramBadge)
 const showWhatsappBadgeOnHover = useElementHover(tRefWhatsappBadge)

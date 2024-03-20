@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import avatar1 from '@images/avatars/avatar-1.png'
 import avatar2 from '@images/avatars/avatar-2.png'
 import avatar3 from '@images/avatars/avatar-3.png'
@@ -9,10 +9,22 @@ import avatar7 from '@images/avatars/avatar-7.png'
 import avatar8 from '@images/avatars/avatar-8.png'
 
 const headers = [
-  { title: 'User', key: 'username' },
-  { title: 'Email', key: 'email' },
-  { title: 'Role', key: 'role' },
-  { title: 'Status', key: 'status' },
+  {
+    title: 'User',
+    key: 'username',
+  },
+  {
+    title: 'Email',
+    key: 'email',
+  },
+  {
+    title: 'Role',
+    key: 'role',
+  },
+  {
+    title: 'Status',
+    key: 'status',
+  },
 ]
 
 const userData = [
@@ -122,24 +134,41 @@ const userData = [
   },
 ]
 
-const resolveUserRoleVariant = (role: string) => {
+const resolveUserRoleVariant = role => {
   const roleLowerCase = role.toLowerCase()
-
   if (roleLowerCase === 'subscriber')
-    return { color: 'success', icon: 'ri-user-line' }
+    return {
+      color: 'success',
+      icon: 'ri-user-line',
+    }
   if (roleLowerCase === 'author')
-    return { color: 'error', icon: 'ri-computer-line' }
+    return {
+      color: 'error',
+      icon: 'ri-computer-line',
+    }
   if (roleLowerCase === 'maintainer')
-    return { color: 'info', icon: 'ri-pie-chart-line' }
+    return {
+      color: 'info',
+      icon: 'ri-pie-chart-line',
+    }
   if (roleLowerCase === 'editor')
-    return { color: 'warning', icon: 'ri-edit-box-line' }
+    return {
+      color: 'warning',
+      icon: 'ri-edit-box-line',
+    }
   if (roleLowerCase === 'admin')
-    return { color: 'primary', icon: 'ri-vip-crown-line' }
-
-  return { color: 'success', icon: 'ri-user-line' }
+    return {
+      color: 'primary',
+      icon: 'ri-vip-crown-line',
+    }
+  
+  return {
+    color: 'success',
+    icon: 'ri-user-line',
+  }
 }
 
-const resolveUserStatusVariant = (stat: string) => {
+const resolveUserStatusVariant = stat => {
   const statLowerCase = stat.toLowerCase()
   if (statLowerCase === 'pending')
     return 'warning'
@@ -147,7 +176,7 @@ const resolveUserStatusVariant = (stat: string) => {
     return 'success'
   if (statLowerCase === 'inactive')
     return 'secondary'
-
+  
   return 'primary'
 }
 </script>

@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 import UserProfileHeader from '@/views/pages/user-profile/UserProfileHeader.vue'
 import UserConnections from '@/views/pages/user-profile/connections/index.vue'
 import UserProfile from '@/views/pages/user-profile/profile/index.vue'
@@ -21,10 +21,26 @@ const activeTab = computed({
 
 // tabs
 const tabs = [
-  { title: 'Profile', icon: 'ri-user-line', tab: 'profile' },
-  { title: 'Team', icon: 'ri-team-line', tab: 'teams' },
-  { title: 'Projects', icon: 'ri-computer-line', tab: 'projects' },
-  { title: 'Connections', icon: 'ri-link', tab: 'connections' },
+  {
+    title: 'Profile',
+    icon: 'ri-user-line',
+    tab: 'profile',
+  },
+  {
+    title: 'Team',
+    icon: 'ri-team-line',
+    tab: 'teams',
+  },
+  {
+    title: 'Projects',
+    icon: 'ri-computer-line',
+    tab: 'projects',
+  },
+  {
+    title: 'Connections',
+    icon: 'ri-link',
+    tab: 'connections',
+  },
 ]
 </script>
 

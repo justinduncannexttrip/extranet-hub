@@ -1,56 +1,159 @@
-<script setup lang="ts">
-import type { SalesDetails } from '@db/pages/datatable/types'
-
-const { data: productList } = await useApi<SalesDetails[]>('pages/datatable')
-
+<script setup>
+const { data: productList } = await useApi('pages/datatable')
 const search = ref('')
 
 // headers
 const headers = [
-  { title: 'PRODUCT', key: 'product.name' },
-  { title: 'DATE', key: 'date' },
-  { title: 'CATEGORY', key: 'product.category' },
-  { title: 'BUYERS', key: 'buyer.name' },
-  { title: 'PAYMENT', key: 'payment', sortable: false },
-  { title: 'STATUS', key: 'status', sortable: false },
-  { title: 'DELETE', key: 'delete', sortable: false },
+  {
+    title: 'PRODUCT',
+    key: 'product.name',
+  },
+  {
+    title: 'DATE',
+    key: 'date',
+  },
+  {
+    title: 'CATEGORY',
+    key: 'product.category',
+  },
+  {
+    title: 'BUYERS',
+    key: 'buyer.name',
+  },
+  {
+    title: 'PAYMENT',
+    key: 'payment',
+    sortable: false,
+  },
+  {
+    title: 'STATUS',
+    key: 'status',
+    sortable: false,
+  },
+  {
+    title: 'DELETE',
+    key: 'delete',
+    sortable: false,
+  },
 ]
 
-// 👉 methods
-const deleteItem = (itemId: number) => {
+const deleteItem = itemId => {
   if (!productList.value)
     return
-
   const index = productList.value.findIndex(item => item.product.id === itemId)
 
   productList.value.splice(index, 1)
 }
 
 const categoryIcons = [
-  { name: 'Mouse', icon: 'ri-mouse-fill', color: 'warning' },
-  { name: 'Glass', icon: 'ri-glasses-line', color: 'primary' },
-  { name: 'Smart Watch', icon: 'ri-time-line', color: 'success' },
-  { name: 'Bag', icon: 'ri-shopping-bag-line', color: 'info' },
-  { name: 'Storage Device', icon: 'ri-tape-line', color: 'warning' },
-  { name: 'Bluetooth', icon: 'ri-bluetooth-line', color: 'error' },
-  { name: 'Gaming', icon: 'ri-gamepad-line', color: 'warning' },
-  { name: 'Home', icon: 'ri-home-line', color: 'error' },
-  { name: 'VR', icon: 'ri-goggles-line', color: 'primary' },
-  { name: 'Shoes', icon: 'ri-omega', color: 'success' },
-  { name: 'Electronics', icon: 'ri-flashlight-fill', color: 'info' },
-  { name: 'Projector', icon: 'ri-projector-line', color: 'warning' },
-  { name: 'iPod', icon: 'ri-music-line', color: 'error' },
-  { name: 'Keyboard', icon: 'ri-keyboard-box-line', color: 'primary' },
-  { name: 'Smart Phone', icon: 'ri-smartphone-line', color: 'success' },
-  { name: 'Smart TV', icon: 'ri-tv-line', color: 'info' },
-  { name: 'Google Home', icon: 'ri-google-line', color: 'warning' },
-  { name: 'Mac', icon: 'ri-apple-line', color: 'error' },
-  { name: 'Headphone', icon: 'ri-headphone-line', color: 'primary' },
-  { name: 'iMac', icon: 'ri-computer-line', color: 'success' },
-  { name: 'iPhone', icon: 'ri-apple-line', color: 'warning' },
+  {
+    name: 'Mouse',
+    icon: 'ri-mouse-fill',
+    color: 'warning',
+  },
+  {
+    name: 'Glass',
+    icon: 'ri-glasses-line',
+    color: 'primary',
+  },
+  {
+    name: 'Smart Watch',
+    icon: 'ri-time-line',
+    color: 'success',
+  },
+  {
+    name: 'Bag',
+    icon: 'ri-shopping-bag-line',
+    color: 'info',
+  },
+  {
+    name: 'Storage Device',
+    icon: 'ri-tape-line',
+    color: 'warning',
+  },
+  {
+    name: 'Bluetooth',
+    icon: 'ri-bluetooth-line',
+    color: 'error',
+  },
+  {
+    name: 'Gaming',
+    icon: 'ri-gamepad-line',
+    color: 'warning',
+  },
+  {
+    name: 'Home',
+    icon: 'ri-home-line',
+    color: 'error',
+  },
+  {
+    name: 'VR',
+    icon: 'ri-goggles-line',
+    color: 'primary',
+  },
+  {
+    name: 'Shoes',
+    icon: 'ri-omega',
+    color: 'success',
+  },
+  {
+    name: 'Electronics',
+    icon: 'ri-flashlight-fill',
+    color: 'info',
+  },
+  {
+    name: 'Projector',
+    icon: 'ri-projector-line',
+    color: 'warning',
+  },
+  {
+    name: 'iPod',
+    icon: 'ri-music-line',
+    color: 'error',
+  },
+  {
+    name: 'Keyboard',
+    icon: 'ri-keyboard-box-line',
+    color: 'primary',
+  },
+  {
+    name: 'Smart Phone',
+    icon: 'ri-smartphone-line',
+    color: 'success',
+  },
+  {
+    name: 'Smart TV',
+    icon: 'ri-tv-line',
+    color: 'info',
+  },
+  {
+    name: 'Google Home',
+    icon: 'ri-google-line',
+    color: 'warning',
+  },
+  {
+    name: 'Mac',
+    icon: 'ri-apple-line',
+    color: 'error',
+  },
+  {
+    name: 'Headphone',
+    icon: 'ri-headphone-line',
+    color: 'primary',
+  },
+  {
+    name: 'iMac',
+    icon: 'ri-computer-line',
+    color: 'success',
+  },
+  {
+    name: 'iPhone',
+    icon: 'ri-apple-line',
+    color: 'warning',
+  },
 ]
 
-const resolveStatusColor = (status: string) => {
+const resolveStatusColor = status => {
   if (status === 'Confirmed')
     return 'primary'
   if (status === 'Completed')
@@ -59,15 +162,18 @@ const resolveStatusColor = (status: string) => {
     return 'error'
 }
 
-const categoryIconFilter = (categoryName: string): {
-  icon: string
-  color: string }[] => {
+const categoryIconFilter = categoryName => {
   const index = categoryIcons.findIndex(category => category.name === categoryName)
-
   if (index !== -1)
-    return [{ icon: categoryIcons[index].icon, color: categoryIcons[index].color }]
-
-  return [{ icon: 'ri-question-line', color: 'primary' }]
+    return [{
+      icon: categoryIcons[index].icon,
+      color: categoryIcons[index].color,
+    }]
+  
+  return [{
+    icon: 'ri-question-line',
+    color: 'primary',
+  }]
 }
 </script>
 

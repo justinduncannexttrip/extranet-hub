@@ -1,12 +1,9 @@
-<script lang="ts" setup>
+<script setup>
 import InvoiceEditable from '@/views/apps/invoice/InvoiceEditable.vue'
 import InvoiceSendInvoiceDrawer from '@/views/apps/invoice/InvoiceSendInvoiceDrawer.vue'
 
-// Type: Invoice data
-import type { InvoiceData, PurchasedProduct } from '@/views/apps/invoice/types'
-
 // 👉 Default Blank Data
-const invoiceData = ref<InvoiceData>({
+const invoiceData = ref({
   invoice: {
     id: 5037,
     issuedDate: '',
@@ -32,14 +29,12 @@ const invoiceData = ref<InvoiceData>({
     iban: 'ETD95476213',
     swiftCode: 'BR91905',
   },
-  purchasedProducts: [
-    {
-      title: '',
-      cost: 0,
-      hours: 0,
-      description: '',
-    },
-  ],
+  purchasedProducts: [{
+    title: '',
+    cost: 0,
+    hours: 0,
+    description: '',
+  }],
   note: '',
   paymentMethod: '',
   salesperson: '',
@@ -50,14 +45,20 @@ const paymentTerms = ref(true)
 const clientNotes = ref(false)
 const paymentStub = ref(false)
 const selectedPaymentMethod = ref('Bank Account')
-const paymentMethods = ['Bank Account', 'PayPal', 'UPI Transfer']
+
+const paymentMethods = [
+  'Bank Account',
+  'PayPal',
+  'UPI Transfer',
+]
+
 const isSendPaymentSidebarVisible = ref(false)
 
-const addProduct = (value: PurchasedProduct) => {
+const addProduct = value => {
   invoiceData.value?.purchasedProducts.push(value)
 }
 
-const removeProduct = (id: number) => {
+const removeProduct = id => {
   invoiceData.value?.purchasedProducts.splice(id, 1)
 }
 </script>

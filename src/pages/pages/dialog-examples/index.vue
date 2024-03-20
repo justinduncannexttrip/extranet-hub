@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const isCardAddDialogVisible = ref(false)
 const isPricingPlanDialogVisible = ref(false)
 const isEditAddressDialogVisible = ref(false)

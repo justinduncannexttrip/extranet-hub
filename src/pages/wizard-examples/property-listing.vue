@@ -1,11 +1,9 @@
-<script setup lang="ts">
+<script setup>
 import PersonalDetails from '@/views/wizard-examples/property-listing/PersonalDetails.vue'
 import PriceDetails from '@/views/wizard-examples/property-listing/PriceDetails.vue'
 import PropertyArea from '@/views/wizard-examples/property-listing/PropertyArea.vue'
 import PropertyDetails from '@/views/wizard-examples/property-listing/PropertyDetails.vue'
 import PropertyFeatures from '@/views/wizard-examples/property-listing/PropertyFeatures.vue'
-
-import type { PropertyListingData } from '@/views/wizard-examples/property-listing/types'
 
 const propertyListingSteps = [
   {
@@ -30,7 +28,7 @@ const propertyListingSteps = [
   },
 ]
 
-const propertyListingData = ref<PropertyListingData>({
+const propertyListingData = ref({
   personalDetails: {
     userType: 'builder',
     firstName: '',
@@ -56,7 +54,11 @@ const propertyListingData = ref<PropertyListingData>({
     bathroomCount: '',
     isCommonArea: true,
     furnishedStatus: null,
-    furnishingDetails: ['AC', 'TV', 'Fridge'],
+    furnishingDetails: [
+      'AC',
+      'TV',
+      'Fridge',
+    ],
     isCommonArea1: 'true',
     isCommonArea2: 'false',
   },

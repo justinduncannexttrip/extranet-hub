@@ -1,32 +1,30 @@
-<script lang="ts" setup>
-const recentDevices = ref(
-  [
-    {
-      type: 'New for you',
-      email: true,
-      browser: true,
-      app: true,
-    },
-    {
-      type: 'Account activity',
-      email: true,
-      browser: true,
-      app: true,
-    },
-    {
-      type: 'A new browser used to sign in',
-      email: true,
-      browser: true,
-      app: false,
-    },
-    {
-      type: 'A new device is linked',
-      email: true,
-      browser: false,
-      app: false,
-    },
-  ],
-)
+<script setup>
+const recentDevices = ref([
+  {
+    type: 'New for you',
+    email: true,
+    browser: true,
+    app: true,
+  },
+  {
+    type: 'Account activity',
+    email: true,
+    browser: true,
+    app: true,
+  },
+  {
+    type: 'A new browser used to sign in',
+    email: true,
+    browser: true,
+    app: false,
+  },
+  {
+    type: 'A new device is linked',
+    email: true,
+    browser: false,
+    app: false,
+  },
+])
 
 const selectedNotification = ref('Only when I\'m online')
 </script>

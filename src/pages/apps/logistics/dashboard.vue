@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import LogisticsCardStatistics from '@/views/apps/logistics/LogisticsCardStatistics.vue'
 import LogisticsDeliveryExpectations from '@/views/apps/logistics/LogisticsDeliveryExpectations.vue'
 import LogisticsDeliveryPerformance from '@/views/apps/logistics/LogisticsDeliveryPerformance.vue'

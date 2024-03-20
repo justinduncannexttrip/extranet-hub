@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import avatar1 from '@images/avatars/avatar-1.png'
 import product21 from '@images/ecommerce-images/product-21.png'
 import product22 from '@images/ecommerce-images/product-22.png'
@@ -11,10 +11,23 @@ const isUserInfoEditDialogVisible = ref(false)
 const isEditAddressDialogVisible = ref(false)
 
 const headers = [
-  { title: 'Product', key: 'productName' },
-  { title: 'Price', key: 'price' },
-  { title: 'Quantity', key: 'quantity' },
-  { title: 'Total', key: 'total', sortable: false },
+  {
+    title: 'Product',
+    key: 'productName',
+  },
+  {
+    title: 'Price',
+    key: 'price',
+  },
+  {
+    title: 'Quantity',
+    key: 'quantity',
+  },
+  {
+    title: 'Total',
+    key: 'total',
+    sortable: false,
+  },
 ]
 
 const orderData = [

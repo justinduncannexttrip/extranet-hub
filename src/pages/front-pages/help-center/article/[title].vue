@@ -1,31 +1,20 @@
-<script setup lang="ts">
+<script setup>
 import Footer from '@/views/front-pages/front-page-footer.vue'
 import Navbar from '@/views/front-pages/front-page-navbar.vue'
-import type { HelpCenterArticle } from '@db/pages/help-center/types'
 
 const breadCrumbItems = [
   {
     title: 'Help Center',
     to: { name: 'front-pages-help-center' },
   },
-  {
-    title: 'Buying and item support',
-  },
-  {
-    title: 'Template kits',
-  },
+  { title: 'Buying and item support' },
+  { title: 'Template kits' },
 ]
 
-definePage({
-  meta: {
-    layout: 'blank',
-  },
-})
+definePage({ meta: { layout: 'blank' } })
 
-const articleData = ref<HelpCenterArticle>()
-
-const { data, error } = await useApi<any>('/pages/help-center/article')
-
+const articleData = ref()
+const { data, error } = await useApi('/pages/help-center/article')
 if (error.value)
   console.log(error.value)
 else

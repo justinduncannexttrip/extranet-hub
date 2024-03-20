@@ -1,72 +1,66 @@
-<script setup lang="ts">
+<script setup>
 import { Image } from '@tiptap/extension-image'
 import { Link } from '@tiptap/extension-link'
 import { Placeholder } from '@tiptap/extension-placeholder'
 import { Underline } from '@tiptap/extension-underline'
 import { StarterKit } from '@tiptap/starter-kit'
-import { EditorContent, useEditor } from '@tiptap/vue-3'
+import {
+  EditorContent,
+  useEditor,
+} from '@tiptap/vue-3'
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
-import type { Email } from '@db/apps/email/types'
 import { useEmail } from '@/views/apps/email/useEmail'
-import type { MoveEmailToAction } from '@/views/apps/email/useEmail'
 
-interface Props {
-  email: Email | null
+const props = defineProps({
+  email: {
+    type: null,
+    required: true,
+  },
   emailMeta: {
-    hasPreviousEmail: boolean
-    hasNextEmail: boolean
-  }
-}
+    type: Object,
+    required: true,
+  },
+})
 
-const props = defineProps<Props>()
-
-const emit = defineEmits<{
-  (e: 'refresh'): void
-  (e: 'navigated', direction: 'previous' | 'next'): void
-  (e: 'close'): void
-  (e: 'trash'): void
-  (e: 'unread'): void
-  (e: 'read'): void
-  (e: 'star'): void
-  (e: 'unstar'): void
-}>()
+const emit = defineEmits([
+  'refresh',
+  'navigated',
+  'close',
+  'trash',
+  'unread',
+  'read',
+  'star',
+  'unstar',
+])
 
 const { updateEmailLabels } = useEmail()
-
 const { labels, resolveLabelColor, emailMoveToFolderActions, shallShowMoveToActionFor, moveSelectedEmailTo } = useEmail()
 
-const handleMoveMailsTo = (action: MoveEmailToAction) => {
-  moveSelectedEmailTo(action, [(props.email as Email).id])
+const handleMoveMailsTo = action => {
+  moveSelectedEmailTo(action, [props.email.id])
   emit('refresh')
   emit('close')
 }
 
-const updateMailLabel = async (label: Email['labels'][number]) => {
-  await updateEmailLabels([(props.email as Email).id], label)
-
+const updateMailLabel = async label => {
+  await updateEmailLabels([props.email.id], label)
   emit('refresh')
 }
 
 const editor = useEditor({
   content: '',
-
   extensions: [
     StarterKit,
     Image,
-    Placeholder.configure({
-      placeholder: 'Write a Comment...',
-    }),
+    Placeholder.configure({ placeholder: 'Write a Comment...' }),
     Underline,
-    Link.configure(
-      {
-        openOnClick: false,
-      },
-    ),
+    Link.configure({ openOnClick: false }),
   ],
 })
 
 const setLink = () => {
   const previousUrl = editor.value?.getAttributes('link').href
+
   // eslint-disable-next-line no-alert
   const url = window.prompt('URL', previousUrl)
 
@@ -77,7 +71,7 @@ const setLink = () => {
   // empty
   if (url === '') {
     editor.value?.chain().focus().extendMarkRange('link').unsetLink().run()
-
+    
     return
   }
 
@@ -86,9 +80,9 @@ const setLink = () => {
 }
 
 const addImage = () => {
+
   // eslint-disable-next-line no-alert
   const url = window.prompt('URL')
-
   if (url)
     editor.value?.chain().focus().setImage({ src: url }).run()
 }

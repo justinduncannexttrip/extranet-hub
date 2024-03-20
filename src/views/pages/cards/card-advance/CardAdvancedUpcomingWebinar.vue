@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import girlWithLaptop from '@images/pages/pose-fs-9.png'
 </script>
 

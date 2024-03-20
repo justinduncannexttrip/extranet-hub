@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import avatar1 from '@images/avatars/avatar-1.png'
 import avatar2 from '@images/avatars/avatar-2.png'
 import avatar3 from '@images/avatars/avatar-3.png'
@@ -12,38 +12,66 @@ const now = new Date()
 const currentMonth = now.toLocaleString('default', { month: '2-digit' })
 
 // 👉 Invoice balance variant resolver
-const resolveInvoiceBalanceVariant = (balance: string | number, total: number) => {
+const resolveInvoiceBalanceVariant = (balance, total) => {
   if (balance === total)
-    return { status: 'Unpaid', chip: { color: 'error' } }
-
+    return {
+      status: 'Unpaid',
+      chip: { color: 'error' },
+    }
   if (balance === 0)
-    return { status: 'Paid', chip: { color: 'success' } }
-
-  return { status: balance, chip: { variant: 'text' } }
+    return {
+      status: 'Paid',
+      chip: { color: 'success' },
+    }
+  
+  return {
+    status: balance,
+    chip: { variant: 'text' },
+  }
 }
 
-// 👉 Invoice status variant resolver
-const resolveInvoiceStatusVariantAndIcon = (status: string) => {
+const resolveInvoiceStatusVariantAndIcon = status => {
   if (status === 'Partial Payment')
-    return { variant: 'warning', icon: 'ri-line-chart-line' }
+    return {
+      variant: 'warning',
+      icon: 'ri-line-chart-line',
+    }
   if (status === 'Paid')
-    return { variant: 'success', icon: 'ri-check-line' }
+    return {
+      variant: 'success',
+      icon: 'ri-check-line',
+    }
   if (status === 'Downloaded')
-    return { variant: 'info', icon: 'ri-arrow-down-line' }
+    return {
+      variant: 'info',
+      icon: 'ri-arrow-down-line',
+    }
   if (status === 'Draft')
-    return { variant: 'secondary', icon: 'ri-save-line' }
+    return {
+      variant: 'secondary',
+      icon: 'ri-save-line',
+    }
   if (status === 'Sent')
-    return { variant: 'primary', icon: 'ri-mail-line' }
+    return {
+      variant: 'primary',
+      icon: 'ri-mail-line',
+    }
   if (status === 'Past Due')
-    return { variant: 'error', icon: 'ri-error-warning-line' }
-
-  return { variant: 'secondary', icon: 'ri-close-line' }
+    return {
+      variant: 'error',
+      icon: 'ri-error-warning-line',
+    }
+  
+  return {
+    variant: 'secondary',
+    icon: 'ri-close-line',
+  }
 }
 
 const invoices = [
   {
     id: 5024,
-    issuedDate: `${now.getFullYear()}-${currentMonth}-28`,
+    issuedDate: `${ now.getFullYear() }-${ currentMonth }-28`,
     client: {
       address: '276 Michael Gardens Apt. 004',
       company: 'Shea, Velez and Garcia LLC',
@@ -57,11 +85,11 @@ const invoices = [
     avatar: avatar1,
     invoiceStatus: 'Partial Payment',
     balance: 0,
-    dueDate: `${now.getFullYear()}-${currentMonth}-25`,
+    dueDate: `${ now.getFullYear() }-${ currentMonth }-25`,
   },
   {
     id: 5025,
-    issuedDate: `${now.getFullYear()}-${currentMonth}-21`,
+    issuedDate: `${ now.getFullYear() }-${ currentMonth }-21`,
     client: {
       address: '633 Bell Well Apt. 057',
       company: 'Adams, Simmons and Brown Group',
@@ -75,11 +103,11 @@ const invoices = [
     avatar: avatar2,
     invoiceStatus: 'Downloaded',
     balance: 0,
-    dueDate: `${now.getFullYear()}-${currentMonth}-07`,
+    dueDate: `${ now.getFullYear() }-${ currentMonth }-07`,
   },
   {
     id: 5026,
-    issuedDate: `${now.getFullYear()}-${currentMonth}-24`,
+    issuedDate: `${ now.getFullYear() }-${ currentMonth }-24`,
     client: {
       address: '1068 Lopez Fall',
       company: 'Williams-Lawrence and Sons',
@@ -93,11 +121,11 @@ const invoices = [
     avatar: avatar3,
     invoiceStatus: 'Draft',
     balance: 0,
-    dueDate: `${now.getFullYear()}-${currentMonth}-22`,
+    dueDate: `${ now.getFullYear() }-${ currentMonth }-22`,
   },
   {
     id: 5027,
-    issuedDate: `${now.getFullYear()}-${currentMonth}-13`,
+    issuedDate: `${ now.getFullYear() }-${ currentMonth }-13`,
     client: {
       address: '86691 Mackenzie Light Suite 568',
       company: 'Deleon Inc LLC',
@@ -111,11 +139,11 @@ const invoices = [
     avatar: avatar4,
     invoiceStatus: 'Sent',
     balance: 0,
-    dueDate: `${now.getFullYear()}-${currentMonth}-04`,
+    dueDate: `${ now.getFullYear() }-${ currentMonth }-04`,
   },
   {
     id: 5028,
-    issuedDate: `${now.getFullYear()}-${currentMonth}-18`,
+    issuedDate: `${ now.getFullYear() }-${ currentMonth }-18`,
     client: {
       address: '86580 Sarah Bridge',
       company: 'Farmer, Johnson and Anderson Group',
@@ -129,11 +157,11 @@ const invoices = [
     avatar: avatar5,
     invoiceStatus: 'Paid',
     balance: 361,
-    dueDate: `${now.getFullYear()}-${currentMonth}-02`,
+    dueDate: `${ now.getFullYear() }-${ currentMonth }-02`,
   },
   {
     id: 5029,
-    issuedDate: `${now.getFullYear()}-${currentMonth}-29`,
+    issuedDate: `${ now.getFullYear() }-${ currentMonth }-29`,
     client: {
       address: '49709 Edwin Ports Apt. 353',
       company: 'Sherman-Johnson PLC',
@@ -147,11 +175,11 @@ const invoices = [
     avatar: avatar6,
     invoiceStatus: 'Paid',
     balance: 0,
-    dueDate: `${now.getFullYear()}-${currentMonth}-25`,
+    dueDate: `${ now.getFullYear() }-${ currentMonth }-25`,
   },
   {
     id: 5030,
-    issuedDate: `${now.getFullYear()}-${currentMonth}-07`,
+    issuedDate: `${ now.getFullYear() }-${ currentMonth }-07`,
     client: {
       address: '3856 Mathis Squares Apt. 584',
       company: 'Byrd LLC PLC',
@@ -165,11 +193,11 @@ const invoices = [
     avatar: avatar7,
     invoiceStatus: 'Draft',
     balance: 0,
-    dueDate: `${now.getFullYear()}-${currentMonth}-06`,
+    dueDate: `${ now.getFullYear() }-${ currentMonth }-06`,
   },
   {
     id: 5031,
-    issuedDate: `${now.getFullYear()}-${currentMonth}-21`,
+    issuedDate: `${ now.getFullYear() }-${ currentMonth }-21`,
     client: {
       address: '141 Adrian Ridge Suite 550',
       company: 'Stone-Zimmerman Group',
@@ -183,17 +211,32 @@ const invoices = [
     avatar: avatar8,
     invoiceStatus: 'Partial Payment',
     balance: 0,
-    dueDate: `${now.getFullYear()}-${currentMonth}-09`,
+    dueDate: `${ now.getFullYear() }-${ currentMonth }-09`,
   },
-
 ]
 
 const headers = [
-  { title: '#ID', key: 'id' },
-  { title: 'Status', key: 'status', sortable: false },
-  { title: 'Client', key: 'client.name' },
-  { title: 'Total', key: 'total' },
-  { title: 'Balance', key: 'balance' },
+  {
+    title: '#ID',
+    key: 'id',
+  },
+  {
+    title: 'Status',
+    key: 'status',
+    sortable: false,
+  },
+  {
+    title: 'Client',
+    key: 'client.name',
+  },
+  {
+    title: 'Total',
+    key: 'total',
+  },
+  {
+    title: 'Balance',
+    key: 'balance',
+  },
 ]
 </script>
 

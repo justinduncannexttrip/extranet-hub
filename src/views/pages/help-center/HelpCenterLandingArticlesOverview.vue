@@ -1,12 +1,12 @@
-<script setup lang="ts">
-import type { HelpCenterArticlesOverview } from '@db/pages/help-center/types'
+<script setup>
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 
-interface Props {
-  articles: HelpCenterArticlesOverview[]
-}
-
-const props = defineProps<Props>()
+const props = defineProps({
+  articles: {
+    type: Array,
+    required: true,
+  },
+})
 </script>
 
 <template>

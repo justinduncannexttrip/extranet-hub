@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { VideoPlayer } from '@videojs-player/vue'
 import AcademyMyCourses from '@/views/apps/academy/AcademyMyCourses.vue'
 import academyCourseIllustration1 from '@images/pages/academy-course-illustration1.png'

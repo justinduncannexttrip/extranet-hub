@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const isDefaultSnackbarVisible = ref(false)
 const isTonalSnackbarVisible = ref(false)
 const isTextSnackbarVisible = ref(false)

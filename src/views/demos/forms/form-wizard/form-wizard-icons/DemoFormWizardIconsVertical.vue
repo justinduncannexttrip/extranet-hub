@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const numberedSteps = [
   {
     title: 'Account Details',
@@ -31,7 +31,6 @@ const formData = ref({
   facebook: '',
   googlePlus: '',
   linkedIn: '',
-
 })
 
 const onSubmit = () => {

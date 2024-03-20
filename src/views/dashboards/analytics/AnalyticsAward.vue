@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import trophy from '@images/misc/trophy.png'
 </script>
 

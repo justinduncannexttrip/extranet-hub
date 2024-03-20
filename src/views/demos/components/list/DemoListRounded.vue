@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const items = [
   {
     title: 'Cupcake sesame snaps dessert marzipan.',

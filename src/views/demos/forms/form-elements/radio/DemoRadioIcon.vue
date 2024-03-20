@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const radioGroup = ref(1)
 </script>
 

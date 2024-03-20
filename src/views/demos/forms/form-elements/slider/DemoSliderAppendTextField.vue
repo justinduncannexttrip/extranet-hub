@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const redColorValue = ref(161)
 const greenColorValue = ref(105)
 const blueColorValue = ref(225)

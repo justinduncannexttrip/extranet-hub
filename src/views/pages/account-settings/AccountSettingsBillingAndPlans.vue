@@ -1,27 +1,15 @@
-<script lang="ts" setup>
+<script setup>
 import BillingHistoryTable from './BillingHistoryTable.vue'
-
-// Images
 import mastercard from '@images/icons/payments/mastercard.png'
 import visa from '@images/icons/payments/visa.png'
 
-interface CardDetails {
-  name: string
-  number: string
-  expiry: string
-  isPrimary: boolean
-  type: string
-  cvv: string
-  image: string
-}
 const selectedPaymentMethod = ref('credit-debit-atm-card')
-
 const isPricingPlanDialogVisible = ref(false)
 const isConfirmDialogVisible = ref(false)
 const isCardEditDialogVisible = ref(false)
 const isCardDetailSaveBilling = ref(false)
 
-const creditCards: CardDetails[] = [
+const creditCards = [
   {
     name: 'Tom McBride',
     number: '5531234567899856',
@@ -42,13 +30,22 @@ const creditCards: CardDetails[] = [
   },
 ]
 
-const countryList = ['United States', 'Canada', 'United Kingdom', 'Australia', 'New Zealand', 'India', 'Russia', 'China', 'Japan']
+const countryList = [
+  'United States',
+  'Canada',
+  'United Kingdom',
+  'Australia',
+  'New Zealand',
+  'India',
+  'Russia',
+  'China',
+  'Japan',
+]
 
 const currentCardDetails = ref()
 
-const openEditCardDialog = (cardDetails: CardDetails) => {
+const openEditCardDialog = cardDetails => {
   currentCardDetails.value = cardDetails
-
   isCardEditDialogVisible.value = true
 }
 
@@ -62,7 +59,6 @@ const resetPaymentForm = () => {
   cardName.value = 'john Doe'
   cardExpiryDate.value = '05/24'
   cardCvv.value = 420
-
   selectedPaymentMethod.value = 'credit-debit-atm-card'
 }
 </script>

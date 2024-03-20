@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import illustrationJohn2 from '@images/cards/illustration-john-2.png'
 </script>
 

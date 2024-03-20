@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const xSmallPagination = ref(1)
 const smallPagination = ref(2)
 const largePagination = ref(3)

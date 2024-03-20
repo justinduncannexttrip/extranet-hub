@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const isSnackbarFadeVisible = ref(false)
 const isSnackbarScaleVisible = ref(false)
 const isSnackbarScrollReverseVisible = ref(false)

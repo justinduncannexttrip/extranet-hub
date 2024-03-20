@@ -1,15 +1,19 @@
-<script setup lang="ts">
-import type { CheckoutData } from './types'
+<script setup>
+const props = defineProps({
+  currentStep: {
+    type: Number,
+    required: false,
+  },
+  checkoutData: {
+    type: null,
+    required: true,
+  },
+})
 
-const props = defineProps<{
-  currentStep?: number
-  checkoutData: CheckoutData
-}>()
-
-defineEmits<{
-  (e: 'update:currentStep', value: number): void
-  (e: 'update:checkout-data', value: CheckoutData): void
-}>()
+const emit = defineEmits([
+  'update:currentStep',
+  'update:checkout-data',
+])
 
 const selectedDeliveryAddress = computed(() => {
   return props.checkoutData.addresses.filter(address => {
@@ -19,11 +23,20 @@ const selectedDeliveryAddress = computed(() => {
 
 const resolveDeliveryMethod = computed(() => {
   if (props.checkoutData.deliverySpeed === 'overnight')
-    return { method: 'Overnight Delivery', desc: 'In 1 business day.' }
+    return {
+      method: 'Overnight Delivery',
+      desc: 'In 1 business day.',
+    }
   else if (props.checkoutData.deliverySpeed === 'express')
-    return { method: 'Express Delivery', desc: 'Normally in 3-4 business days' }
+    return {
+      method: 'Express Delivery',
+      desc: 'Normally in 3-4 business days',
+    }
   else
-    return { method: 'Standard Delivery', desc: 'Normally in 1 Week' }
+    return {
+      method: 'Standard Delivery',
+      desc: 'Normally in 1 Week',
+    }
 })
 </script>
 

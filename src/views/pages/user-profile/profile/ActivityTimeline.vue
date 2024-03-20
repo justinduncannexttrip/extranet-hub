@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import avatar1 from '@images/avatars/avatar-1.png'
 import avatar6 from '@images/avatars/avatar-6.png'
 import avatar8 from '@images/avatars/avatar-8.png'

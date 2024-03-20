@@ -1,18 +1,49 @@
-<script setup lang="ts">
+<script setup>
 import tree1 from '@images/misc/pricing-tree-1.png'
 import tree2 from '@images/misc/pricing-tree-2.png'
 import tree3 from '@images/misc/pricing-tree-3.png'
 
-interface Pricing {
-  title?: string
-  cols?: number | string
-  sm?: number | string
-  md?: string | number
-  lg?: string | number
-  xl?: string | number
-}
-
-const props = defineProps<Pricing>()
+const props = defineProps({
+  title: {
+    type: String,
+    required: false,
+  },
+  cols: {
+    type: [
+      Number,
+      String,
+    ],
+    required: false,
+  },
+  sm: {
+    type: [
+      Number,
+      String,
+    ],
+    required: false,
+  },
+  md: {
+    type: [
+      String,
+      Number,
+    ],
+    required: false,
+  },
+  lg: {
+    type: [
+      String,
+      Number,
+    ],
+    required: false,
+  },
+  xl: {
+    type: [
+      String,
+      Number,
+    ],
+    required: false,
+  },
+})
 
 const annualMonthlyPlanPriceToggler = ref(true)
 

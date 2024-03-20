@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 import { VForm } from 'vuetify/components/VForm'
 
 const requiredField = ref('')
@@ -13,7 +13,7 @@ const repeatPassword = ref('')
 const onlyAlphabeticNumbersDashesUnderscores = ref('')
 const email = ref('')
 const validURL = ref('')
-const refForm = ref<VForm>()
+const refForm = ref()
 </script>
 
 <template>

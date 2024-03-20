@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import aviato from '@images/logos/aviato.png'
 import bitbank from '@images/logos/bitbank.png'
 import zipcar from '@images/logos/zipcar.png'

@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const mediaSlider = ref(0)
 const alarmSlider = ref(0)
 const zoomInOut = ref(10)

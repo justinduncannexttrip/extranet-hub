@@ -1,12 +1,15 @@
-<script setup lang="ts">
-interface Props {
-  icon?: string
-  iconSize?: string
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  icon: 'ri-close-line',
-  iconSize: '24',
+<script setup>
+const props = defineProps({
+  icon: {
+    type: String,
+    required: false,
+    default: 'ri-close-line',
+  },
+  iconSize: {
+    type: String,
+    required: false,
+    default: '24',
+  },
 })
 </script>
 

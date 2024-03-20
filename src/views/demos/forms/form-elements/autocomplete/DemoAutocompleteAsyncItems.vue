@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const loading = ref(false)
 const search = ref()
 const select = ref(null)
@@ -67,7 +67,7 @@ const states = [
 
 const items = ref(states)
 
-const querySelections = (query: string) => {
+const querySelections = query => {
   loading.value = true
 
   // Simulated ajax query

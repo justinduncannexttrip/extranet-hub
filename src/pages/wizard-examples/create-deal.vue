@@ -1,10 +1,8 @@
-<script setup lang="ts">
+<script setup>
 import DealDetails from '@/views/wizard-examples/create-deal/DealDetails.vue'
 import DealReviewComplete from '@/views/wizard-examples/create-deal/DealReviewComplete.vue'
 import CreateDealType from '@/views/wizard-examples/create-deal/DealType.vue'
 import DealUsage from '@/views/wizard-examples/create-deal/DealUsage.vue'
-
-import type { CreateDealData } from '@/views/wizard-examples/create-deal/types'
 
 const createDealSteps = [
   {
@@ -27,7 +25,7 @@ const createDealSteps = [
 
 const currentStep = ref(0)
 
-const createDealData = ref<CreateDealData>({
+const createDealData = ref({
   dealType: {
     Offer: 'percentage',
     discount: null,
@@ -55,9 +53,7 @@ const createDealData = ref<CreateDealData>({
     dealStatus: null,
     isSingleUserCustomer: false,
   },
-  dealReviewComplete: {
-    isDealDetailsConfirmed: true,
-  },
+  dealReviewComplete: { isDealDetailsConfirmed: true },
 })
 
 const onSubmit = () => {

@@ -1,17 +1,15 @@
-<script setup lang="ts">
-import type { Review } from '@db/apps/ecommerce/types';
-
+<script setup>
 const selectedStatus = ref('All')
 const searchQuery = ref('')
-
-// Data table options
 const itemsPerPage = ref(10)
 const page = ref(1)
 const sortBy = ref()
 const orderBy = ref()
 
-// Fetch Reviews
-const { data: ReviewData, execute: fetchReviews } = await useApi<any>(createUrl('/apps/ecommerce/reviews', {
+const {
+  data: ReviewData,
+  execute: fetchReviews,
+} = await useApi(createUrl('/apps/ecommerce/reviews', {
   query: {
     q: searchQuery,
     status: selectedStatus,
@@ -22,64 +20,94 @@ const { data: ReviewData, execute: fetchReviews } = await useApi<any>(createUrl(
   },
 }))
 
-const reviews = computed((): Review[] => ReviewData.value.reviews)
+const reviews = computed(() => ReviewData.value.reviews)
 const totalReviews = computed(() => ReviewData.value.total)
 
-// Update data table options
-const updateOptions = (options: any) => {
+const updateOptions = options => {
   page.value = options.page
   sortBy.value = options.sortBy[0]?.key
   orderBy.value = options.sortBy[0]?.order
 }
 
-// Delete Review
-const deleteReview = async (id: number) => {
-  await $api(`/apps/ecommerce/reviews/${id}`, {
-    method: 'DELETE',
-  })
-
+const deleteReview = async id => {
+  await $api(`/apps/ecommerce/reviews/${ id }`, { method: 'DELETE' })
   fetchReviews()
 }
 
 const reviewCardData = [
-  { rating: 5, value: 124 },
-  { rating: 4, value: 40 },
-  { rating: 3, value: 12 },
-  { rating: 2, value: 7 },
-  { rating: 1, value: 2 },
-]
-
-// Data table Headers
-const headers = [
-  { title: 'Product', key: 'product' },
-  { title: 'Reviewer', key: 'reviewer' },
-  { title: 'Review', key: 'review', sortable: false },
-  { title: 'Date', key: 'date' },
-  { title: 'Status', key: 'status' },
-  { title: 'Actions', key: 'actions', sortable: false },
-]
-
-// Chart Configs
-const labelColor = 'rgba(var(--v-theme-on-surface), var(--v-disabled-opacity))'
-
-const reviewStatChartSeries = [
   {
-    data: [20, 40, 60, 80, 100, 80, 60],
+    rating: 5,
+    value: 124,
+  },
+  {
+    rating: 4,
+    value: 40,
+  },
+  {
+    rating: 3,
+    value: 12,
+  },
+  {
+    rating: 2,
+    value: 7,
+  },
+  {
+    rating: 1,
+    value: 2,
   },
 ]
+
+const headers = [
+  {
+    title: 'Product',
+    key: 'product',
+  },
+  {
+    title: 'Reviewer',
+    key: 'reviewer',
+  },
+  {
+    title: 'Review',
+    key: 'review',
+    sortable: false,
+  },
+  {
+    title: 'Date',
+    key: 'date',
+  },
+  {
+    title: 'Status',
+    key: 'status',
+  },
+  {
+    title: 'Actions',
+    key: 'actions',
+    sortable: false,
+  },
+]
+
+const labelColor = 'rgba(var(--v-theme-on-surface), var(--v-disabled-opacity))'
+
+const reviewStatChartSeries = [{
+  data: [
+    20,
+    40,
+    60,
+    80,
+    100,
+    80,
+    60,
+  ],
+}]
 
 const reviewStatChartConfig = {
   chart: {
     height: 160,
     width: 190,
     type: 'bar',
-    toolbar: {
-      show: false,
-    },
+    toolbar: { show: false },
   },
-  legend: {
-    show: false,
-  },
+  legend: { show: false },
   grid: {
     show: false,
     padding: {
@@ -104,17 +132,19 @@ const reviewStatChartConfig = {
       distributed: true,
     },
   },
-  dataLabels: {
-    enabled: false,
-  },
+  dataLabels: { enabled: false },
   xaxis: {
-    categories: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-    axisBorder: {
-      show: false,
-    },
-    axisTicks: {
-      show: false,
-    },
+    categories: [
+      'M',
+      'T',
+      'W',
+      'T',
+      'F',
+      'S',
+      'S',
+    ],
+    axisBorder: { show: false },
+    axisTicks: { show: false },
     labels: {
       style: {
         colors: labelColor,
@@ -122,142 +152,134 @@ const reviewStatChartConfig = {
       },
     },
   },
-  yaxis: {
-    labels: {
-      show: false,
-    },
-  },
-  responsive: [{
-    breakpoint: 0,
-    options: {
-      chart: {
-        width: '100%',
+  yaxis: { labels: { show: false } },
+  responsive: [
+    {
+      breakpoint: 0,
+      options: {
+        chart: { width: '100%' },
+        plotOptions: { bar: { columnWidth: '40%' } },
       },
-      plotOptions: {
-        bar: {
-          columnWidth: '40%',
+    },
+    {
+      breakpoint: 1440,
+      options: {
+        chart: {
+          height: 150,
+          width: 190,
+          toolbar: { show: !1 },
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 6,
+            columnWidth: '40%',
+          },
         },
       },
     },
-  }, {
-    breakpoint: 1440,
-    options: {
-      chart: {
-        height: 150,
-        width: 190,
-        toolbar: {
-          show: !1,
-        },
-      },
-      plotOptions: {
-        bar: {
-          borderRadius: 6,
-          columnWidth: '40%',
+    {
+      breakpoint: 1400,
+      options: {
+        plotOptions: {
+          bar: {
+            borderRadius: 6,
+            columnWidth: '40%',
+          },
         },
       },
     },
-  }, {
-    breakpoint: 1400,
-    options: {
-      plotOptions: {
-        bar: {
-          borderRadius: 6,
-          columnWidth: '40%',
+    {
+      breakpoint: 1200,
+      options: {
+        chart: {
+          height: 130,
+          width: 190,
+          toolbar: { show: !1 },
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 6,
+            columnWidth: '40%',
+          },
         },
       },
     },
-  }, {
-    breakpoint: 1200,
-    options: {
-      chart: {
-        height: 130,
-        width: 190,
-        toolbar: {
-          show: !1,
-        },
-      },
-      plotOptions: {
-        bar: {
-          borderRadius: 6,
-          columnWidth: '40%',
-        },
-      },
-    },
-  }, {
-    breakpoint: 992,
-    chart: {
-      height: 150,
-      width: 190,
-      toolbar: {
-        show: !1,
-      },
-    },
-    options: {
-      plotOptions: {
-        bar: {
-          borderRadius: 5,
-          columnWidth: '40%',
-        },
-      },
-    },
-  }, {
-    breakpoint: 883,
-    options: {
-      plotOptions: {
-        bar: {
-          borderRadius: 5,
-          columnWidth: '40%',
-        },
-      },
-    },
-  }, {
-    breakpoint: 768,
-    options: {
+    {
+      breakpoint: 992,
       chart: {
         height: 150,
         width: 190,
-        toolbar: {
-          show: !1,
-        },
+        toolbar: { show: !1 },
       },
-      plotOptions: {
-        bar: {
-          borderRadius: 4,
-          columnWidth: '40%',
-        },
-      },
-    },
-  }, {
-    breakpoint: 576,
-    options: {
-      chart: {
-        width: '100%',
-        height: '200',
-        type: 'bar',
-      },
-      plotOptions: {
-        bar: {
-          borderRadius: 6,
-          columnWidth: '30% ',
+      options: {
+        plotOptions: {
+          bar: {
+            borderRadius: 5,
+            columnWidth: '40%',
+          },
         },
       },
     },
-  }, {
-    breakpoint: 420,
-    options: {
-      plotOptions: {
+    {
+      breakpoint: 883,
+      options: {
+        plotOptions: {
+          bar: {
+            borderRadius: 5,
+            columnWidth: '40%',
+          },
+        },
+      },
+    },
+    {
+      breakpoint: 768,
+      options: {
+        chart: {
+          height: 150,
+          width: 190,
+          toolbar: { show: !1 },
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 4,
+            columnWidth: '40%',
+          },
+        },
+      },
+    },
+    {
+      breakpoint: 576,
+      options: {
         chart: {
           width: '100%',
           height: '200',
           type: 'bar',
         },
-        bar: {
-          borderRadius: 3,
-          columnWidth: '30%',
+        plotOptions: {
+          bar: {
+            borderRadius: 6,
+            columnWidth: '30% ',
+          },
         },
       },
     },
-  }],
+    {
+      breakpoint: 420,
+      options: {
+        plotOptions: {
+          chart: {
+            width: '100%',
+            height: '200',
+            type: 'bar',
+          },
+          bar: {
+            borderRadius: 3,
+            columnWidth: '30%',
+          },
+        },
+      },
+    },
+  ],
 }
 </script>
 

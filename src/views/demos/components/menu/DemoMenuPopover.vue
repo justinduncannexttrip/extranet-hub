@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 import avatar1 from '@images/avatars/avatar-1.png'
 
 const menu = ref(false)

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const interval = ref()
 const progressValue = ref(0)
 
@@ -9,7 +9,6 @@ onMounted(() => {
     progressValue.value += 10
   }, 1000)
 })
-
 onBeforeUnmount(() => {
   clearInterval(interval.value)
 })

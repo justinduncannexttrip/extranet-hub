@@ -1,6 +1,9 @@
-<script lang="ts" setup>
+<script setup>
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
-import { useDisplay, useTheme } from 'vuetify'
+import {
+  useDisplay,
+  useTheme,
+} from 'vuetify'
 import { themes } from '@/plugins/vuetify/theme'
 import ChatActiveChatUserProfileSidebarContent from '@/views/apps/chat/ChatActiveChatUserProfileSidebarContent.vue'
 import ChatLeftSidebarContent from '@/views/apps/chat/ChatLeftSidebarContent.vue'
@@ -8,13 +11,8 @@ import ChatLog from '@/views/apps/chat/ChatLog.vue'
 import ChatUserProfileSidebarContent from '@/views/apps/chat/ChatUserProfileSidebarContent.vue'
 import { useChat } from '@/views/apps/chat/useChat'
 import { useChatStore } from '@/views/apps/chat/useChatStore'
-import type { ChatContact as TypeChatContact } from '@db/apps/chat/types'
 
-definePage({
-  meta: {
-    layoutWrapperClasses: 'layout-content-height-fixed',
-  },
-})
+definePage({ meta: { layoutWrapperClasses: 'layout-content-height-fixed' } })
 
 // composables
 const vuetifyDisplays = useDisplay()
@@ -34,11 +32,7 @@ const scrollToBottomInChatLog = () => {
 // Search query
 const q = ref('')
 
-watch(
-  q,
-  val => store.fetchChatsAndContacts(val),
-  { immediate: true },
-)
+watch(q, val => store.fetchChatsAndContacts(val), { immediate: true })
 
 // Open Sidebar in smAndDown when "start conversation" is clicked
 const startConversation = () => {
@@ -53,7 +47,6 @@ const msg = ref('')
 const sendMessage = async () => {
   if (!msg.value)
     return
-
   await store.sendMsg(msg.value)
 
   // Reset message input
@@ -65,7 +58,7 @@ const sendMessage = async () => {
   })
 }
 
-const openChatOfContact = async (userId: TypeChatContact['id']) => {
+const openChatOfContact = async userId => {
   await store.getChat(userId)
 
   // Reset message input
@@ -93,24 +86,38 @@ const isUserProfileSidebarOpen = ref(false)
 const isActiveChatUserProfileSidebarOpen = ref(false)
 
 // file input
-const refInputEl = ref<HTMLElement>()
+const refInputEl = ref()
 
 const moreList = [
-  { title: 'View Contact', value: 'View Contact' },
-  { title: 'Mute Notifications', value: 'Mute Notifications' },
-  { title: 'Block Contact', value: 'Block Contact' },
-  { title: 'Clear Chat', value: 'Clear Chat' },
-  { title: 'Report', value: 'Report' },
+  {
+    title: 'View Contact',
+    value: 'View Contact',
+  },
+  {
+    title: 'Mute Notifications',
+    value: 'Mute Notifications',
+  },
+  {
+    title: 'Block Contact',
+    value: 'Block Contact',
+  },
+  {
+    title: 'Clear Chat',
+    value: 'Clear Chat',
+  },
+  {
+    title: 'Report',
+    value: 'Report',
+  },
 ]
 
 const { name } = useTheme()
 
 const chatContentContainerBg = computed(() => {
   let color = 'transparent'
-
   if (themes)
-    color = themes?.[name.value].colors?.['chat-bg'] as string
-
+    color = themes?.[name.value].colors?.['chat-bg']
+  
   return color
 })
 </script>

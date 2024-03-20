@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const rating = ref(4)
 </script>
 

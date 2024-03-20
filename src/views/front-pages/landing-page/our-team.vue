@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import sectionTitleIcon from '@images/pages/section-title-icon.png'
 import teamPerson1 from '@images/pages/teamPerson1.png'
 import teamPerson2 from '@images/pages/teamPerson2.png'
@@ -6,10 +6,38 @@ import teamPerson3 from '@images/pages/teamPerson3.png'
 import teamPerson4 from '@images/pages/teamPerson4.png'
 
 const teamData = ref([
-  { name: 'Sophie Gilbert', position: 'Project Manager', image: teamPerson1, backgroundColor: 'rgba(144, 85, 253, 0.16)', borderColor: 'rgba(144, 85, 253,0.38)', isHover: false },
-  { name: 'Nannie Ford', position: 'Development Lead', image: teamPerson2, backgroundColor: 'rgba(255, 76, 81, 0.16)', borderColor: 'rgba(255, 76, 81,0.38)', isHover: false },
-  { name: 'Chris Watkins', position: 'Marketing Manager', image: teamPerson3, backgroundColor: 'rgba(86, 202, 0, 0.16)', borderColor: 'rgba(86, 202, 0,0.38)', isHover: false },
-  { name: 'Paul Miles', position: 'UI Designer', image: teamPerson4, backgroundColor: 'rgba(22, 177, 255, 0.16)', borderColor: 'rgba(22, 177, 255,0.38)', isHover: false },
+  {
+    name: 'Sophie Gilbert',
+    position: 'Project Manager',
+    image: teamPerson1,
+    backgroundColor: 'rgba(144, 85, 253, 0.16)',
+    borderColor: 'rgba(144, 85, 253,0.38)',
+    isHover: false,
+  },
+  {
+    name: 'Nannie Ford',
+    position: 'Development Lead',
+    image: teamPerson2,
+    backgroundColor: 'rgba(255, 76, 81, 0.16)',
+    borderColor: 'rgba(255, 76, 81,0.38)',
+    isHover: false,
+  },
+  {
+    name: 'Chris Watkins',
+    position: 'Marketing Manager',
+    image: teamPerson3,
+    backgroundColor: 'rgba(86, 202, 0, 0.16)',
+    borderColor: 'rgba(86, 202, 0,0.38)',
+    isHover: false,
+  },
+  {
+    name: 'Paul Miles',
+    position: 'UI Designer',
+    image: teamPerson4,
+    backgroundColor: 'rgba(22, 177, 255, 0.16)',
+    borderColor: 'rgba(22, 177, 255,0.38)',
+    isHover: false,
+  },
 ])
 </script>
 

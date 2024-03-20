@@ -1,6 +1,9 @@
-<script setup lang="ts">
+<script setup>
 import FullCalendar from '@fullcalendar/vue3'
-import { blankEvent, useCalendar } from '@/views/apps/calendar/useCalendar'
+import {
+  blankEvent,
+  useCalendar,
+} from '@/views/apps/calendar/useCalendar'
 import { useCalendarStore } from '@/views/apps/calendar/useCalendarStore'
 
 // Components
@@ -24,24 +27,24 @@ const { isLeftSidebarOpen } = useResponsiveLeftSidebar()
 const { refCalendar, calendarOptions, addEvent, updateEvent, removeEvent, jumpToDate } = useCalendar(event, isEventHandlerSidebarActive, isLeftSidebarOpen)
 
 // SECTION Sidebar
+
 // 👉 Check all
 const checkAll = computed({
-  /*
-    GET: Return boolean `true` => if length of options matches length of selected filters => Length matches when all events are selected
-    SET: If value is `true` => then add all available options in selected filters => Select All
-          Else if => all filters are selected (by checking length of both array) => Empty Selected array  => Deselect All
-  */
+
+  /*GET: Return boolean `true` => if length of options matches length of selected filters => Length matches when all events are selected
+SET: If value is `true` => then add all available options in selected filters => Select All
+Else if => all filters are selected (by checking length of both array) => Empty Selected array  => Deselect All
+*/
   get: () => store.selectedCalendars.length === store.availableCalendars.length,
   set: val => {
     if (val)
       store.selectedCalendars = store.availableCalendars.map(i => i.label)
-
     else if (store.selectedCalendars.length === store.availableCalendars.length)
       store.selectedCalendars = []
   },
 })
-// !SECTION
 
+// !SECTION
 const calendarApi = ref(null)
 </script>
 

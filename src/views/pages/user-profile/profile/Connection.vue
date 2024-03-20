@@ -1,16 +1,24 @@
-<script lang="ts" setup>
-import type { ProfileConnections } from '@db/pages/profile/types'
-
-interface Props {
-  connectionsData: ProfileConnections[]
-}
-
-const props = defineProps<Props>()
+<script setup>
+const props = defineProps({
+  connectionsData: {
+    type: Array,
+    required: true,
+  },
+})
 
 const moreList = [
-  { title: 'Share connections', value: 'Share connections' },
-  { title: 'Suggest edits', value: 'Suggest edits' },
-  { title: 'Report Bug', value: 'Report Bug' },
+  {
+    title: 'Share connections',
+    value: 'Share connections',
+  },
+  {
+    title: 'Suggest edits',
+    value: 'Suggest edits',
+  },
+  {
+    title: 'Report Bug',
+    value: 'Report Bug',
+  },
 ]
 </script>
 

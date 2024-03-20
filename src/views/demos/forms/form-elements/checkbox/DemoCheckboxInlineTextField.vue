@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const includeFiles = ref(true)
 const isInputEnabled = ref(false)
 </script>

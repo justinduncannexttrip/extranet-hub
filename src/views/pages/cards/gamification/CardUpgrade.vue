@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import poseM9 from '@images/cards/pose-m-9.png'
 </script>
 

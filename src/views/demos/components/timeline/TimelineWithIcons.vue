@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import avatar8 from '@images/avatars/avatar-8.png'
 import xls from '@images/icons/file/xls.png'
 import pdf from '@images/icons/project-icons/pdf.png'

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import CrmActivityTimeline from '@/views/dashboards/crm/CrmActivityTimeline.vue'
 import CrmDeveloperMeetup from '@/views/dashboards/crm/CrmDeveloperMeetup.vue'
 import CrmMeetingSchedule from '@/views/dashboards/crm/CrmMeetingSchedule.vue'

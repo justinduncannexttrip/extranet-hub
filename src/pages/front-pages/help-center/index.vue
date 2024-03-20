@@ -1,29 +1,14 @@
-<script setup lang="ts">
-import type { HelpCenterAllCategoryArticles, HelpCenterArticlesOverview } from '@db/pages/help-center/types'
-
+<script setup>
 import Footer from '@/views/front-pages/front-page-footer.vue'
 import Navbar from '@/views/front-pages/front-page-navbar.vue'
-
 import HelpCenterLandingArticlesOverview from '@/views/pages/help-center/HelpCenterLandingArticlesOverview.vue'
 import HelpCenterLandingFooter from '@/views/pages/help-center/HelpCenterLandingFooter.vue'
 import HelpCenterLandingKnowledgeBase from '@/views/pages/help-center/HelpCenterLandingKnowledgeBase.vue'
 
-definePage({
-  meta: {
-    layout: 'blank',
-  },
-})
-
-interface ApiDataType {
-  keepLearning: HelpCenterArticlesOverview[]
-  popularArticles: HelpCenterArticlesOverview[]
-  allArticles: HelpCenterAllCategoryArticles[]
-}
-
 // fetching data from fake-api
+definePage({ meta: { layout: 'blank' } })
 
-const { data: faqData } = await useApi<ApiDataType>('/pages/help-center')
-
+const { data: faqData } = await useApi('/pages/help-center')
 const apiData = faqData.value
 </script>
 

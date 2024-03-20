@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import cafeBadilico from '@images/cards/cafe-badilico.png'
 </script>
 

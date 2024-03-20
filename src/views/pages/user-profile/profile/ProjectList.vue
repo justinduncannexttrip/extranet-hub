@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import avatar1 from '@images/avatars/avatar-1.png'
 import avatar2 from '@images/avatars/avatar-2.png'
 import avatar3 from '@images/avatars/avatar-3.png'
@@ -17,11 +17,27 @@ import xamarin from '@images/icons/project-icons/xamarin.png'
 
 // Project Table Header
 const projectTableHeaders = [
-  { title: 'PROJECT', key: 'project' },
-  { title: 'LEADER', key: 'leader' },
-  { title: 'Team', key: 'team' },
-  { title: 'PROGRESS', key: 'progress' },
-  { title: 'Action', key: 'Action', sortable: false },
+  {
+    title: 'PROJECT',
+    key: 'project',
+  },
+  {
+    title: 'LEADER',
+    key: 'leader',
+  },
+  {
+    title: 'Team',
+    key: 'team',
+  },
+  {
+    title: 'PROGRESS',
+    key: 'progress',
+  },
+  {
+    title: 'Action',
+    key: 'Action',
+    sortable: false,
+  },
 ]
 
 const projects = [
@@ -32,7 +48,11 @@ const projects = [
     leader: 'Eileen',
     progress: 78,
     hours: '18:42',
-    team: [avatar1, avatar8, avatar6],
+    team: [
+      avatar1,
+      avatar8,
+      avatar6,
+    ],
     extraMembers: 3,
   },
   {
@@ -42,7 +62,10 @@ const projects = [
     leader: 'Owen',
     progress: 25,
     hours: '20:42',
-    team: [avatar5, avatar2],
+    team: [
+      avatar5,
+      avatar2,
+    ],
   },
   {
     logo: vue,
@@ -51,7 +74,11 @@ const projects = [
     leader: 'Keith',
     progress: 62,
     hours: '120:87',
-    team: [avatar8, avatar2, avatar1],
+    team: [
+      avatar8,
+      avatar2,
+      avatar1,
+    ],
   },
   {
     logo: xamarin,
@@ -60,7 +87,11 @@ const projects = [
     leader: 'Merline',
     progress: 8,
     hours: '120:87',
-    team: [avatar3, avatar4, avatar7],
+    team: [
+      avatar3,
+      avatar4,
+      avatar7,
+    ],
     extraMembers: 8,
   },
   {
@@ -70,7 +101,11 @@ const projects = [
     leader: 'Harmonia',
     progress: 51,
     hours: '230:10',
-    team: [avatar4, avatar3, avatar1],
+    team: [
+      avatar4,
+      avatar3,
+      avatar1,
+    ],
     extraMembers: 5,
   },
   {
@@ -80,7 +115,10 @@ const projects = [
     leader: 'Allyson',
     progress: 92,
     hours: '342:41',
-    team: [avatar1, avatar8],
+    team: [
+      avatar1,
+      avatar8,
+    ],
   },
   {
     logo: html5,
@@ -89,14 +127,27 @@ const projects = [
     leader: 'Georgie',
     progress: 80,
     hours: '12:45',
-    team: [avatar1, avatar8, avatar6],
+    team: [
+      avatar1,
+      avatar8,
+      avatar6,
+    ],
   },
 ]
 
 const moreList = [
-  { title: 'Download', value: 'Download' },
-  { title: 'Delete', value: 'Delete' },
-  { title: 'View', value: 'View' },
+  {
+    title: 'Download',
+    value: 'Download',
+  },
+  {
+    title: 'Delete',
+    value: 'Delete',
+  },
+  {
+    title: 'View',
+    value: 'View',
+  },
 ]
 </script>
 

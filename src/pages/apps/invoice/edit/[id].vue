@@ -1,47 +1,32 @@
-<script lang="ts" setup>
+<script setup>
 import InvoiceAddPaymentDrawer from '@/views/apps/invoice/InvoiceAddPaymentDrawer.vue'
 import InvoiceEditable from '@/views/apps/invoice/InvoiceEditable.vue'
 import InvoiceSendInvoiceDrawer from '@/views/apps/invoice/InvoiceSendInvoiceDrawer.vue'
 
-// Type: Invoice data
-import type { InvoiceData, PurchasedProduct } from '@/views/apps/invoice/types'
-
-const invoiceData = ref<InvoiceData>()
+const invoiceData = ref()
 const route = useRoute('apps-invoice-edit-id')
-
-// 👉 fetchInvoice
-
-const { data: invoiceDetails } = await useApi<any>(`/apps/invoice/${route.params.id}`)
+const { data: invoiceDetails } = await useApi(`/apps/invoice/${ route.params.id }`)
 
 invoiceData.value = {
   invoice: invoiceDetails.value.invoice,
   paymentDetails: invoiceDetails.value.paymentDetails,
-
-  /*
-      We are adding some extra data in response for data purpose
-      Your response will contain this extra data
-      Purpose is to make it more API friendly and less static as possible
-    */
-
-  purchasedProducts: [
-    {
-      title: 'App Design',
-      cost: 24,
-      hours: 2,
-      description: 'Designed UI kit & app pages.',
-    },
-  ],
+  purchasedProducts: [{
+    title: 'App Design',
+    cost: 24,
+    hours: 2,
+    description: 'Designed UI kit & app pages.',
+  }],
   note: 'It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance projects. Thank You!',
   paymentMethod: 'Bank Account',
   salesperson: 'Tom Cook',
   thanksNote: 'Thanks for your business',
 }
 
-const addProduct = (value: PurchasedProduct) => {
+const addProduct = value => {
   invoiceData.value?.purchasedProducts.push(value)
 }
 
-const removeProduct = (id: number) => {
+const removeProduct = id => {
   invoiceData.value?.purchasedProducts.splice(id, 1)
 }
 
@@ -51,7 +36,12 @@ const paymentTerms = ref(true)
 const clientNotes = ref(false)
 const paymentStub = ref(false)
 const selectedPaymentMethod = ref('Bank Account')
-const paymentMethods = ['Bank Account', 'PayPal', 'UPI Transfer']
+
+const paymentMethods = [
+  'Bank Account',
+  'PayPal',
+  'UPI Transfer',
+]
 </script>
 
 <template>

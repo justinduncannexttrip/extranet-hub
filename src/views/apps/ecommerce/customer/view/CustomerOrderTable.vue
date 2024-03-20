@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import type { Order } from '@db/apps/ecommerce/types'
-
+<script setup>
 const searchQuery = ref('')
 
 // Data table options
@@ -9,21 +7,37 @@ const page = ref(1)
 const sortBy = ref()
 const orderBy = ref()
 
-const updateOptions = (options: any) => {
+const updateOptions = options => {
   page.value = options.page
   sortBy.value = options.sortBy[0]?.key
   orderBy.value = options.sortBy[0]?.order
 }
 
 const headers = [
-  { title: 'Order', key: 'order' },
-  { title: 'Date', key: 'date' },
-  { title: 'Status', key: 'status' },
-  { title: 'Spent', key: 'spent' },
-  { title: 'Actions', key: 'actions', sortable: false },
+  {
+    title: 'Order',
+    key: 'order',
+  },
+  {
+    title: 'Date',
+    key: 'date',
+  },
+  {
+    title: 'Status',
+    key: 'status',
+  },
+  {
+    title: 'Spent',
+    key: 'spent',
+  },
+  {
+    title: 'Actions',
+    key: 'actions',
+    sortable: false,
+  },
 ]
 
-const resolveStatus = (status: string) => {
+const resolveStatus = status => {
   if (status === 'Delivered')
     return { color: 'success' }
   if (status === 'Out for Delivery')
@@ -34,25 +48,24 @@ const resolveStatus = (status: string) => {
     return { color: 'warning' }
 }
 
-const { data: ordersData, execute: fetchOrders } = await useApi<any>(createUrl('/apps/ecommerce/orders',
-  {
-    query: {
-      q: searchQuery,
-      page,
-      itemsPerPage,
-      sortBy,
-      orderBy,
-    },
+const {
+  data: ordersData,
+  execute: fetchOrders,
+} = await useApi(createUrl('/apps/ecommerce/orders', {
+  query: {
+    q: searchQuery,
+    page,
+    itemsPerPage,
+    sortBy,
+    orderBy,
   },
-))
+}))
 
-const orders = computed((): Order[] => ordersData.value?.orders || [])
+const orders = computed(() => ordersData.value?.orders || [])
 const totalOrder = computed(() => ordersData.value?.total || 0)
 
-const deleteOrder = async (id: number) => {
-  await $api(`/apps/ecommerce/orders/${id}`, {
-    method: 'DELETE',
-  })
+const deleteOrder = async id => {
+  await $api(`/apps/ecommerce/orders/${ id }`, { method: 'DELETE' })
   fetchOrders()
 }
 </script>

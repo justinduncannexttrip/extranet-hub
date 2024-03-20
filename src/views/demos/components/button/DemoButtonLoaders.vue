@@ -1,7 +1,7 @@
-<script lang="ts" setup>
-const loadings = ref<boolean[]>([])
+<script setup>
+const loadings = ref([])
 
-const load = (i: number) => {
+const load = i => {
   loadings.value[i] = true
   setTimeout(() => {
     loadings.value[i] = false

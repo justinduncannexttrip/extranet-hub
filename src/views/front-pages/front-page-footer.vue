@@ -1,20 +1,27 @@
-<script setup lang="ts">
+<script setup>
 import appleImg from '@images/front-pages/landing-page/apple-icon.png'
 import googlePlayImg from '@images/front-pages/landing-page/google-play-icon.png'
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 import { themeConfig } from '@themeConfig'
 
-interface Menu {
-  name: string
-  to: any
-  isNew?: boolean
-}
-
-const menus: Menu[] = [
-  { name: 'Pricing', to: { name: 'front-pages-pricing' } },
-  { name: 'Payment', to: { name: 'front-pages-payment' }, isNew: true },
-  { name: 'Maintenance', to: { name: 'pages-misc-under-maintenance' } },
-  { name: 'Comming Soon', to: { name: 'pages-misc-coming-soon' } },
+const menus = [
+  {
+    name: 'Pricing',
+    to: { name: 'front-pages-pricing' },
+  },
+  {
+    name: 'Payment',
+    to: { name: 'front-pages-payment' },
+    isNew: true,
+  },
+  {
+    name: 'Maintenance',
+    to: { name: 'pages-misc-under-maintenance' },
+  },
+  {
+    name: 'Comming Soon',
+    to: { name: 'pages-misc-coming-soon' },
+  },
 ]
 </script>
 

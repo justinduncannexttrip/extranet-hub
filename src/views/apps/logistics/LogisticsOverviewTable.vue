@@ -1,19 +1,16 @@
-<script setup lang="ts">
-import type { Vehicle } from '@db/apps/logistics/types'
-
+<script setup>
 const itemsPerPage = ref(5)
 const page = ref(1)
 const sortBy = ref()
 const orderBy = ref()
 
-// Update data table options
-const updateOptions = (options: any) => {
+const updateOptions = options => {
   page.value = options.page
   sortBy.value = options.sortBy[0]?.key
   orderBy.value = options.sortBy[0]?.order
 }
 
-const { data: vehiclesData } = await useApi<any>(createUrl('/apps/logistics/vehicles', {
+const { data: vehiclesData } = await useApi(createUrl('/apps/logistics/vehicles', {
   query: {
     page,
     itemsPerPage,
@@ -22,18 +19,33 @@ const { data: vehiclesData } = await useApi<any>(createUrl('/apps/logistics/vehi
   },
 }))
 
-const vehicles = computed((): Vehicle[] => vehiclesData.value.vehicles)
+const vehicles = computed(() => vehiclesData.value.vehicles)
 const totalVehicles = computed(() => vehiclesData.value.totalVehicles)
 
 const headers = [
-  { title: 'LOCATION', key: 'location' },
-  { title: 'STARTING ROUTE', key: 'startRoute' },
-  { title: 'ENDING ROUTE', key: 'endRoute' },
-  { title: 'WARNINGS', key: 'warnings' },
-  { title: 'PROGRESS', key: 'progress' },
+  {
+    title: 'LOCATION',
+    key: 'location',
+  },
+  {
+    title: 'STARTING ROUTE',
+    key: 'startRoute',
+  },
+  {
+    title: 'ENDING ROUTE',
+    key: 'endRoute',
+  },
+  {
+    title: 'WARNINGS',
+    key: 'warnings',
+  },
+  {
+    title: 'PROGRESS',
+    key: 'progress',
+  },
 ]
 
-const resolveChipColor = (warning: string) => {
+const resolveChipColor = warning => {
   if (warning === 'No Warnings')
     return 'success'
   if (warning === 'fuel problems')

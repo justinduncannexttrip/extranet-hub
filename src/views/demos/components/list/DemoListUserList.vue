@@ -1,24 +1,10 @@
-<script setup lang="ts">
+<script setup>
 import avatar1 from '@images/avatars/avatar-1.png'
 import avatar2 from '@images/avatars/avatar-2.png'
 import avatar3 from '@images/avatars/avatar-3.png'
 import avatar4 from '@images/avatars/avatar-4.png'
 
-interface Status {
-  'Online': string
-  'Away': string
-  'Offline': string
-  'In Meeting': string
-}
-
-interface Users {
-  avatar: string
-  name: string
-  status: keyof Status
-  lastVisited: string
-}
-
-const users: Users[] = [
+const users = [
   {
     avatar: avatar1,
     name: 'Caroline Black',
@@ -45,7 +31,7 @@ const users: Users[] = [
   },
 ]
 
-const resolveStatusColor: Status = {
+const resolveStatusColor = {
   'Online': 'success',
   'Away': 'warning',
   'Offline': 'secondary',

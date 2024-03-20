@@ -1,8 +1,17 @@
-<script lang="ts" setup>
+<script setup>
 const items = [
-  { text: 'Cupcake sesame snaps dessert marzipan.', icon: 'ri-instagram-line' },
-  { text: 'Jelly beans jelly-o gummi bears chupa chups marshmallow.', icon: 'ri-facebook-circle-line' },
-  { text: 'Bonbon macaroon gummies pie jelly', icon: 'ri-twitter-line' },
+  {
+    text: 'Cupcake sesame snaps dessert marzipan.',
+    icon: 'ri-instagram-line',
+  },
+  {
+    text: 'Jelly beans jelly-o gummi bears chupa chups marshmallow.',
+    icon: 'ri-facebook-circle-line',
+  },
+  {
+    text: 'Bonbon macaroon gummies pie jelly',
+    icon: 'ri-twitter-line',
+  },
 ]
 </script>
 

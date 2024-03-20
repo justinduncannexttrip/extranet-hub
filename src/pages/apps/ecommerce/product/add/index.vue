@@ -1,39 +1,31 @@
-<script setup lang="ts">
-import { useDropZone, useFileDialog, useObjectUrl } from '@vueuse/core'
+<script setup>
+import {
+  useDropZone,
+  useFileDialog,
+  useObjectUrl,
+} from '@vueuse/core'
 import { ref } from 'vue'
 
 const optionCounter = ref(1)
-
-const dropZoneRef = ref<HTMLDivElement>()
-interface FileData {
-  file: File
-  url: string
-}
-
-const fileData = ref<FileData[]>([])
+const dropZoneRef = ref()
+const fileData = ref([])
 const { open, onChange } = useFileDialog({ accept: 'image/*' })
-
-function onDrop(DroppedFiles: File[] | null) {
+function onDrop(DroppedFiles) {
   DroppedFiles?.forEach(file => {
     if (file.type.slice(0, 6) !== 'image/') {
-      // eslint-disable-next-line no-alert
       alert('Only image files are allowed')
-
+      
       return
     }
-
     fileData.value.push({
       file,
       url: useObjectUrl(file).value ?? '',
     })
-  },
-  )
+  })
 }
-
-onChange((selectedFiles: any) => {
+onChange(selectedFiles => {
   if (!selectedFiles)
     return
-
   for (const file of selectedFiles) {
     fileData.value.push({
       file,
@@ -41,11 +33,9 @@ onChange((selectedFiles: any) => {
     })
   }
 })
-
 useDropZone(dropZoneRef, onDrop)
 
-const content = ref(
-  `<p>
+const content = ref(`<p>
       This is a radically reduced version of tiptap. It has support for a document, with paragraphs and text. That's it. It's probably too much for real minimalists though.
     </p>
     <p>
@@ -55,20 +45,52 @@ const content = ref(
 const activeTab = ref('Restock')
 
 const shippingList = [
-  { desc: 'You\'ll be responsible for product delivery.Any damage or delay during shipping may cost you a Damage fee', title: 'Fulfilled by Seller', value: 'Fulfilled by Seller' },
-  { desc: 'Your product, Our responsibility.For a measly fee, we will handle the delivery process for you.', title: 'Fulfilled by Company name', value: 'Fulfilled by Company name' },
-] as const
+  {
+    desc: 'You\'ll be responsible for product delivery.Any damage or delay during shipping may cost you a Damage fee',
+    title: 'Fulfilled by Seller',
+    value: 'Fulfilled by Seller',
+  },
+  {
+    desc: 'Your product, Our responsibility.For a measly fee, we will handle the delivery process for you.',
+    title: 'Fulfilled by Company name',
+    value: 'Fulfilled by Company name',
+  },
+]
 
-const shippingType = ref<typeof shippingList[number]['value']>('Fulfilled by Company name')
+const shippingType = ref('Fulfilled by Company name')
 const deliveryType = ref('Worldwide delivery')
-const selectedAttrs = ref(['Biodegradable', 'Expiry Date'])
+
+const selectedAttrs = ref([
+  'Biodegradable',
+  'Expiry Date',
+])
 
 const inventoryTabsData = [
-  { icon: 'ri-add-line', title: 'Restock', value: 'Restock' },
-  { icon: 'ri-flight-takeoff-line', title: 'Shipping', value: 'Shipping' },
-  { icon: 'ri-map-pin-line', title: 'Global Delivery', value: 'Global Delivery' },
-  { icon: 'ri-attachment-2', title: 'Attributes', value: 'Attributes' },
-  { icon: 'ri-lock-unlock-line', title: 'Advanced', value: 'Advanced' },
+  {
+    icon: 'ri-add-line',
+    title: 'Restock',
+    value: 'Restock',
+  },
+  {
+    icon: 'ri-flight-takeoff-line',
+    title: 'Shipping',
+    value: 'Shipping',
+  },
+  {
+    icon: 'ri-map-pin-line',
+    title: 'Global Delivery',
+    value: 'Global Delivery',
+  },
+  {
+    icon: 'ri-attachment-2',
+    title: 'Attributes',
+    value: 'Attributes',
+  },
+  {
+    icon: 'ri-lock-unlock-line',
+    title: 'Advanced',
+    value: 'Advanced',
+  },
 ]
 
 const inStock = ref(true)

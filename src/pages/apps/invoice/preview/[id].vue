@@ -1,23 +1,16 @@
-<script setup lang="ts">
+<script setup>
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 import { themeConfig } from '@themeConfig'
-
-// Components
 import InvoiceAddPaymentDrawer from '@/views/apps/invoice/InvoiceAddPaymentDrawer.vue'
 import InvoiceSendInvoiceDrawer from '@/views/apps/invoice/InvoiceSendInvoiceDrawer.vue'
 
 const route = useRoute('apps-invoice-preview-id')
-
 const isAddPaymentSidebarVisible = ref(false)
 const isSendPaymentSidebarVisible = ref(false)
-
-const { data: invoiceData } = await useApi<any>(`/apps/invoice/${Number(route.params.id)}`)
-
+const { data: invoiceData } = await useApi(`/apps/invoice/${ Number(route.params.id) }`)
 const invoice = invoiceData.value.invoice
 const paymentDetails = invoiceData.value.paymentDetails
 
-// 👉 Invoice Description
-// ℹ️ Your real data will contain this information
 const purchasedProducts = [
   {
     name: 'Premium Branding Package',
@@ -49,7 +42,6 @@ const purchasedProducts = [
   },
 ]
 
-// 👉 Print Invoice
 const printInvoice = () => {
   window.print()
 }

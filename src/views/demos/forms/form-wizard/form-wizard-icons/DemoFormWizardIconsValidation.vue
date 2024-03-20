@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { VForm } from 'vuetify/components/VForm'
 import customWizardAccount from '@images/svg/wizard-account.svg'
 import customWizardAddress from '@images/svg/wizard-address.svg'
@@ -33,10 +33,10 @@ const currentStep = ref(0)
 const isPasswordVisible = ref(false)
 const isCPasswordVisible = ref(false)
 const isCurrentStepValid = ref(true)
-const refAccountForm = ref<VForm>()
-const refPersonalForm = ref<VForm>()
-const refSocialLinkForm = ref<VForm>()
-const refAddressForm = ref<VForm>()
+const refAccountForm = ref()
+const refPersonalForm = ref()
+const refSocialLinkForm = ref()
+const refAddressForm = ref()
 
 const accountForm = ref({
   username: '',
@@ -71,8 +71,9 @@ const validateAccountForm = () => {
     if (valid.valid) {
       currentStep.value++
       isCurrentStepValid.value = true
+    } else {
+      isCurrentStepValid.value = false
     }
-    else { isCurrentStepValid.value = false }
   })
 }
 
@@ -81,8 +82,9 @@ const validatePersonalForm = () => {
     if (valid.valid) {
       currentStep.value++
       isCurrentStepValid.value = true
+    } else {
+      isCurrentStepValid.value = false
     }
-    else { isCurrentStepValid.value = false }
   })
 }
 
@@ -91,8 +93,9 @@ const validateAddressForm = () => {
     if (valid.valid) {
       currentStep.value++
       isCurrentStepValid.value = true
+    } else {
+      isCurrentStepValid.value = false
     }
-    else { isCurrentStepValid.value = false }
   })
 }
 
@@ -101,8 +104,9 @@ const validateSocialLinkForm = () => {
     if (valid.valid) {
       currentStep.value++
       isCurrentStepValid.value = true
+    } else {
+      isCurrentStepValid.value = false
     }
-    else { isCurrentStepValid.value = false }
   })
 }
 </script>

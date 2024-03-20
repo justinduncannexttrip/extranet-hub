@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const pageSuccess = ref(1)
 const pageError = ref(2)
 const pageInfo = ref(3)

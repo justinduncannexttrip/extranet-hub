@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import UserBioPanel from '@/views/apps/user/view/UserBioPanel.vue'
 import UserTabBillingsPlans from '@/views/apps/user/view/UserTabBillingsPlans.vue'
 import UserTabConnections from '@/views/apps/user/view/UserTabConnections.vue'
@@ -7,18 +7,32 @@ import UserTabOverview from '@/views/apps/user/view/UserTabOverview.vue'
 import UserTabSecurity from '@/views/apps/user/view/UserTabSecurity.vue'
 
 const route = useRoute('apps-user-view-id')
-
 const userTab = ref(null)
 
 const tabs = [
-  { icon: 'ri-group-line', title: 'Overview' },
-  { icon: 'ri-lock-2-line', title: 'Security' },
-  { icon: 'ri-bookmark-line', title: 'Billing & Plan' },
-  { icon: 'ri-notification-4-line', title: 'Notifications' },
-  { icon: 'ri-link-m', title: 'Connections' },
+  {
+    icon: 'ri-group-line',
+    title: 'Overview',
+  },
+  {
+    icon: 'ri-lock-2-line',
+    title: 'Security',
+  },
+  {
+    icon: 'ri-bookmark-line',
+    title: 'Billing & Plan',
+  },
+  {
+    icon: 'ri-notification-4-line',
+    title: 'Notifications',
+  },
+  {
+    icon: 'ri-link-m',
+    title: 'Connections',
+  },
 ]
 
-const { data: userData } = await useApi<any>(`/apps/users/${route.params.id}`)
+const { data: userData } = await useApi(`/apps/users/${ route.params.id }`)
 </script>
 
 <template>

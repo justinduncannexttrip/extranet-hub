@@ -1,23 +1,24 @@
-<script setup lang="ts">
+<script setup>
 import illustrationJohn from '@images/pages/illustration-john.png'
-
 import angularIcon from '@images/icons/brands/angular.png'
 import laravelIcon from '@images/icons/brands/laravel.png'
 import reactIcon from '@images/icons/brands/react.png'
 import vueIcon from '@images/icons/brands/vue.png'
-
 import awsIcon from '@images/icons/brands/aws.png'
 import firebaseIcon from '@images/icons/brands/firebase.png'
 import mysqlIcon from '@images/icons/brands/mysql.png'
 
-const props = defineProps<{
-  isDialogVisible: boolean
-}>()
+const props = defineProps({
+  isDialogVisible: {
+    type: Boolean,
+    required: true,
+  },
+})
 
-const emit = defineEmits<{
-  (e: 'update:isDialogVisible', val: boolean): void
-  (e: 'updatedData', val: unknown): void
-}>()
+const emit = defineEmits([
+  'update:isDialogVisible',
+  'updatedData',
+])
 
 const currentStep = ref(0)
 
@@ -139,7 +140,7 @@ const createAppData = ref({
   isSave: false,
 })
 
-const dialogVisibleUpdate = (val: boolean) => {
+const dialogVisibleUpdate = val => {
   emit('update:isDialogVisible', val)
   currentStep.value = 0
 }
@@ -150,7 +151,6 @@ watch(props, () => {
 })
 
 const onSubmit = () => {
-  // eslint-disable-next-line no-alert
   alert('submitted...!!')
   emit('updatedData', createAppData.value)
 }

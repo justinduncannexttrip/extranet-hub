@@ -1,23 +1,36 @@
-<script setup lang="ts">
-interface Emit {
-  (e: 'update:isDialogVisible', val: boolean): void
-}
+<script setup>
+const props = defineProps({
+  isDialogVisible: {
+    type: Boolean,
+    required: true,
+  },
+})
 
-interface Prop {
-  isDialogVisible: boolean
-}
-
-const props = defineProps<Prop>()
-
-defineEmits<Emit>()
+const emit = defineEmits(['update:isDialogVisible'])
 
 const selectedPlan = ref('basic')
 
 const plansList = [
-  { desc: 'Standard - $99/month', title: 'Standard', value: 'standard' },
-  { desc: 'Basic - $0/month', title: 'Basic', value: 'basic' },
-  { desc: 'Enterprise - $499/month', title: 'Enterprise', value: 'enterprice' },
-  { desc: 'Company - $999/month', title: 'Company', value: 'company' },
+  {
+    desc: 'Standard - $99/month',
+    title: 'Standard',
+    value: 'standard',
+  },
+  {
+    desc: 'Basic - $0/month',
+    title: 'Basic',
+    value: 'basic',
+  },
+  {
+    desc: 'Enterprise - $499/month',
+    title: 'Enterprise',
+    value: 'enterprice',
+  },
+  {
+    desc: 'Company - $999/month',
+    title: 'Company',
+    value: 'company',
+  },
 ]
 
 const isConfirmDialogVisible = ref(false)

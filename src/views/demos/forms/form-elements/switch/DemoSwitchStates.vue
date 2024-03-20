@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const switchOn = ref('on')
 const switchOnDisabled = ref('on')
 const switchOnLoading = ref(true)

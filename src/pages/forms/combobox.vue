@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 import * as demoCode from '@/views/demos/forms/form-elements/combobox/demoCodeCombobox'
 </script>
 

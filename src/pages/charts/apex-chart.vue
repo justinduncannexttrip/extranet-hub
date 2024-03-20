@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import ApexChartAreaChart from '@/views/charts/apex-chart/ApexChartAreaChart.vue'
 import ApexChartBalance from '@/views/charts/apex-chart/ApexChartBalance.vue'
 import ApexChartDailySalesStates from '@/views/charts/apex-chart/ApexChartDailySalesStates.vue'

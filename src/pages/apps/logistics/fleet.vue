@@ -1,29 +1,36 @@
 // ❗ WARNING please use your access token from mapbox.com
-<script setup lang="ts">
-import type { LngLatLike } from 'mapbox-gl'
+<script setup>
 import mapboxgl from 'mapbox-gl'
-import { onMounted, ref } from 'vue'
+import {
+  onMounted,
+  ref,
+} from 'vue'
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
 import { useDisplay } from 'vuetify'
 import fleetImg from '@images/misc/fleet-car.png'
 
 const { isLeftSidebarOpen } = useResponsiveLeftSidebar()
-
 const accessToken = 'pk.eyJ1Ijoic29jaWFsZXhwbG9yZXIiLCJhIjoiREFQbXBISSJ9.dwFTwfSaWsHvktHrRtpydQ'
 const map = ref()
-
 const vuetifyDisplay = useDisplay()
 
-definePage({
-  meta: {
-    layoutWrapperClasses: 'layout-content-height-fixed',
-  },
-})
+definePage({ meta: { layoutWrapperClasses: 'layout-content-height-fixed' } })
 
-const carImgs = ref([fleetImg, fleetImg, fleetImg, fleetImg])
-const refCars = ref<HTMLElement[]>([])
+const carImgs = ref([
+  fleetImg,
+  fleetImg,
+  fleetImg,
+  fleetImg,
+])
 
-const showPanel = ref([true, false, false, false])
+const refCars = ref([])
+
+const showPanel = ref([
+  true,
+  false,
+  false,
+  false,
+])
 
 const geojson = {
   type: 'FeatureCollection',
@@ -32,28 +39,40 @@ const geojson = {
       type: 'Feature',
       geometry: {
         type: 'Point',
-        coordinates: [-73.999024, 40.75249842],
+        coordinates: [
+          -73.999024,
+          40.75249842,
+        ],
       },
     },
     {
       type: 'Feature',
       geometry: {
         type: 'Point',
-        coordinates: [-74.03, 40.75699842],
+        coordinates: [
+          -74.03,
+          40.75699842,
+        ],
       },
     },
     {
       type: 'Feature',
       geometry: {
         type: 'Point',
-        coordinates: [-73.967524, 40.7599842],
+        coordinates: [
+          -73.967524,
+          40.7599842,
+        ],
       },
     },
     {
       type: 'Feature',
       geometry: {
         type: 'Point',
-        coordinates: [-74.0325, 40.742992],
+        coordinates: [
+          -74.0325,
+          40.742992,
+        ],
       },
     },
   ],
@@ -63,17 +82,17 @@ const activeIndex = ref(0)
 
 onMounted(() => {
   mapboxgl.accessToken = accessToken
-
   map.value = new mapboxgl.Map({
     container: 'mapContainer',
     style: 'mapbox://styles/mapbox/light-v9',
-    center: [-73.999024, 40.75249842],
+    center: [
+      -73.999024,
+      40.75249842,
+    ],
     zoom: 12.25,
   })
-
   for (let index = 0; index < geojson.features.length; index++)
-    new mapboxgl.Marker({ element: refCars.value[index] }).setLngLat(geojson.features[index].geometry.coordinates as LngLatLike).addTo(map.value)
-
+    new mapboxgl.Marker({ element: refCars.value[index] }).setLngLat(geojson.features[index].geometry.coordinates).addTo(map.value)
   refCars.value[activeIndex.value].classList.add('marker-focus')
 })
 
@@ -104,14 +123,12 @@ const vehicleTrackingData = [
   },
 ]
 
-const flyToLocation = (geolocation: number[], index: number) => {
+const flyToLocation = (geolocation, index) => {
   activeIndex.value = index
   showPanel.value.fill(false)
   showPanel.value[index] = !showPanel.value[index]
-
   if (vuetifyDisplay.mdAndDown.value)
     isLeftSidebarOpen.value = false
-
   map.value.flyTo({
     center: geolocation,
     zoom: 16,

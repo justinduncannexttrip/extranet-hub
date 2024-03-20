@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const chartColors = {
   donut: {
     series1: '#56ca00',
@@ -11,23 +11,31 @@ const chartColors = {
 const headingColor = 'rgba(var(--v-theme-on-background), var(--v-high-emphasis-opacity))'
 const labelColor = 'rgba(var(--v-theme-on-background), var(--v-medium-emphasis-opacity))'
 
-const deliveryExceptionsChartSeries = [13, 25, 22, 40]
+const deliveryExceptionsChartSeries = [
+  13,
+  25,
+  22,
+  40,
+]
 
 const deliveryExceptionsChartConfig = {
-  labels: ['Incorrect address', 'Weather conditions', 'Federal Holidays', 'Damage during transit'],
+  labels: [
+    'Incorrect address',
+    'Weather conditions',
+    'Federal Holidays',
+    'Damage during transit',
+  ],
   colors: [
     chartColors.donut.series1,
     chartColors.donut.series2,
     chartColors.donut.series3,
     chartColors.donut.series4,
   ],
-  stroke: {
-    width: 0,
-  },
+  stroke: { width: 0 },
   dataLabels: {
     enabled: false,
-    formatter(val: string) {
-      return `${Number.parseInt(val)}%`
+    formatter(val) {
+      return `${ Number.parseInt(val) }%`
     },
   },
   legend: {
@@ -50,14 +58,8 @@ const deliveryExceptionsChartConfig = {
       useSeriesColors: false,
     },
   },
-  tooltip: {
-    theme: false,
-  },
-  grid: {
-    padding: {
-      top: 15,
-    },
-  },
+  tooltip: { theme: false },
+  grid: { padding: { top: 15 } },
   plotOptions: {
     pie: {
       donut: {
@@ -69,8 +71,8 @@ const deliveryExceptionsChartConfig = {
             color: headingColor,
             fontWeight: 500,
             offsetY: -15,
-            formatter(val: string) {
-              return `${Number.parseInt(val)}%`
+            formatter(val) {
+              return `${ Number.parseInt(val) }%`
             },
           },
           name: { offsetY: 30 },
@@ -87,16 +89,10 @@ const deliveryExceptionsChartConfig = {
       },
     },
   },
-  responsive: [
-    {
-      breakpoint: 420,
-      options: {
-        chart: {
-          height: 400,
-        },
-      },
-    },
-  ],
+  responsive: [{
+    breakpoint: 420,
+    options: { chart: { height: 400 } },
+  }],
 }
 </script>
 

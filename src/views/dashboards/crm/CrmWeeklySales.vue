@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { useTheme } from 'vuetify'
 import { hexToRgb } from '@layouts/utils'
 
@@ -7,9 +7,8 @@ const vuetifyTheme = useTheme()
 const options = computed(() => {
   const currentTheme = ref(vuetifyTheme.current.value.colors)
   const variableTheme = ref(vuetifyTheme.current.value.variables)
-
-  const secondaryColor = `rgba(${hexToRgb(currentTheme.value['on-surface'])},${variableTheme.value['medium-emphasis-opacity']})`
-
+  const secondaryColor = `rgba(${ hexToRgb(currentTheme.value['on-surface']) },${ variableTheme.value['medium-emphasis-opacity'] })`
+  
   return {
     chart: {
       parentHeightOffset: 0,
@@ -34,15 +33,19 @@ const options = computed(() => {
       'rgba(var(--v-theme-primary), 0.16)',
     ],
     states: {
-      hover: {
-        filter: { type: 'none' },
-      },
-      active: {
-        filter: { type: 'none' },
-      },
+      hover: { filter: { type: 'none' } },
+      active: { filter: { type: 'none' } },
     },
     xaxis: {
-      categories: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+      categories: [
+        'S',
+        'M',
+        'T',
+        'W',
+        'T',
+        'F',
+        'S',
+      ],
       axisTicks: { show: false },
       crosshairs: { opacity: 0 },
       axisBorder: { show: false },
@@ -63,13 +66,21 @@ const options = computed(() => {
         right: -10,
       },
     },
-    tooltip: {
-      enabled: false,
-    },
+    tooltip: { enabled: false },
   }
 })
 
-const series = [{ data: [40, 60, 50, 60, 90, 40, 50] }]
+const series = [{
+  data: [
+    40,
+    60,
+    50,
+    60,
+    90,
+    40,
+    50,
+  ],
+}]
 
 const weeklySalesData = [
   {

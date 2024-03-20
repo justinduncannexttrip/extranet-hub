@@ -1,6 +1,5 @@
-<script setup lang="ts">
+<script setup>
 import { useTheme } from 'vuetify'
-
 import { hexToRgb } from '@layouts/utils'
 
 const vuetifyTheme = useTheme()
@@ -8,14 +7,11 @@ const vuetifyTheme = useTheme()
 const options = computed(() => {
   const currentTheme = ref(vuetifyTheme.current.value.colors)
   const variableTheme = ref(vuetifyTheme.current.value.variables)
-
-  const secondaryTextColor = `rgba(${hexToRgb(currentTheme.value['on-surface'])},${variableTheme.value['medium-emphasis-opacity']})`
-  const primaryTextColor = `rgba(${hexToRgb(currentTheme.value['on-surface'])},${variableTheme.value['high-emphasis-opacity']})`
-
+  const secondaryTextColor = `rgba(${ hexToRgb(currentTheme.value['on-surface']) },${ variableTheme.value['medium-emphasis-opacity'] })`
+  const primaryTextColor = `rgba(${ hexToRgb(currentTheme.value['on-surface']) },${ variableTheme.value['high-emphasis-opacity'] })`
+  
   return {
-    chart: {
-      sparkline: { enabled: true },
-    },
+    chart: { sparkline: { enabled: true } },
     colors: [
       'rgba(var(--v-theme-primary),1)',
       'rgba(var(--v-theme-primary), 0.7)',
@@ -25,14 +21,15 @@ const options = computed(() => {
     stroke: { width: 0 },
     legend: { show: false },
     dataLabels: { enabled: false },
-    labels: ['Apparel', 'Electronics', 'FMCG', 'Other Sales'],
+    labels: [
+      'Apparel',
+      'Electronics',
+      'FMCG',
+      'Other Sales',
+    ],
     states: {
-      hover: {
-        filter: { type: 'none' },
-      },
-      active: {
-        filter: { type: 'none' },
-      },
+      hover: { filter: { type: 'none' } },
+      active: { filter: { type: 'none' } },
     },
     plotOptions: {
       pie: {
@@ -50,15 +47,14 @@ const options = computed(() => {
               fontWeight: 500,
               fontSize: '24px',
               color: primaryTextColor,
-              formatter: (value: unknown) => `${value}k`,
+              formatter: value => `${ value }k`,
             },
             total: {
               show: true,
               label: 'Weekly Sales',
               fontSize: '15px',
               color: secondaryTextColor,
-
-              formatter: (value: { globals: { seriesTotals: any[] } }) => `${value.globals.seriesTotals.reduce((total: number, num: number) => total + num)}k`,
+              formatter: value => `${ value.globals.seriesTotals.reduce((total, num) => total + num) }k`,
             },
           },
         },
@@ -67,7 +63,12 @@ const options = computed(() => {
   }
 })
 
-const series = [12, 25, 13, 50]
+const series = [
+  12,
+  25,
+  13,
+  50,
+]
 
 const salesOverviews = [
   {

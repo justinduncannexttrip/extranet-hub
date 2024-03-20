@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 import navItems from '@/navigation/vertical'
 import { themeConfig } from '@themeConfig'
 
@@ -16,13 +16,14 @@ import { VerticalNavLayout } from '@layouts'
 
 // SECTION: Loading Indicator
 const isFallbackStateActive = ref(false)
-const refLoadingIndicator = ref<any>(null)
+const refLoadingIndicator = ref(null)
 
-// watching if the fallback state is active and the refLoadingIndicator component is available
-watch([isFallbackStateActive, refLoadingIndicator], () => {
+watch([
+  isFallbackStateActive,
+  refLoadingIndicator,
+], () => {
   if (isFallbackStateActive.value && refLoadingIndicator.value)
     refLoadingIndicator.value.fallbackHandle()
-
   if (!isFallbackStateActive.value && refLoadingIndicator.value)
     refLoadingIndicator.value.resolveHandle()
 }, { immediate: true })

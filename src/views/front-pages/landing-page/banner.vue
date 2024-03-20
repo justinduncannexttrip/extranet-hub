@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import ctaDashborad from '@images/front-pages/landing-page/cta-dashboard.png'
 </script>
 

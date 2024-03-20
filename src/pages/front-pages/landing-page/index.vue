@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import Footer from '@/views/front-pages/front-page-footer.vue'
 import Navbar from '@/views/front-pages/front-page-navbar.vue'
 import Banner from '@/views/front-pages/landing-page/banner.vue'
@@ -11,30 +11,25 @@ import OurTeam from '@/views/front-pages/landing-page/our-team.vue'
 import PricingPlans from '@/views/front-pages/landing-page/pricing-plans.vue'
 import ProductStats from '@/views/front-pages/landing-page/product-stats.vue'
 
-definePage({
-  meta: {
-    layout: 'blank',
-  },
-})
+definePage({ meta: { layout: 'blank' } })
 
 const activeSectionId = ref()
-
 const refHome = ref()
 const refFeatures = ref()
 const refTeam = ref()
 const refContact = ref()
 const refFaq = ref()
 
-useIntersectionObserver(
-  [refHome, refFeatures, refTeam, refContact, refFaq],
-  ([{ isIntersecting, target }]) => {
-    if (isIntersecting)
-      activeSectionId.value = target.id
-  },
-  {
-    threshold: 0.25,
-  },
-)
+useIntersectionObserver([
+  refHome,
+  refFeatures,
+  refTeam,
+  refContact,
+  refFaq,
+], ([{ isIntersecting, target }]) => {
+  if (isIntersecting)
+    activeSectionId.value = target.id
+}, { threshold: 0.25 })
 </script>
 
 <template>

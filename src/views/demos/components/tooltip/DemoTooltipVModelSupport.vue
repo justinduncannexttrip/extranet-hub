@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const isTooltipVisible = ref(false)
 </script>
 

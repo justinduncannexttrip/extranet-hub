@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import asana from '@images/icons/brands/asana.png'
 import behance from '@images/icons/brands/behance.png'
 import dribbble from '@images/icons/brands/dribbble.png'
@@ -41,7 +41,6 @@ const connectedAccounts = ref([
     subtitle: 'Task management',
     connected: false,
   },
-
 ])
 
 const socialAccounts = ref([
@@ -53,20 +52,25 @@ const socialAccounts = ref([
   {
     logo: twitter,
     name: 'Twitter',
-    links: { username: '@ThemeSelection', link: 'https://twitter.com/Theme_Selection' },
+    links: {
+      username: '@ThemeSelection',
+      link: 'https://twitter.com/Theme_Selection',
+    },
     connected: true,
   },
   {
     logo: linkedin,
     name: 'LinkedIn',
-    links: { username: '@ThemeSelection', link: 'https://in.linkedin.com/company/themeselection' },
+    links: {
+      username: '@ThemeSelection',
+      link: 'https://in.linkedin.com/company/themeselection',
+    },
     connected: true,
   },
   {
     logo: dribbble,
     name: 'Dribbble',
     connected: false,
-
   },
   {
     logo: behance,

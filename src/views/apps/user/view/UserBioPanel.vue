@@ -1,61 +1,66 @@
-<script setup lang="ts">
-interface Props {
+<script setup>
+const props = defineProps({
   userData: {
-    id: number
-    fullName: string
-    company: string
-    role: string
-    username: string
-    country: string
-    contact: string
-    email: string
-    currentPlan: string
-    status: string
-    avatar: string
-    taskDone: number
-    projectDone: number
-    taxId: string
-    language: string[]
-  }
-}
-
-const props = defineProps<Props>()
+    type: Object,
+    required: true,
+  },
+})
 
 const standardPlan = {
   plan: 'Standard',
   price: 99,
-  benefits: ['10 Users', 'Up to 10GB storage', 'Basic Support'],
+  benefits: [
+    '10 Users',
+    'Up to 10GB storage',
+    'Basic Support',
+  ],
 }
 
 const isUserInfoEditDialogVisible = ref(false)
 const isUpgradePlanDialogVisible = ref(false)
 
-// 👉 Status variant resolver
-const resolveUserStatusVariant = (stat: string) => {
+const resolveUserStatusVariant = stat => {
   if (stat === 'pending')
     return 'warning'
   if (stat === 'active')
     return 'success'
   if (stat === 'inactive')
     return 'secondary'
-
+  
   return 'primary'
 }
 
-// 👉 Role variant resolver
-const resolveUserRoleVariant = (role: string) => {
+const resolveUserRoleVariant = role => {
   if (role === 'subscriber')
-    return { color: 'primary', icon: 'ri-user-line' }
+    return {
+      color: 'primary',
+      icon: 'ri-user-line',
+    }
   if (role === 'author')
-    return { color: 'warning', icon: 'ri-settings-2-line' }
+    return {
+      color: 'warning',
+      icon: 'ri-settings-2-line',
+    }
   if (role === 'maintainer')
-    return { color: 'success', icon: 'ri-database-2-line' }
+    return {
+      color: 'success',
+      icon: 'ri-database-2-line',
+    }
   if (role === 'editor')
-    return { color: 'info', icon: 'ri-pencil-line' }
+    return {
+      color: 'info',
+      icon: 'ri-pencil-line',
+    }
   if (role === 'admin')
-    return { color: 'error', icon: 'ri-server-line' }
-
-  return { color: 'primary', icon: 'ri-user-line' }
+    return {
+      color: 'error',
+      icon: 'ri-server-line',
+    }
+  
+  return {
+    color: 'primary',
+    icon: 'ri-user-line',
+  }
 }
 </script>
 

@@ -1,11 +1,10 @@
-<script setup lang="ts">
+<script setup>
 import Footer from '@/views/front-pages/front-page-footer.vue'
 import Navbar from '@/views/front-pages/front-page-navbar.vue'
 import AddressContent from '@/views/wizard-examples/checkout/Address.vue'
 import CartContent from '@/views/wizard-examples/checkout/Cart.vue'
 import ConfirmationContent from '@/views/wizard-examples/checkout/Confirmation.vue'
 import PaymentContent from '@/views/wizard-examples/checkout/Payment.vue'
-import type { CheckoutData } from '@/views/wizard-examples/checkout/types'
 import googleHome from '@images/pages/google-home.png'
 import iphone11 from '@images/pages/iphone-11.png'
 import customAddress from '@images/svg/address.svg'
@@ -13,11 +12,7 @@ import customCart from '@images/svg/cart.svg'
 import customPayment from '@images/svg/payment.svg'
 import customTrending from '@images/svg/trending.svg'
 
-definePage({
-  meta: {
-    layout: 'blank',
-  },
-})
+definePage({ meta: { layout: 'blank' } })
 
 const checkoutSteps = [
   {
@@ -38,7 +33,7 @@ const checkoutSteps = [
   },
 ]
 
-const checkoutData = ref<CheckoutData>({
+const checkoutData = ref({
   cartItems: [
     {
       id: 1,

@@ -1,21 +1,36 @@
-<script lang="ts" setup>
+<script setup>
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
 import { useChat } from './useChat'
 import { useChatStore } from '@/views/apps/chat/useChatStore'
 
-defineEmits<{
-  (e: 'close'): void
-}>()
+const emit = defineEmits(['close'])
+
 
 // composables
 const store = useChatStore()
 const { resolveAvatarBadgeVariant } = useChat()
 
 const userStatusRadioOptions = [
-  { title: 'Online', value: 'online', color: 'success' },
-  { title: 'Away', value: 'away', color: 'warning' },
-  { title: 'Do not disturb', value: 'busy', color: 'error' },
-  { title: 'Offline', value: 'offline', color: 'secondary' },
+  {
+    title: 'Online',
+    value: 'online',
+    color: 'success',
+  },
+  {
+    title: 'Away',
+    value: 'away',
+    color: 'warning',
+  },
+  {
+    title: 'Do not disturb',
+    value: 'busy',
+    color: 'error',
+  },
+  {
+    title: 'Offline',
+    value: 'offline',
+    color: 'secondary',
+  },
 ]
 
 const isTwoStepVerified = ref(true)

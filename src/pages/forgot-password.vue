@@ -1,24 +1,16 @@
-<script setup lang="ts">
+<script setup>
 import authV2ForgotPasswordIllustrationBorderedDark from '@images/pages/auth-v2-forgot-password-illustration-dark-border.png'
 import authV2ForgotPasswordIllustrationDark from '@images/pages/auth-v2-forgot-password-illustration-dark.png'
 import authV2ForgotPasswordIllustrationBorderedLight from '@images/pages/auth-v2-forgot-password-illustration-light-border.png'
 import authV2ForgotPasswordIllustrationLight from '@images/pages/auth-v2-forgot-password-illustration-light.png'
-
 import tree1 from '@images/misc/tree1.png'
 import authV2MaskDark from '@images/pages/mask-v2-dark.png'
 import authV2MaskLight from '@images/pages/mask-v2-light.png'
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 import { themeConfig } from '@themeConfig'
 
-const authThemeImg = useGenerateImageVariant(
-  authV2ForgotPasswordIllustrationLight,
-  authV2ForgotPasswordIllustrationDark,
-  authV2ForgotPasswordIllustrationBorderedLight,
-  authV2ForgotPasswordIllustrationBorderedDark,
-  true)
-
+const authThemeImg = useGenerateImageVariant(authV2ForgotPasswordIllustrationLight, authV2ForgotPasswordIllustrationDark, authV2ForgotPasswordIllustrationBorderedLight, authV2ForgotPasswordIllustrationBorderedDark, true)
 const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
-
 const email = ref('')
 
 definePage({

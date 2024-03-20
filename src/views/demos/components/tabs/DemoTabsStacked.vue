@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const currentTab = ref('tab-1')
 const tabItemText = 'Biscuit cheesecake gingerbread oat cake tiramisu. Marzipan tiramisu jelly-o muffin biscuit jelly cake pie. Chocolate cookie candy croissant brownie cupcake powder cheesecake. Biscuit sesame snaps biscuit topping tiramisu croissant.'
 </script>

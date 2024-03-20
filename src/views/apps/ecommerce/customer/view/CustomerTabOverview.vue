@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import CustomerOrderTable from './CustomerOrderTable.vue'
 </script>
 

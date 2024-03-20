@@ -1,9 +1,45 @@
-<script setup lang="ts">
+<script setup>
 const vehicleData = [
-  { icon: 'ri-car-line', title: 'On the way', time: '2hr 10min', percentage: 39.7, color: { bg: 'rgba(var(--v-theme-on-surface), var(--v-hover-opacity))', text: 'rgba(var(--v-theme-on-surface), var(--v-high-emphasis-opacity))' } },
-  { icon: 'ri-download-cloud-2-line', title: 'Unloading', time: '3hr 15min', percentage: 28.3, color: { bg: 'rgb(var(--v-theme-primary))', text: 'rgb(var(--v-theme-on-primary))' } },
-  { icon: 'ri-upload-line', title: 'Loading', time: '1hr 24min', percentage: 17.4, color: { bg: 'rgb(var(--v-theme-info))', text: 'rgb(var(--v-theme-on-primary))' } },
-  { icon: 'ri-timer-line', title: 'Waiting', time: '5hr 19min', percentage: 14.6, color: { bg: 'rgb(var(--v-tooltip-background))', text: 'rgba(var(--v-theme-surface))' } },
+  {
+    icon: 'ri-car-line',
+    title: 'On the way',
+    time: '2hr 10min',
+    percentage: 39.7,
+    color: {
+      bg: 'rgba(var(--v-theme-on-surface), var(--v-hover-opacity))',
+      text: 'rgba(var(--v-theme-on-surface), var(--v-high-emphasis-opacity))',
+    },
+  },
+  {
+    icon: 'ri-download-cloud-2-line',
+    title: 'Unloading',
+    time: '3hr 15min',
+    percentage: 28.3,
+    color: {
+      bg: 'rgb(var(--v-theme-primary))',
+      text: 'rgb(var(--v-theme-on-primary))',
+    },
+  },
+  {
+    icon: 'ri-upload-line',
+    title: 'Loading',
+    time: '1hr 24min',
+    percentage: 17.4,
+    color: {
+      bg: 'rgb(var(--v-theme-info))',
+      text: 'rgb(var(--v-theme-on-primary))',
+    },
+  },
+  {
+    icon: 'ri-timer-line',
+    title: 'Waiting',
+    time: '5hr 19min',
+    percentage: 14.6,
+    color: {
+      bg: 'rgb(var(--v-tooltip-background))',
+      text: 'rgba(var(--v-theme-surface))',
+    },
+  },
 ]
 </script>
 

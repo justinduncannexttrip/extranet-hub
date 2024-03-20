@@ -1,32 +1,28 @@
 <!-- eslint-disable vue/no-mutating-props -->
-<script setup lang="ts">
-interface Emit {
-  (e: 'removeProduct', value: number): void
-  (e: 'totalAmount', value: number): void
-}
-
-interface Props {
-  id: number
+<script setup>
+const props = defineProps({
+  id: {
+    type: Number,
+    required: true,
+  },
   data: {
-    title: string
-    cost: number
-    hours: number
-    description: string
-  }
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  data: () => ({
-    title: 'App Design',
-    cost: 24,
-    hours: 1,
-    description: 'Designed UI kit & app pages.',
-  }),
+    type: Object,
+    required: true,
+    default: () => ({
+      title: 'App Design',
+      cost: 24,
+      hours: 1,
+      description: 'Designed UI kit & app pages.',
+    }),
+  },
 })
 
-const emit = defineEmits<Emit>()
+const emit = defineEmits([
+  'removeProduct',
+  'totalAmount',
+])
 
-const itemsOptions: Props['data'][] = [
+const itemsOptions = [
   {
     title: 'App Design',
     cost: 24,

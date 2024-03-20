@@ -1,9 +1,7 @@
-<script lang="ts" setup>
+<script setup>
 import { useTheme } from 'vuetify'
 import UserInvoiceTable from './UserInvoiceTable.vue'
 import pdf from '@images/icons/project-icons/pdf.png'
-
-// Images
 import avatar2 from '@images/avatars/avatar-2.png'
 import avatar3 from '@images/avatars/avatar-3.png'
 import avatar4 from '@images/avatars/avatar-4.png'
@@ -16,12 +14,23 @@ import sketch from '@images/icons/project-icons/sketch.png'
 import vue from '@images/icons/project-icons/vue.png'
 import xamarin from '@images/icons/project-icons/xamarin.png'
 
-// Project Table Header
 const projectTableHeaders = [
-  { title: 'PROJECT', key: 'name' },
-  { title: 'TOTAL TASK', key: 'totalTask' },
-  { title: 'PROGRESS', key: 'progress' },
-  { title: 'HOURS', key: 'hours' },
+  {
+    title: 'PROJECT',
+    key: 'name',
+  },
+  {
+    title: 'TOTAL TASK',
+    key: 'totalTask',
+  },
+  {
+    title: 'PROGRESS',
+    key: 'progress',
+  },
+  {
+    title: 'HOURS',
+    key: 'hours',
+  },
 ]
 
 const { name } = useTheme()
@@ -85,7 +94,7 @@ const projects = [
   },
 ]
 
-const resolveUserProgressVariant = (progress: number) => {
+const resolveUserProgressVariant = progress => {
   if (progress <= 25)
     return 'error'
   if (progress > 25 && progress <= 50)
@@ -94,7 +103,7 @@ const resolveUserProgressVariant = (progress: number) => {
     return 'primary'
   if (progress > 75 && progress <= 100)
     return 'success'
-
+  
   return 'secondary'
 }
 

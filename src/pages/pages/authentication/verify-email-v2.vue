@@ -1,29 +1,18 @@
-<script setup lang="ts">
+<script setup>
 import tree2 from '@images/misc/tree2.png'
 import authV2MaskDark from '@images/pages/mask-v2-dark.png'
 import authV2MaskLight from '@images/pages/mask-v2-light.png'
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 import { themeConfig } from '@themeConfig'
-
 import authV2VerifyEmailIllustrationBorderedDark from '@images/pages/auth-v2-verify-email-illustration-border-dark.png'
 import authV2VerifyEmailIllustrationBorderedLight from '@images/pages/auth-v2-verify-email-illustration-border-light.png'
 import authV2VerifyEmailIllustrationDark from '@images/pages/auth-v2-verify-email-illustration-dark.png'
 import authV2VerifyEmailIllustrationLight from '@images/pages/auth-v2-verify-email-illustration-light.png'
 
-const authThemeImg = useGenerateImageVariant(
-  authV2VerifyEmailIllustrationLight,
-  authV2VerifyEmailIllustrationDark,
-  authV2VerifyEmailIllustrationBorderedLight,
-  authV2VerifyEmailIllustrationBorderedDark,
-  true)
-
+const authThemeImg = useGenerateImageVariant(authV2VerifyEmailIllustrationLight, authV2VerifyEmailIllustrationDark, authV2VerifyEmailIllustrationBorderedLight, authV2VerifyEmailIllustrationBorderedDark, true)
 const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
 
-definePage({
-  meta: {
-    layout: 'blank',
-  },
-})
+definePage({ meta: { layout: 'blank' } })
 </script>
 
 <template>

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import sectionTitleIcon from '@images/pages/section-title-icon.png'
 import SelectSolid from '@images/svg/3d-select-solid.svg'
 import Edit from '@images/svg/edit.svg'
@@ -8,12 +8,36 @@ import Lifebelt from '@images/svg/lifebelt.svg'
 import TransitionUp from '@images/svg/transition-up.svg'
 
 const featuresData = [
-  { title: 'Quality Code', desc: 'Code structure that all developers will easily understand and fall in love with.', img: LaptopCharging },
-  { title: 'Continuous Updates', desc: 'Free updates for the next 12 months, including new demos and features.', img: TransitionUp },
-  { title: 'Starter Kit', desc: 'Start your project quickly without having to remove unnecessary features.', img: Edit },
-  { title: 'API Ready', desc: 'Just change the endpoint and see your own data loaded within seconds.', img: SelectSolid },
-  { title: 'Well Documented', desc: 'An easy-to-follow doc with lots of references and code examples.', img: Lifebelt },
-  { title: 'Excellent Support', desc: 'An easy-to-follow doc with lots of references and code examples.', img: GoogleDocs },
+  {
+    title: 'Quality Code',
+    desc: 'Code structure that all developers will easily understand and fall in love with.',
+    img: LaptopCharging,
+  },
+  {
+    title: 'Continuous Updates',
+    desc: 'Free updates for the next 12 months, including new demos and features.',
+    img: TransitionUp,
+  },
+  {
+    title: 'Starter Kit',
+    desc: 'Start your project quickly without having to remove unnecessary features.',
+    img: Edit,
+  },
+  {
+    title: 'API Ready',
+    desc: 'Just change the endpoint and see your own data loaded within seconds.',
+    img: SelectSolid,
+  },
+  {
+    title: 'Well Documented',
+    desc: 'An easy-to-follow doc with lots of references and code examples.',
+    img: Lifebelt,
+  },
+  {
+    title: 'Excellent Support',
+    desc: 'An easy-to-follow doc with lots of references and code examples.',
+    img: GoogleDocs,
+  },
 ]
 </script>
 

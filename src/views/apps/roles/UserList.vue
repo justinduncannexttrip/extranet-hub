@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import type { UserProperties } from '@db/apps/users/types'
-
+<script setup>
 const searchQuery = ref('')
 const selectedRole = ref()
 const selectedPlan = ref()
@@ -12,8 +10,7 @@ const page = ref(1)
 const sortBy = ref()
 const orderBy = ref()
 
-// Update data table options
-const updateOptions = (options: any) => {
+const updateOptions = options => {
   page.value = options.page
   sortBy.value = options.sortBy[0]?.key
   orderBy.value = options.sortBy[0]?.order
@@ -21,16 +18,37 @@ const updateOptions = (options: any) => {
 
 // Headers
 const headers = [
-  { title: 'User', key: 'user' },
-  { title: 'Email', key: 'email' },
-  { title: 'Role', key: 'role' },
-  { title: 'Plan', key: 'plan' },
-  { title: 'Status', key: 'status' },
-  { title: 'Actions', key: 'actions', sortable: false },
+  {
+    title: 'User',
+    key: 'user',
+  },
+  {
+    title: 'Email',
+    key: 'email',
+  },
+  {
+    title: 'Role',
+    key: 'role',
+  },
+  {
+    title: 'Plan',
+    key: 'plan',
+  },
+  {
+    title: 'Status',
+    key: 'status',
+  },
+  {
+    title: 'Actions',
+    key: 'actions',
+    sortable: false,
+  },
 ]
 
-// 👉 Fetching users
-const { data: usersData, execute: fetchUsers } = await useApi<any>(createUrl('/apps/users', {
+const {
+  data: usersData,
+  execute: fetchUsers,
+} = await useApi(createUrl('/apps/users', {
   query: {
     q: searchQuery,
     status: selectedStatus,
@@ -43,36 +61,68 @@ const { data: usersData, execute: fetchUsers } = await useApi<any>(createUrl('/a
   },
 }))
 
-const users = computed((): UserProperties[] => usersData.value.users)
+const users = computed(() => usersData.value.users)
 const totalUsers = computed(() => usersData.value.totalUsers)
 
 // 👉 search filters
 const roles = [
-  { title: 'Admin', value: 'admin' },
-  { title: 'Author', value: 'author' },
-  { title: 'Editor', value: 'editor' },
-  { title: 'Maintainer', value: 'maintainer' },
-  { title: 'Subscriber', value: 'subscriber' },
+  {
+    title: 'Admin',
+    value: 'admin',
+  },
+  {
+    title: 'Author',
+    value: 'author',
+  },
+  {
+    title: 'Editor',
+    value: 'editor',
+  },
+  {
+    title: 'Maintainer',
+    value: 'maintainer',
+  },
+  {
+    title: 'Subscriber',
+    value: 'subscriber',
+  },
 ]
 
-const resolveUserRoleVariant = (role: string) => {
+const resolveUserRoleVariant = role => {
   const roleLowerCase = role.toLowerCase()
-
   if (roleLowerCase === 'subscriber')
-    return { color: 'success', icon: 'ri-user-line' }
+    return {
+      color: 'success',
+      icon: 'ri-user-line',
+    }
   if (roleLowerCase === 'author')
-    return { color: 'error', icon: 'ri-computer-line' }
+    return {
+      color: 'error',
+      icon: 'ri-computer-line',
+    }
   if (roleLowerCase === 'maintainer')
-    return { color: 'info', icon: 'ri-pie-chart-line' }
+    return {
+      color: 'info',
+      icon: 'ri-pie-chart-line',
+    }
   if (roleLowerCase === 'editor')
-    return { color: 'warning', icon: 'ri-edit-box-line' }
+    return {
+      color: 'warning',
+      icon: 'ri-edit-box-line',
+    }
   if (roleLowerCase === 'admin')
-    return { color: 'primary', icon: 'ri-vip-crown-line' }
-
-  return { color: 'primary', icon: 'ri-user-line' }
+    return {
+      color: 'primary',
+      icon: 'ri-vip-crown-line',
+    }
+  
+  return {
+    color: 'primary',
+    icon: 'ri-user-line',
+  }
 }
 
-const resolveUserStatusVariant = (stat: string) => {
+const resolveUserStatusVariant = stat => {
   const statLowerCase = stat.toLowerCase()
   if (statLowerCase === 'pending')
     return 'warning'
@@ -80,17 +130,15 @@ const resolveUserStatusVariant = (stat: string) => {
     return 'success'
   if (statLowerCase === 'inactive')
     return 'secondary'
-
+  
   return 'primary'
 }
 
-// 👉 Delete user
-const deleteUser = async (id: number) => {
-  await $api(`/apps/users/${id}`, {
-    method: 'DELETE',
-  })
+const deleteUser = async id => {
+  await $api(`/apps/users/${ id }`, { method: 'DELETE' })
 
   // refetch User
+
   // TODO: Make this async
   fetchUsers()
 }

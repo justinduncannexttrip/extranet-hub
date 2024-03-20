@@ -1,6 +1,5 @@
-<script setup lang="ts">
+<script setup>
 import { register } from 'swiper/element/bundle'
-
 import swiper1 from '@images/banner/banner-1.jpg'
 import swiper13 from '@images/banner/banner-13.jpg'
 import swiper2 from '@images/banner/banner-2.jpg'

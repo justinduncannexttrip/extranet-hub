@@ -1,9 +1,17 @@
-<script setup lang="ts">
+<script setup>
 import cardMeetup from '@images/cards/meetup-img.png'
 
 const developerMeetup = [
-  { icon: 'ri-time-line', title: 'Tuesday, 24 january, 10:20 - 12:30', subtitle: 'After 1 week' },
-  { icon: 'ri-map-pin-line', title: 'The Richard NYC', subtitle: '1305 Lexington Ave, New York' },
+  {
+    icon: 'ri-time-line',
+    title: 'Tuesday, 24 january, 10:20 - 12:30',
+    subtitle: 'After 1 week',
+  },
+  {
+    icon: 'ri-map-pin-line',
+    title: 'The Richard NYC',
+    subtitle: '1305 Lexington Ave, New York',
+  },
 ]
 </script>
 

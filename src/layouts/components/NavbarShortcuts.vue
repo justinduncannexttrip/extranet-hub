@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const shortcuts = [
   {
     icon: 'ri-calendar-line',
@@ -34,9 +34,11 @@ const shortcuts = [
     icon: 'ri-settings-4-line',
     title: 'Settings',
     subtitle: 'Account Settings',
-    to: { name: 'pages-account-settings-tab', params: { tab: 'account' } },
+    to: {
+      name: 'pages-account-settings-tab',
+      params: { tab: 'account' },
+    },
   },
-
 ]
 </script>
 

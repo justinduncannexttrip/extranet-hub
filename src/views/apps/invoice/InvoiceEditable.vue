@@ -1,20 +1,19 @@
-<script setup lang="ts">
+<script setup>
 import InvoiceProductEdit from './InvoiceProductEdit.vue'
-import type { InvoiceData, PurchasedProduct } from './types'
-import type { Client } from '@db/apps/invoice/types'
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 import { themeConfig } from '@themeConfig'
 
-interface Props {
-  data: InvoiceData
-}
+const props = defineProps({
+  data: {
+    type: null,
+    required: true,
+  },
+})
 
-const props = defineProps<Props>()
-
-const emit = defineEmits<{
-  (e: 'push', value: PurchasedProduct): void
-  (e: 'remove', id: number): void
-}>()
+const emit = defineEmits([
+  'push',
+  'remove',
+])
 
 const invoice = ref(props.data.invoice)
 const salesperson = ref(props.data.salesperson)
@@ -22,12 +21,11 @@ const thanksNote = ref(props.data.thanksNote)
 const note = ref(props.data.note)
 
 // 👉 Clients
-const clients = ref<Client[]>([])
+const clients = ref([])
 
 // 👉 fetchClients
 const fetchClients = async () => {
-  const { data, error } = await useApi<any>('/apps/invoice/clients')
-
+  const { data, error } = await useApi('/apps/invoice/clients')
   if (error.value)
     console.log(error.value)
   else
@@ -46,8 +44,7 @@ const addItem = () => {
   })
 }
 
-// 👉 Remove Product edit section
-const removeProduct = (id: number) => {
+const removeProduct = id => {
   emit('remove', id)
 }
 </script>

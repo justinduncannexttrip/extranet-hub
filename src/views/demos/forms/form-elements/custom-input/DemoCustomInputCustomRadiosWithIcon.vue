@@ -1,7 +1,5 @@
-<script setup lang="ts">
-import type { CustomInputContent } from '@core/types'
-
-const radioContent: CustomInputContent[] = [
+<script setup>
+const radioContent = [
   {
     title: 'Starter',
     desc: 'A simple start for everyone.',

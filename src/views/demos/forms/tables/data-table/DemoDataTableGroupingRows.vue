@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import avatar1 from '@images/avatars/avatar-1.png'
 import avatar2 from '@images/avatars/avatar-2.png'
 import avatar4 from '@images/avatars/avatar-4.png'
@@ -289,17 +289,35 @@ const userList = [
 ]
 
 const headers = [
-  { title: 'NAME', key: 'fullName' },
-  { title: 'EMAIL', key: 'email' },
-  { title: 'DATE', key: 'startDate' },
-  { title: 'SALARY', key: 'salary' },
-  { title: 'AGE', key: 'age' },
-  { title: 'STATUS', key: 'status' },
+  {
+    title: 'NAME',
+    key: 'fullName',
+  },
+  {
+    title: 'EMAIL',
+    key: 'email',
+  },
+  {
+    title: 'DATE',
+    key: 'startDate',
+  },
+  {
+    title: 'SALARY',
+    key: 'salary',
+  },
+  {
+    title: 'AGE',
+    key: 'age',
+  },
+  {
+    title: 'STATUS',
+    key: 'status',
+  },
 ]
 
 const groupBy = [{ key: 'status' }]
 
-const resolveStatusVariant = (status: string) => {
+const resolveStatusVariant = status => {
   if (status === 'Current')
     return { color: 'primary' }
   else if (status === 'Professional')
@@ -312,7 +330,7 @@ const resolveStatusVariant = (status: string) => {
     return { color: 'info' }
 }
 
-const getIcon = (props: Record<string, unknown>) => props.icon as any
+const getIcon = props => props.icon
 </script>
 
 <template>

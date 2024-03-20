@@ -1,5 +1,13 @@
-<script lang="ts" setup>
-const colorCheckbox = ref(['Primary', 'Secondary', 'Success', 'Info', 'Warning', 'Error'])
+<script setup>
+const colorCheckbox = ref([
+  'Primary',
+  'Secondary',
+  'Success',
+  'Info',
+  'Warning',
+  'Error',
+])
+
 const selectedCheckbox = ref([])
 </script>
 

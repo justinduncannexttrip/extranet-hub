@@ -1,16 +1,37 @@
-<script lang="ts" setup>
-const open = ref(['Users', 'Admin'])
+<script setup>
+const open = ref([
+  'Users',
+  'Admin',
+])
 
 const admins = [
-  ['Management', 'ri-group-line'],
-  ['Settings', 'ri-settings-5-line'],
+  [
+    'Management',
+    'ri-group-line',
+  ],
+  [
+    'Settings',
+    'ri-settings-5-line',
+  ],
 ]
 
 const cruds = [
-  ['Create', 'ri-add-line'],
-  ['Read', 'ri-file-line'],
-  ['Update', 'ri-refresh-line'],
-  ['Delete', 'ri-delete-bin-line'],
+  [
+    'Create',
+    'ri-add-line',
+  ],
+  [
+    'Read',
+    'ri-file-line',
+  ],
+  [
+    'Update',
+    'ri-refresh-line',
+  ],
+  [
+    'Delete',
+    'ri-delete-bin-line',
+  ],
 ]
 </script>
 

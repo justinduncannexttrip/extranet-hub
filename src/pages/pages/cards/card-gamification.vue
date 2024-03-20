@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import CardAward from '@/views/pages/cards/gamification/CardAward.vue'
 import CardCongratulations from '@/views/pages/cards/gamification/CardCongratulations.vue'
 import CardUpgrade from '@/views/pages/cards/gamification/CardUpgrade.vue'

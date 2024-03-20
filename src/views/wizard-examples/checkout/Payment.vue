@@ -1,18 +1,22 @@
-<script setup lang="ts">
-import type { CheckoutData } from './types'
+<script setup>
+const props = defineProps({
+  currentStep: {
+    type: Number,
+    required: false,
+  },
+  checkoutData: {
+    type: null,
+    required: true,
+  },
+})
 
-const prop = defineProps<{
-  currentStep?: number
-  checkoutData: CheckoutData
-}>()
+const emit = defineEmits([
+  'update:currentStep',
+  'update:checkout-data',
+])
 
-const emit = defineEmits<{
-  (e: 'update:currentStep', value: number): void
-  (e: 'update:checkout-data', value: CheckoutData): void
-}>()
-
+const prop = __props
 const checkoutPaymentDataLocal = ref(prop.checkoutData)
-
 const selectedPaymentMethod = ref('card')
 
 const cardFormData = ref({

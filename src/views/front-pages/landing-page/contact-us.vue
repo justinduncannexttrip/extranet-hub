@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import ConnectImg from '@images/front-pages/landing-page/lets-contact.png'
 import sectionTitleIcon from '@images/pages/section-title-icon.png'
 

@@ -1,6 +1,5 @@
-<script setup lang="ts">
+<script setup>
 import { useWindowScroll } from '@vueuse/core'
-import type { RouteLocationRaw } from 'vue-router/auto'
 import { useDisplay } from 'vuetify'
 import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue'
 import navImgDark from '@images/front-pages/misc/nav-img-dark.png'
@@ -8,29 +7,13 @@ import navImgLight from '@images/front-pages/misc/nav-img-light.png'
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 import { themeConfig } from '@themeConfig'
 
-const props = defineProps({
-  activeId: String,
-})
+const props = defineProps({ activeId: String })
 
 const display = useDisplay()
-
-interface navItem {
-  name: string
-  to: RouteLocationRaw
-}
-
-interface MenuItem {
-  listTitle: string
-  listIcon: string
-  navItems: navItem[]
-}
-
 const route = useRoute()
 const router = useRouter()
-
 const navImg = useGenerateImageVariant(navImgLight, navImgDark)
 const { y } = useWindowScroll()
-
 const sidebar = ref(false)
 
 watch(() => display, () => {
@@ -39,48 +22,108 @@ watch(() => display, () => {
 
 const isMenuOpen = ref(false)
 
-const menuItems: MenuItem[] = [
+const menuItems = [
   {
     listTitle: 'Page',
     listIcon: 'ri-layout-grid-line',
     navItems: [
-      { name: 'Pricing', to: { name: 'front-pages-pricing' } },
-      { name: 'Payment', to: { name: 'front-pages-payment' } },
-      { name: 'Checkout', to: { name: 'front-pages-checkout' } },
-      { name: 'Help Center', to: { name: 'front-pages-help-center' } },
+      {
+        name: 'Pricing',
+        to: { name: 'front-pages-pricing' },
+      },
+      {
+        name: 'Payment',
+        to: { name: 'front-pages-payment' },
+      },
+      {
+        name: 'Checkout',
+        to: { name: 'front-pages-checkout' },
+      },
+      {
+        name: 'Help Center',
+        to: { name: 'front-pages-help-center' },
+      },
     ],
   },
   {
     listTitle: 'Auth Demo',
     listIcon: 'ri-lock-unlock-line',
     navItems: [
-      { name: 'Login (Basic)', to: { name: 'pages-authentication-login-v1' } },
-      { name: 'Login (Cover)', to: { name: 'pages-authentication-login-v2' } },
-      { name: 'Register (Basic)', to: { name: 'pages-authentication-register-v1' } },
-      { name: 'Register (Cover)', to: { name: 'pages-authentication-register-v2' } },
-      { name: 'Register (Multi-steps)', to: { name: 'pages-authentication-register-multi-steps' } },
-      { name: 'Forgot Password (Basic)', to: { name: 'pages-authentication-forgot-password-v1' } },
-      { name: 'Forgot Password (Cover)', to: { name: 'pages-authentication-forgot-password-v2' } },
-      { name: 'Reset Password (Basic)', to: { name: 'pages-authentication-reset-password-v1' } },
-      { name: 'Reset Password (cover  )', to: { name: 'pages-authentication-reset-password-v2' } },
+      {
+        name: 'Login (Basic)',
+        to: { name: 'pages-authentication-login-v1' },
+      },
+      {
+        name: 'Login (Cover)',
+        to: { name: 'pages-authentication-login-v2' },
+      },
+      {
+        name: 'Register (Basic)',
+        to: { name: 'pages-authentication-register-v1' },
+      },
+      {
+        name: 'Register (Cover)',
+        to: { name: 'pages-authentication-register-v2' },
+      },
+      {
+        name: 'Register (Multi-steps)',
+        to: { name: 'pages-authentication-register-multi-steps' },
+      },
+      {
+        name: 'Forgot Password (Basic)',
+        to: { name: 'pages-authentication-forgot-password-v1' },
+      },
+      {
+        name: 'Forgot Password (Cover)',
+        to: { name: 'pages-authentication-forgot-password-v2' },
+      },
+      {
+        name: 'Reset Password (Basic)',
+        to: { name: 'pages-authentication-reset-password-v1' },
+      },
+      {
+        name: 'Reset Password (cover  )',
+        to: { name: 'pages-authentication-reset-password-v2' },
+      },
     ],
   },
   {
     listTitle: 'Other',
     listIcon: 'ri-image-line',
     navItems: [
-      { name: 'Under Maintenance', to: { name: 'pages-misc-under-maintenance' } },
-      { name: 'Coming Soon', to: { name: 'pages-misc-coming-soon' } },
-      { name: 'Not Authorized', to: { path: '/not-authorized' } },
-      { name: 'Verify Email (Basic)', to: { name: 'pages-authentication-verify-email-v1' } },
-      { name: 'Verify Email (Cover)', to: { name: 'pages-authentication-verify-email-v2' } },
-      { name: 'Two Steps (Basic)', to: { name: 'pages-authentication-two-steps-v1' } },
-      { name: 'Two Steps (Cover)', to: { name: 'pages-authentication-two-steps-v2' } },
+      {
+        name: 'Under Maintenance',
+        to: { name: 'pages-misc-under-maintenance' },
+      },
+      {
+        name: 'Coming Soon',
+        to: { name: 'pages-misc-coming-soon' },
+      },
+      {
+        name: 'Not Authorized',
+        to: { path: '/not-authorized' },
+      },
+      {
+        name: 'Verify Email (Basic)',
+        to: { name: 'pages-authentication-verify-email-v1' },
+      },
+      {
+        name: 'Verify Email (Cover)',
+        to: { name: 'pages-authentication-verify-email-v2' },
+      },
+      {
+        name: 'Two Steps (Basic)',
+        to: { name: 'pages-authentication-two-steps-v1' },
+      },
+      {
+        name: 'Two Steps (Cover)',
+        to: { name: 'pages-authentication-two-steps-v2' },
+      },
     ],
   },
 ]
 
-const isCurrentRoute = (to: RouteLocationRaw) => {
+const isCurrentRoute = to => {
   return route.matched.some(_route => _route.path === router.resolve(to).path)
 }
 

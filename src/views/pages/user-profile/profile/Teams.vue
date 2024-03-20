@@ -1,16 +1,24 @@
-<script lang="ts" setup>
-import type { ProfileTeamsTech } from '@db/pages/profile/types'
-
-interface Props {
-  teamsData: ProfileTeamsTech[]
-}
-
-const props = defineProps<Props>()
+<script setup>
+const props = defineProps({
+  teamsData: {
+    type: Array,
+    required: true,
+  },
+})
 
 const moreList = [
-  { title: 'Share connections', value: 'Share connections' },
-  { title: 'Suggest edits', value: 'Suggest edits' },
-  { title: 'Report Bug', value: 'Report Bug' },
+  {
+    title: 'Share connections',
+    value: 'Share connections',
+  },
+  {
+    title: 'Suggest edits',
+    value: 'Suggest edits',
+  },
+  {
+    title: 'Report Bug',
+    value: 'Report Bug',
+  },
 ]
 </script>
 

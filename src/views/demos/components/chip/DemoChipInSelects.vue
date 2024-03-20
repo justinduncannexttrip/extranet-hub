@@ -1,6 +1,17 @@
-<script lang="ts" setup>
-const chips = ref(['Programming', 'Playing games', 'Sleeping'])
-const items = ref(['Streaming', 'Eating', 'Programming', 'Playing games', 'Sleeping'])
+<script setup>
+const chips = ref([
+  'Programming',
+  'Playing games',
+  'Sleeping',
+])
+
+const items = ref([
+  'Streaming',
+  'Eating',
+  'Programming',
+  'Playing games',
+  'Sleeping',
+])
 </script>
 
 <template>

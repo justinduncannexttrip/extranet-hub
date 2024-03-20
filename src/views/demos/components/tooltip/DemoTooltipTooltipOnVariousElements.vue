@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import avatar4 from '@images/avatars/avatar-4.png'
 </script>
 

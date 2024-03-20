@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { useTheme } from 'vuetify'
 import { hexToRgb } from '@layouts/utils'
 
@@ -7,10 +7,9 @@ const vuetifyTheme = useTheme()
 const options = computed(() => {
   const currentTheme = ref(vuetifyTheme.current.value.colors)
   const variableTheme = ref(vuetifyTheme.current.value.variables)
-
-  const disabledColor = `rgba(${hexToRgb(currentTheme.value['on-surface'])},${variableTheme.value['disabled-opacity']})`
-  const borderColor = `rgba(${hexToRgb(String(variableTheme.value['border-color']))},${variableTheme.value['border-opacity']})`
-
+  const disabledColor = `rgba(${ hexToRgb(currentTheme.value['on-surface']) },${ variableTheme.value['disabled-opacity'] })`
+  const borderColor = `rgba(${ hexToRgb(String(variableTheme.value['border-color'])) },${ variableTheme.value['border-opacity'] })`
+  
   return {
     chart: {
       offsetY: -10,
@@ -49,7 +48,15 @@ const options = computed(() => {
       active: { filter: { type: 'none' } },
     },
     xaxis: {
-      categories: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      categories: [
+        'Sun',
+        'Mon',
+        'Tue',
+        'Wed',
+        'Thu',
+        'Fri',
+        'Sat',
+      ],
       tickPlacement: 'on',
       labels: { show: false },
       crosshairs: { opacity: 0 },
@@ -64,36 +71,33 @@ const options = computed(() => {
           colors: disabledColor,
           fontSize: '13px',
         },
-
-        formatter: (value: number) => `${value > 999 ? `${(value / 1000).toFixed(0)}` : value}k`,
+        formatter: value => `${ value > 999 ? `${ (value / 1000).toFixed(0) }` : value }k`,
       },
     },
     responsive: [
       {
         breakpoint: 1560,
-        options: {
-          plotOptions: {
-            bar: {
-              columnWidth: '35%',
-            },
-          },
-        },
+        options: { plotOptions: { bar: { columnWidth: '35%' } } },
       },
       {
         breakpoint: 1380,
-        options: {
-          plotOptions: {
-            bar: {
-              columnWidth: '45%',
-            },
-          },
-        },
+        options: { plotOptions: { bar: { columnWidth: '45%' } } },
       },
     ],
   }
 })
 
-const series = [{ data: [37, 57, 45, 75, 57, 40, 65] }]
+const series = [{
+  data: [
+    37,
+    57,
+    45,
+    75,
+    57,
+    40,
+    65,
+  ],
+}]
 </script>
 
 <template>

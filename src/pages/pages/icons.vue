@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const iconsList = [
   'ri-arrow-left-up-line',
   'ri-arrow-left-up-fill',

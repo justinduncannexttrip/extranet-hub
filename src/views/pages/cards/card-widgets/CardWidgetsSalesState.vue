@@ -1,11 +1,11 @@
-<script setup lang="ts">
+<script setup>
 import { useTheme } from 'vuetify'
 
 const vuetifyTheme = useTheme()
 
 const options = computed(() => {
   const currentTheme = ref(vuetifyTheme.current.value.colors)
-
+  
   return {
     chart: {
       offsetY: -30,
@@ -32,21 +32,22 @@ const options = computed(() => {
         opacityTo: 0.7,
         opacityFrom: 0.5,
         shadeIntensity: 1,
-        stops: [0, 100],
-        colorStops: [
-          [
-            {
-              offset: 0,
-              opacity: 0.6,
-              color: currentTheme.value.primary,
-            },
-            {
-              offset: 100,
-              opacity: 0.1,
-              color: currentTheme.value.surface,
-            },
-          ],
+        stops: [
+          0,
+          100,
         ],
+        colorStops: [[
+          {
+            offset: 0,
+            opacity: 0.6,
+            color: currentTheme.value.primary,
+          },
+          {
+            offset: 100,
+            opacity: 0.1,
+            color: currentTheme.value.surface,
+          },
+        ]],
       },
     },
     theme: {
@@ -71,20 +72,28 @@ const options = computed(() => {
       strokeWidth: 5,
       colors: ['transparent'],
       strokeColors: 'transparent',
-      discrete: [
-        {
-          size: 8,
-          seriesIndex: 0,
-          dataPointIndex: 5,
-          strokeColor: currentTheme.value.primary,
-          fillColor: currentTheme.value.surface,
-        },
-      ],
+      discrete: [{
+        size: 8,
+        seriesIndex: 0,
+        dataPointIndex: 5,
+        strokeColor: currentTheme.value.primary,
+        fillColor: currentTheme.value.surface,
+      }],
     },
   }
 })
 
-const series = [{ name: 'Traffic Rate', data: [35, 180, 100, 300, 220, 400] }]
+const series = [{
+  name: 'Traffic Rate',
+  data: [
+    35,
+    180,
+    100,
+    300,
+    220,
+    400,
+  ],
+}]
 </script>
 
 <template>

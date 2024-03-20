@@ -1,45 +1,20 @@
-<script setup lang="ts">
+<script setup>
 import americanExpress from '@images/icons/payments/american-express.png'
 import mastercard from '@images/icons/payments/mastercard.png'
 import visa from '@images/icons/payments/visa.png'
 
-interface CardDetail {
-  name: string
-  number: string
-  expiry: string
-  isPrimary: boolean
-  type: string
-  cvv: string
-  image: string
-}
-
-interface BillingAddress {
-  firstName: string
-  lastName: string
-  selectedCountry: string | null
-  addressLine1: string
-  addressLine2: string
-  landmark: string
-  contact: string
-  country: string | null
-  state: string
-  zipCode: number | null
-}
-
 const isUpgradePlanDialogVisible = ref(false)
-
 const currentCardDetails = ref()
 const isCardEditDialogVisible = ref(false)
 const isCardAddDialogVisible = ref(false)
 const isEditAddressDialogVisible = ref(false)
 
-const openEditCardDialog = (cardDetails: CardDetail) => {
+const openEditCardDialog = cardDetails => {
   currentCardDetails.value = cardDetails
-
   isCardEditDialogVisible.value = true
 }
 
-const creditCards: CardDetail[] = [
+const creditCards = [
   {
     name: 'Tom McBride',
     number: '4851234567899865',
@@ -81,7 +56,7 @@ const currentBillingAddress = {
   zipCode: 403114,
 }
 
-const editBillingData: BillingAddress = {
+const editBillingData = {
   firstName: 'Gertrude',
   lastName: 'Jennings',
   selectedCountry: 'USA',

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import CardStatisticsLogistics from '@/views/pages/cards/card-statistics/CardStatisticsLogistics.vue'
 import CardStatisticsSessionsBarCharts from '@/views/pages/cards/card-statistics/CardStatisticsSessionsBarCharts.vue'
 import CardStatisticsSessionsBarWithGapCharts from '@/views/pages/cards/card-statistics/CardStatisticsSessionsBarWithGapCharts.vue'
@@ -45,10 +45,38 @@ const statisticsHorizontal = [
 ]
 
 const statisticsWithIcon = [
-  { title: 'Session', value: '21,459', change: 29, desc: 'Total Users', icon: 'ri-group-line', iconColor: 'primary' },
-  { title: 'Paid Users', value: '4,567', change: 18, desc: 'Last Week Analytics', icon: 'ri-user-add-line', iconColor: 'error' },
-  { title: 'Active Users', value: '19,860', change: -14, desc: 'Last Week Analytics', icon: 'ri-user-follow-line', iconColor: 'success' },
-  { title: 'Pending Users', value: '237', change: 42, desc: 'Last Week Analytics', icon: 'ri-user-search-line', iconColor: 'warning' },
+  {
+    title: 'Session',
+    value: '21,459',
+    change: 29,
+    desc: 'Total Users',
+    icon: 'ri-group-line',
+    iconColor: 'primary',
+  },
+  {
+    title: 'Paid Users',
+    value: '4,567',
+    change: 18,
+    desc: 'Last Week Analytics',
+    icon: 'ri-user-add-line',
+    iconColor: 'error',
+  },
+  {
+    title: 'Active Users',
+    value: '19,860',
+    change: -14,
+    desc: 'Last Week Analytics',
+    icon: 'ri-user-follow-line',
+    iconColor: 'success',
+  },
+  {
+    title: 'Pending Users',
+    value: '237',
+    change: 42,
+    desc: 'Last Week Analytics',
+    icon: 'ri-user-search-line',
+    iconColor: 'warning',
+  },
 ]
 
 const statisticsVertical = [

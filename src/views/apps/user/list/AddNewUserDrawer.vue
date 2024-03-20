@@ -1,24 +1,20 @@
-<script setup lang="ts">
+<script setup>
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import type { VForm } from 'vuetify/components/VForm'
 
-import type { UserProperties } from '@db/apps/users/types'
+const props = defineProps({
+  isDrawerOpen: {
+    type: Boolean,
+    required: true,
+  },
+})
 
-interface Emit {
-  (e: 'update:isDrawerOpen', value: boolean): void
-  (e: 'userData', value: UserProperties): void
-}
-
-interface Props {
-  isDrawerOpen: boolean
-}
-
-const props = defineProps<Props>()
-const emit = defineEmits<Emit>()
+const emit = defineEmits([
+  'update:isDrawerOpen',
+  'userData',
+])
 
 const isFormValid = ref(false)
-const refForm = ref<VForm>()
+const refForm = ref()
 const fullName = ref('')
 const userName = ref('')
 const email = ref('')
@@ -32,7 +28,6 @@ const status = ref()
 // 👉 drawer close
 const closeNavigationDrawer = () => {
   emit('update:isDrawerOpen', false)
-
   nextTick(() => {
     refForm.value?.reset()
     refForm.value?.resetValidation()
@@ -64,7 +59,7 @@ const onSubmit = () => {
   })
 }
 
-const handleDrawerModelValueUpdate = (val: boolean) => {
+const handleDrawerModelValueUpdate = val => {
   emit('update:isDrawerOpen', val)
 }
 </script>

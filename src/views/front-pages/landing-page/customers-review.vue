@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { register } from 'swiper/element/bundle'
 import { useGenerateImageVariant } from '@/@core/composable/useGenerateImageVariant'
 import logo1dark from '@images/front-pages/branding/logo-1-dark.png'
@@ -15,7 +15,6 @@ import logo4light from '@images/front-pages/branding/logo-4-light.png'
 import logo4 from '@images/front-pages/branding/logo-4.png'
 import logo5dark from '@images/front-pages/branding/logo-5-dark.png'
 import logo5light from '@images/front-pages/branding/logo-5-light.png'
-
 import sectionTitleIcon from '@images/pages/section-title-icon.png'
 
 register()

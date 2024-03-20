@@ -1,11 +1,10 @@
-<script setup lang="ts">
-import type { HelpCenterAllCategoryArticles } from '@db/pages/help-center/types'
-
-interface Props {
-  categories: HelpCenterAllCategoryArticles[]
-}
-
-const props = defineProps<Props>()
+<script setup>
+const props = defineProps({
+  categories: {
+    type: Array,
+    required: true,
+  },
+})
 </script>
 
 <template>

@@ -1,10 +1,17 @@
-<script lang="ts" setup>
+<script setup>
 const username = ref('')
 const email = ref('')
-const password = ref<string>()
+const password = ref()
 const checkbox = ref(false)
-const items = ['foo', 'bar', 'fizz', 'buzz'] as const
-const values = ref<typeof items[number][]>([])
+
+const items = [
+  'foo',
+  'bar',
+  'fizz',
+  'buzz',
+]
+
+const values = ref([])
 </script>
 
 <template>

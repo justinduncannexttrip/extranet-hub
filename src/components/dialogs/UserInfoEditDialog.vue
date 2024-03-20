@@ -1,55 +1,38 @@
-<script setup lang="ts">
-interface UserData {
-  id: number
-  fullName: string
-  company: string
-  role: string
-  username: string
-  country: string | null
-  contact: string
-  email: string
-  currentPlan: string
-  status: string | null
-  avatar?: string
-  taskDone?: number
-  projectDone?: number
-  taxId: string
-  language: string[]
-}
-
-interface Props {
-  userData?: UserData
-  isDialogVisible: boolean
-}
-
-interface Emit {
-  (e: 'submit', value: UserData): void
-  (e: 'update:isDialogVisible', val: boolean): void
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  userData: () => ({
-    avatar: '',
-    company: '',
-    contact: '',
-    country: null,
-    currentPlan: '',
-    email: '',
-    fullName: '',
-    id: 0,
-    role: '',
-    status: null,
-    username: '',
-    language: [],
-    projectDone: 0,
-    taskDone: 0,
-    taxId: '',
-  }),
+<script setup>
+const props = defineProps({
+  userData: {
+    type: Object,
+    required: false,
+    default: () => ({
+      avatar: '',
+      company: '',
+      contact: '',
+      country: null,
+      currentPlan: '',
+      email: '',
+      fullName: '',
+      id: 0,
+      role: '',
+      status: null,
+      username: '',
+      language: [],
+      projectDone: 0,
+      taskDone: 0,
+      taxId: '',
+    }),
+  },
+  isDialogVisible: {
+    type: Boolean,
+    required: true,
+  },
 })
 
-const emit = defineEmits<Emit>()
+const emit = defineEmits([
+  'submit',
+  'update:isDialogVisible',
+])
 
-const userData = ref<UserData>(structuredClone(toRaw(props.userData)))
+const userData = ref(structuredClone(toRaw(props.userData)))
 
 watch(props, () => {
   userData.value = structuredClone(toRaw(props.userData))
@@ -62,11 +45,10 @@ const onFormSubmit = () => {
 
 const onFormReset = () => {
   userData.value = structuredClone(toRaw(props.userData))
-
   emit('update:isDialogVisible', false)
 }
 
-const dialogVisibleUpdate = (val: boolean) => {
+const dialogVisibleUpdate = val => {
   emit('update:isDialogVisible', val)
 }
 </script>

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const contactMethod = ref('Phone number')
 const fullName = ref('Only require last name')
 const companyName = ref('Don\'t include')

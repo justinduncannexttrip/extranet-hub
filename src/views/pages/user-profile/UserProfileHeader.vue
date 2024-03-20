@@ -1,14 +1,9 @@
-<script lang="ts" setup>
-import type { ProfileHeader } from '@db/pages/profile/types'
-
-const profileHeaderData = ref<ProfileHeader>()
-
-const { data, error } = await useApi<ProfileHeader>('/pages/profile/header')
-
+<script setup>
+const profileHeaderData = ref()
+const { data, error } = await useApi('/pages/profile/header')
 if (error.value) {
   console.log(error.value)
-}
-else {
+} else {
   if (data.value)
     profileHeaderData.value = data.value
 }

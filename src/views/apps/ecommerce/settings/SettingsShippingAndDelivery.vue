@@ -1,17 +1,41 @@
-<script setup lang="ts">
+<script setup>
 import avatar1 from '@images/avatars/avatar-1.png'
 import americaFlag from '@images/icons/countries/us.png'
 
 const domesticTableData = [
-  { rate: 'Weight', condition: '5Kg-10Kg', price: '$9' },
-  { rate: 'VAT', condition: '12%', price: '$25' },
-  { rate: 'Duty', condition: '-', price: '-' },
+  {
+    rate: 'Weight',
+    condition: '5Kg-10Kg',
+    price: '$9',
+  },
+  {
+    rate: 'VAT',
+    condition: '12%',
+    price: '$25',
+  },
+  {
+    rate: 'Duty',
+    condition: '-',
+    price: '-',
+  },
 ]
 
 const InternationalTableData = [
-  { rate: 'Weight', condition: '5Kg-10Kg', price: '$9' },
-  { rate: 'VAT', condition: '12%', price: '$25' },
-  { rate: 'Duty', condition: 'Japan', price: '$49' },
+  {
+    rate: 'Weight',
+    condition: '5Kg-10Kg',
+    price: '$9',
+  },
+  {
+    rate: 'VAT',
+    condition: '12%',
+    price: '$25',
+  },
+  {
+    rate: 'Duty',
+    condition: 'Japan',
+    price: '$49',
+  },
 ]
 </script>
 

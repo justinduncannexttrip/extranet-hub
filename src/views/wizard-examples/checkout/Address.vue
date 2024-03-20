@@ -1,17 +1,19 @@
-<script setup lang="ts">
-import type { CheckoutData } from './types'
+<script setup>
+const props = defineProps({
+  currentStep: {
+    type: Number,
+    required: false,
+  },
+  checkoutData: {
+    type: null,
+    required: true,
+  },
+})
 
-interface Props {
-  currentStep?: number
-  checkoutData: CheckoutData
-}
-interface Emit {
-  (e: 'update:currentStep', value: number): void
-  (e: 'update:checkout-data', value: CheckoutData): void
-}
-const props = defineProps<Props>()
-
-const emit = defineEmits<Emit>()
+const emit = defineEmits([
+  'update:currentStep',
+  'update:checkout-data',
+])
 
 const checkoutAddressDataLocal = ref(props.checkoutData)
 const isEditAddressDialogVisible = ref(false)
@@ -37,22 +39,31 @@ const deliveryOptions = [
   },
 ]
 
-const resolveAddressBadgeColor: any = {
+const resolveAddressBadgeColor = {
   home: 'primary',
   office: 'success',
 }
 
-const resolveDeliveryBadgeData: any = {
-  free: { color: 'success', price: 'Free' },
-  express: { color: 'secondary', price: 10 },
-  overnight: { color: 'secondary', price: 15 },
+const resolveDeliveryBadgeData = {
+  free: {
+    color: 'success',
+    price: 'Free',
+  },
+  express: {
+    color: 'secondary',
+    price: 10,
+  },
+  overnight: {
+    color: 'secondary',
+    price: 15,
+  },
 }
 
 const totalPriceWithDeliveryCharges = computed(() => {
   checkoutAddressDataLocal.value.deliveryCharges = 0
   if (checkoutAddressDataLocal.value.deliverySpeed !== 'free')
     checkoutAddressDataLocal.value.deliveryCharges = resolveDeliveryBadgeData[checkoutAddressDataLocal.value.deliverySpeed].price
-
+  
   return checkoutAddressDataLocal.value.orderAmount + checkoutAddressDataLocal.value.deliveryCharges
 })
 

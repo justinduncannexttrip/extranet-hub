@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import miscMaskDark from '@images/misc/misc-mask-dark.png'
 import miscMaskLight from '@images/misc/misc-mask-light.png'
 import miscUnderMaintenance from '@images/misc/misc-under-maintenance.png'

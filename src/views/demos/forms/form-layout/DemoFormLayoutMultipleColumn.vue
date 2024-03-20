@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const firstName = ref('')
 const lastName = ref('')
 const city = ref('')

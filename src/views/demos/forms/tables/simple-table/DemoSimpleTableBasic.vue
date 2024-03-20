@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const desserts = [
   {
     dessert: 'Frozen Yogurt',

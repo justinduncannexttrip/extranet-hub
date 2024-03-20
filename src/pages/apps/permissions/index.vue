@@ -1,11 +1,24 @@
-<script setup lang="ts">
-import type { Permission } from '@db/apps/permission/types'
-
+<script setup>
 const headers = [
-  { title: 'Name', key: 'name' },
-  { title: 'Assigned To', key: 'assignedTo', sortable: false },
-  { title: 'Created Date', key: 'createdDate', sortable: false },
-  { title: 'Actions', key: 'actions', sortable: false },
+  {
+    title: 'Name',
+    key: 'name',
+  },
+  {
+    title: 'Assigned To',
+    key: 'assignedTo',
+    sortable: false,
+  },
+  {
+    title: 'Created Date',
+    key: 'createdDate',
+    sortable: false,
+  },
+  {
+    title: 'Actions',
+    key: 'actions',
+    sortable: false,
+  },
 ]
 
 const search = ref('')
@@ -16,8 +29,7 @@ const page = ref(1)
 const sortBy = ref()
 const orderBy = ref()
 
-// Update data table options
-const updateOptions = (options: any) => {
+const updateOptions = options => {
   page.value = options.page
   sortBy.value = options.sortBy[0]?.key
   orderBy.value = options.sortBy[0]?.order
@@ -27,15 +39,30 @@ const isPermissionDialogVisible = ref(false)
 const isAddPermissionDialogVisible = ref(false)
 const permissionName = ref('')
 
-const colors: any = {
-  'support': { color: 'info', text: 'Support' },
-  'users': { color: 'success', text: 'Users' },
-  'manager': { color: 'warning', text: 'Manager' },
-  'administrator': { color: 'primary', text: 'Administrator' },
-  'restricted-user': { color: 'error', text: 'Restricted User' },
+const colors = {
+  'support': {
+    color: 'info',
+    text: 'Support',
+  },
+  'users': {
+    color: 'success',
+    text: 'Users',
+  },
+  'manager': {
+    color: 'warning',
+    text: 'Manager',
+  },
+  'administrator': {
+    color: 'primary',
+    text: 'Administrator',
+  },
+  'restricted-user': {
+    color: 'error',
+    text: 'Restricted User',
+  },
 }
 
-const { data: permissionsData } = await useApi<any>(createUrl('/apps/permissions', {
+const { data: permissionsData } = await useApi(createUrl('/apps/permissions', {
   query: {
     q: search,
     itemsPerPage,
@@ -45,10 +72,10 @@ const { data: permissionsData } = await useApi<any>(createUrl('/apps/permissions
   },
 }))
 
-const permissions = computed((): Permission[] => permissionsData.value.permissions)
+const permissions = computed(() => permissionsData.value.permissions)
 const totalPermissions = computed(() => permissionsData.value.totalPermissions)
 
-const editPermission = (name: string) => {
+const editPermission = name => {
   isPermissionDialogVisible.value = true
   permissionName.value = name
 }

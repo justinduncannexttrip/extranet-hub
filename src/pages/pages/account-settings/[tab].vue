@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 import AccountSettingsAccount from '@/views/pages/account-settings/AccountSettingsAccount.vue'
 import AccountSettingsBillingAndPlans from '@/views/pages/account-settings/AccountSettingsBillingAndPlans.vue'
 import AccountSettingsConnections from '@/views/pages/account-settings/AccountSettingsConnections.vue'
@@ -14,18 +14,34 @@ const activeTab = computed({
 
 // tabs
 const tabs = [
-  { title: 'Account', icon: 'ri-group-line', tab: 'account' },
-  { title: 'Security', icon: 'ri-lock-line', tab: 'security' },
-  { title: 'Billing & Plans', icon: 'ri-bookmark-line', tab: 'billing-plans' },
-  { title: 'Notifications', icon: 'ri-notification-3-line', tab: 'notification' },
-  { title: 'Connections', icon: 'ri-link', tab: 'connection' },
+  {
+    title: 'Account',
+    icon: 'ri-group-line',
+    tab: 'account',
+  },
+  {
+    title: 'Security',
+    icon: 'ri-lock-line',
+    tab: 'security',
+  },
+  {
+    title: 'Billing & Plans',
+    icon: 'ri-bookmark-line',
+    tab: 'billing-plans',
+  },
+  {
+    title: 'Notifications',
+    icon: 'ri-notification-3-line',
+    tab: 'notification',
+  },
+  {
+    title: 'Connections',
+    icon: 'ri-link',
+    tab: 'connection',
+  },
 ]
 
-definePage({
-  meta: {
-    navActiveLink: 'pages-account-settings-tab',
-  },
-})
+definePage({ meta: { navActiveLink: 'pages-account-settings-tab' } })
 </script>
 
 <template>

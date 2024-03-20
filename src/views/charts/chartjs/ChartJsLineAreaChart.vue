@@ -1,14 +1,14 @@
-<script setup lang="ts">
+<script setup>
 import { useTheme } from 'vuetify'
-import type { ChartJsCustomColors } from '@/views/charts/chartjs/types'
 import { getLineAreaChartConfig } from '@core/libs/chartjs/chartjsConfig'
 import LineChart from '@core/libs/chartjs/components/LineChart'
 
-interface Props {
-  colors: ChartJsCustomColors
-}
-
-const props = defineProps<Props>()
+const props = defineProps({
+  colors: {
+    type: null,
+    required: true,
+  },
+})
 
 const vuetifyTheme = useTheme()
 
@@ -44,7 +44,23 @@ const data = {
       pointHoverBorderColor: props.colors.white,
       pointBorderColor: 'transparent',
       pointHoverBackgroundColor: props.colors.areaChartBlue,
-      data: [40, 55, 45, 75, 65, 55, 70, 60, 100, 98, 90, 120, 125, 140, 155],
+      data: [
+        40,
+        55,
+        45,
+        75,
+        65,
+        55,
+        70,
+        60,
+        100,
+        98,
+        90,
+        120,
+        125,
+        140,
+        155,
+      ],
     },
     {
       fill: true,
@@ -59,7 +75,23 @@ const data = {
       pointHoverBorderColor: props.colors.white,
       pointBorderColor: 'transparent',
       pointHoverBackgroundColor: props.colors.areaChartBlueLight,
-      data: [70, 85, 75, 150, 100, 140, 110, 105, 160, 150, 125, 190, 200, 240, 275],
+      data: [
+        70,
+        85,
+        75,
+        150,
+        100,
+        140,
+        110,
+        105,
+        160,
+        150,
+        125,
+        190,
+        200,
+        240,
+        275,
+      ],
     },
     {
       fill: true,
@@ -74,7 +106,23 @@ const data = {
       pointHoverBorderColor: props.colors.white,
       pointBorderColor: 'transparent',
       pointHoverBackgroundColor: props.colors.areaChartGreyLight,
-      data: [240, 195, 160, 215, 185, 215, 185, 200, 250, 210, 195, 250, 235, 300, 315],
+      data: [
+        240,
+        195,
+        160,
+        215,
+        185,
+        215,
+        185,
+        200,
+        250,
+        210,
+        195,
+        250,
+        235,
+        300,
+        315,
+      ],
     },
   ],
 }

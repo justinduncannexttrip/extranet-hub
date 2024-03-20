@@ -1,44 +1,41 @@
-<script lang="ts" setup>
+<script setup>
 import { useChatStore } from '@/views/apps/chat/useChatStore'
-import type { ChatOut } from '@db/apps/chat/types'
 
 const store = useChatStore()
-
-interface MessageGroup {
-  senderId: ChatOut['messages'][number]['senderId']
-  messages: Omit<ChatOut['messages'][number], 'senderId'>[]
-}
 
 const contact = computed(() => ({
   id: store.activeChat?.contact.id,
   avatar: store.activeChat?.contact.avatar,
 }))
 
-// Feedback icon
-const resolveFeedbackIcon = (feedback: ChatOut['messages'][number]['feedback']) => {
+const resolveFeedbackIcon = feedback => {
   if (feedback.isSeen)
-    return { icon: 'ri-check-double-line', color: 'success' }
+    return {
+      icon: 'ri-check-double-line',
+      color: 'success',
+    }
   else if (feedback.isDelivered)
-    return { icon: 'ri-check-double-line', color: undefined }
+    return {
+      icon: 'ri-check-double-line',
+      color: undefined,
+    }
   else
-    return { icon: 'ri-check-line', color: undefined }
+    return {
+      icon: 'ri-check-line',
+      color: undefined,
+    }
 }
 
 const msgGroups = computed(() => {
-  let messages: ChatOut['messages'] = []
-
-  const _msgGroups: MessageGroup[] = []
-
-  if (store.activeChat!.chat) {
-    messages = store.activeChat!.chat.messages
-
+  let messages = []
+  const _msgGroups = []
+  if (store.activeChat.chat) {
+    messages = store.activeChat.chat.messages
     let msgSenderId = messages[0].senderId
-
-    let msgGroup: MessageGroup = {
+    let msgGroup = {
       senderId: msgSenderId,
       messages: [],
     }
-
     messages.forEach((msg, index) => {
       if (msgSenderId === msg.senderId) {
         msgGroup.messages.push({
@@ -46,27 +43,23 @@ const msgGroups = computed(() => {
           time: msg.time,
           feedback: msg.feedback,
         })
-      }
-      else {
+      } else {
         msgSenderId = msg.senderId
         _msgGroups.push(msgGroup)
         msgGroup = {
           senderId: msg.senderId,
-          messages: [
-            {
-              message: msg.message,
-              time: msg.time,
-              feedback: msg.feedback,
-            },
-          ],
+          messages: [{
+            message: msg.message,
+            time: msg.time,
+            feedback: msg.feedback,
+          }],
         }
       }
-
       if (index === messages.length - 1)
         _msgGroups.push(msgGroup)
     })
   }
-
+  
   return _msgGroups
 })
 </script>

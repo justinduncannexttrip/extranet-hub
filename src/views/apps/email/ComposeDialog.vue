@@ -1,14 +1,15 @@
-<script lang="ts" setup>
+<script setup>
 import { Image } from '@tiptap/extension-image'
 import { Link } from '@tiptap/extension-link'
 import { Placeholder } from '@tiptap/extension-placeholder'
 import { Underline } from '@tiptap/extension-underline'
 import { StarterKit } from '@tiptap/starter-kit'
-import { EditorContent, useEditor } from '@tiptap/vue-3'
+import {
+  EditorContent,
+  useEditor,
+} from '@tiptap/vue-3'
 
-defineEmits<{
-  (e: 'close'): void
-}>()
+const emit = defineEmits(['close'])
 
 const to = ref('')
 const cc = ref('')
@@ -24,24 +25,18 @@ const resetValues = () => {
 
 const editor = useEditor({
   content: '',
-
   extensions: [
     StarterKit,
     Image,
-    Placeholder.configure({
-      placeholder: 'Message',
-    }),
+    Placeholder.configure({ placeholder: 'Message' }),
     Underline,
-    Link.configure(
-      {
-        openOnClick: false,
-      },
-    ),
+    Link.configure({ openOnClick: false }),
   ],
 })
 
 const setLink = () => {
   const previousUrl = editor.value?.getAttributes('link').href
+
   // eslint-disable-next-line no-alert
   const url = window.prompt('URL', previousUrl)
 
@@ -52,7 +47,7 @@ const setLink = () => {
   // empty
   if (url === '') {
     editor.value?.chain().focus().extendMarkRange('link').unsetLink().run()
-
+    
     return
   }
 
@@ -61,9 +56,9 @@ const setLink = () => {
 }
 
 const addImage = () => {
+
   // eslint-disable-next-line no-alert
   const url = window.prompt('URL')
-
   if (url)
     editor.value?.chain().focus().setImage({ src: url }).run()
 }

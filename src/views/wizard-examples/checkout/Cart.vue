@@ -1,29 +1,28 @@
-<script setup lang="ts">
-import type { CartItem, CheckoutData } from './types'
+<script setup>
 import emptyCartImg from '@images/pages/empty-cart.png'
 
-interface Props {
-  currentStep?: number
-  checkoutData: CheckoutData
-}
+const props = defineProps({
+  currentStep: {
+    type: Number,
+    required: false,
+  },
+  checkoutData: {
+    type: null,
+    required: true,
+  },
+})
 
-interface Emit {
-  (e: 'update:currentStep', value: number): void
-  (e: 'update:checkout-data', value: CheckoutData): void
-}
-
-const props = defineProps<Props>()
-
-const emit = defineEmits<Emit>()
+const emit = defineEmits([
+  'update:currentStep',
+  'update:checkout-data',
+])
 
 const checkoutCartDataLocal = ref(props.checkoutData)
 
-// remove item from cart
-const removeItem = (item: CartItem) => {
+const removeItem = item => {
   checkoutCartDataLocal.value.cartItems = checkoutCartDataLocal.value.cartItems.filter(i => i.id !== item.id)
 }
 
-//  cart total
 const totalCost = computed(() => {
   return checkoutCartDataLocal.value.orderAmount = checkoutCartDataLocal.value.cartItems.reduce((acc, item) => {
     return acc + item.price * item.quantity

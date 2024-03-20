@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import SettingsCheckout from '@/views/apps/ecommerce/settings/SettingsCheckout.vue'
 import SettingsLocations from '@/views/apps/ecommerce/settings/SettingsLocations.vue'
 import SettingsNotifications from '@/views/apps/ecommerce/settings/SettingsNotifications.vue'
@@ -7,12 +7,30 @@ import SettingsShippingAndDelivery from '@/views/apps/ecommerce/settings/Setting
 import SettingsStoreDetails from '@/views/apps/ecommerce/settings/SettingsStoreDetails.vue'
 
 const tabsData = [
-  { icon: 'ri-store-line', title: 'Store Details' },
-  { icon: 'ri-bank-card-line', title: 'Payments' },
-  { icon: 'ri-shopping-cart-line', title: 'Checkout' },
-  { icon: 'ri-car-line', title: 'Shipping & Delivery' },
-  { icon: 'ri-map-pin-line', title: 'Location' },
-  { icon: 'ri-notification-3-line', title: 'Notifications' },
+  {
+    icon: 'ri-store-line',
+    title: 'Store Details',
+  },
+  {
+    icon: 'ri-bank-card-line',
+    title: 'Payments',
+  },
+  {
+    icon: 'ri-shopping-cart-line',
+    title: 'Checkout',
+  },
+  {
+    icon: 'ri-car-line',
+    title: 'Shipping & Delivery',
+  },
+  {
+    icon: 'ri-map-pin-line',
+    title: 'Location',
+  },
+  {
+    icon: 'ri-notification-3-line',
+    title: 'Notifications',
+  },
 ]
 
 const activeTab = ref(null)

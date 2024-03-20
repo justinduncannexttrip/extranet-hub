@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import customWizardAccount from '@images/svg/wizard-account.svg'
 import customWizardAddress from '@images/svg/wizard-address.svg'
 import customWizardPersonal from '@images/svg/wizard-personal.svg'

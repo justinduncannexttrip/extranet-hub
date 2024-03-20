@@ -1,47 +1,127 @@
-<script setup lang="ts">
-import type { ECommerceProduct } from '@db/apps/ecommerce/types'
-
+<script setup>
 const widgetData = ref([
-  { title: 'In-Store Sales', value: '$5,345', icon: 'ri-home-6-line', desc: '5k orders', change: 5.7 },
-  { title: 'Website Sales', value: '$74,347', icon: 'ri-computer-line', desc: '21k orders', change: 12.4 },
-  { title: 'Discount', value: '$14,235', icon: 'ri-gift-line', desc: '6k orders' },
-  { title: 'Affiliate', value: '$8,345', icon: 'ri-money-dollar-circle-line', desc: '150 orders', change: -3.5 },
+  {
+    title: 'In-Store Sales',
+    value: '$5,345',
+    icon: 'ri-home-6-line',
+    desc: '5k orders',
+    change: 5.7,
+  },
+  {
+    title: 'Website Sales',
+    value: '$74,347',
+    icon: 'ri-computer-line',
+    desc: '21k orders',
+    change: 12.4,
+  },
+  {
+    title: 'Discount',
+    value: '$14,235',
+    icon: 'ri-gift-line',
+    desc: '6k orders',
+  },
+  {
+    title: 'Affiliate',
+    value: '$8,345',
+    icon: 'ri-money-dollar-circle-line',
+    desc: '150 orders',
+    change: -3.5,
+  },
 ])
 
 const headers = [
-  { title: 'Product', key: 'product' },
-  { title: 'Category', key: 'category' },
-  { title: 'Stock', key: 'stock', sortable: false },
-  { title: 'SKU', key: 'sku' },
-  { title: 'Price', key: 'price' },
-  { title: 'QTY', key: 'qty' },
-  { title: 'Status', key: 'status' },
-  { title: 'Actions', key: 'actions', sortable: false },
+  {
+    title: 'Product',
+    key: 'product',
+  },
+  {
+    title: 'Category',
+    key: 'category',
+  },
+  {
+    title: 'Stock',
+    key: 'stock',
+    sortable: false,
+  },
+  {
+    title: 'SKU',
+    key: 'sku',
+  },
+  {
+    title: 'Price',
+    key: 'price',
+  },
+  {
+    title: 'QTY',
+    key: 'qty',
+  },
+  {
+    title: 'Status',
+    key: 'status',
+  },
+  {
+    title: 'Actions',
+    key: 'actions',
+    sortable: false,
+  },
 ]
 
 const selectedStatus = ref()
 const selectedCategory = ref()
-const selectedStock = ref<boolean | undefined>()
+const selectedStock = ref()
 const searchQuery = ref('')
 
 const status = ref([
-  { title: 'Scheduled', value: 'Scheduled' },
-  { title: 'Publish', value: 'Published' },
-  { title: 'Inactive', value: 'Inactive' },
+  {
+    title: 'Scheduled',
+    value: 'Scheduled',
+  },
+  {
+    title: 'Publish',
+    value: 'Published',
+  },
+  {
+    title: 'Inactive',
+    value: 'Inactive',
+  },
 ])
 
 const categories = ref([
-  { title: 'Accessories', value: 'Accessories' },
-  { title: 'Home Decor', value: 'Home Decor' },
-  { title: 'Electronics', value: 'Electronics' },
-  { title: 'Shoes', value: 'Shoes' },
-  { title: 'Office', value: 'Office' },
-  { title: 'Games', value: 'Games' },
+  {
+    title: 'Accessories',
+    value: 'Accessories',
+  },
+  {
+    title: 'Home Decor',
+    value: 'Home Decor',
+  },
+  {
+    title: 'Electronics',
+    value: 'Electronics',
+  },
+  {
+    title: 'Shoes',
+    value: 'Shoes',
+  },
+  {
+    title: 'Office',
+    value: 'Office',
+  },
+  {
+    title: 'Games',
+    value: 'Games',
+  },
 ])
 
 const stockStatus = ref([
-  { title: 'In Stock', value: true },
-  { title: 'Out of Stock', value: false },
+  {
+    title: 'In Stock',
+    value: true,
+  },
+  {
+    title: 'Out of Stock',
+    value: false,
+  },
 ])
 
 // Data table options
@@ -50,60 +130,84 @@ const page = ref(1)
 const sortBy = ref()
 const orderBy = ref()
 
-// Update data table options
-const updateOptions = (options: any) => {
+const updateOptions = options => {
   page.value = options.page
   sortBy.value = options.sortBy[0]?.key
   orderBy.value = options.sortBy[0]?.order
 }
 
-const resolveCategory = (category: string) => {
+const resolveCategory = category => {
   if (category === 'Accessories')
-    return { color: 'error', icon: 'ri-headphone-line' }
+    return {
+      color: 'error',
+      icon: 'ri-headphone-line',
+    }
   if (category === 'Home Decor')
-    return { color: 'info', icon: 'ri-home-6-line' }
+    return {
+      color: 'info',
+      icon: 'ri-home-6-line',
+    }
   if (category === 'Electronics')
-    return { color: 'primary', icon: 'ri-computer-line' }
+    return {
+      color: 'primary',
+      icon: 'ri-computer-line',
+    }
   if (category === 'Shoes')
-    return { color: 'success', icon: 'ri-footprint-line' }
+    return {
+      color: 'success',
+      icon: 'ri-footprint-line',
+    }
   if (category === 'Office')
-    return { color: 'warning', icon: 'ri-briefcase-line' }
+    return {
+      color: 'warning',
+      icon: 'ri-briefcase-line',
+    }
   if (category === 'Games')
-    return { color: 'primary', icon: 'ri-gamepad-line' }
+    return {
+      color: 'primary',
+      icon: 'ri-gamepad-line',
+    }
 }
 
-const resolveStatus = (statusMsg: string) => {
+const resolveStatus = statusMsg => {
   if (statusMsg === 'Scheduled')
-    return { text: 'Scheduled', color: 'warning' }
+    return {
+      text: 'Scheduled',
+      color: 'warning',
+    }
   if (statusMsg === 'Published')
-    return { text: 'Publish', color: 'success' }
+    return {
+      text: 'Publish',
+      color: 'success',
+    }
   if (statusMsg === 'Inactive')
-    return { text: 'Inactive', color: 'error' }
+    return {
+      text: 'Inactive',
+      color: 'error',
+    }
 }
 
-const { data: productsData, execute: fetchProducts } = await useApi<any>(createUrl('/apps/ecommerce/products',
-  {
-    query: {
-      q: searchQuery,
-      stock: selectedStock,
-      category: selectedCategory,
-      status: selectedStatus,
-      page,
-      itemsPerPage,
-      sortBy,
-      orderBy,
-    },
+const {
+  data: productsData,
+  execute: fetchProducts,
+} = await useApi(createUrl('/apps/ecommerce/products', {
+  query: {
+    q: searchQuery,
+    stock: selectedStock,
+    category: selectedCategory,
+    status: selectedStatus,
+    page,
+    itemsPerPage,
+    sortBy,
+    orderBy,
   },
-))
+}))
 
-const products = computed((): ECommerceProduct[] => productsData.value.products)
+const products = computed(() => productsData.value.products)
 const totalProduct = computed(() => productsData.value.total)
 
-const deleteProduct = async (id: number) => {
-  await $api(`apps/ecommerce/products/${id}`, {
-    method: 'DELETE',
-  })
-
+const deleteProduct = async id => {
+  await $api(`apps/ecommerce/products/${ id }`, { method: 'DELETE' })
   fetchProducts()
 }
 </script>

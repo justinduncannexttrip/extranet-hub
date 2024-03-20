@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import sectionTitleIcon from '@images/pages/section-title-icon.png'
 import ListArrowIcon from '@images/svg/list-arrow-icon.svg'
 import VectorIcon from '@images/svg/vector.svg'

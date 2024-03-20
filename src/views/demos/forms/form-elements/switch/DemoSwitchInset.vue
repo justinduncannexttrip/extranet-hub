@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 const insetSwitch1 = ref(true)
 const insetSwitch2 = ref(false)
 </script>

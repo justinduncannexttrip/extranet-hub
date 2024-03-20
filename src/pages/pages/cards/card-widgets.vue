@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import CardWidgetsActivityTimeline from '@/views/pages/cards/card-widgets/CardWidgetsActivityTimeline.vue'
 import CardWidgetsAnalytics from '@/views/pages/cards/card-widgets/CardWidgetsAnalytics.vue'
 import CardWidgetsDeliveryExceptions from '@/views/pages/cards/card-widgets/CardWidgetsDeliveryExceptions.vue'

@@ -1,9 +1,9 @@
-<script lang="ts" setup>
+<script setup>
 import { VForm } from 'vuetify/components/VForm'
 
 const name = ref('')
 const email = ref('')
-const refForm = ref<VForm>()
+const refForm = ref()
 const password = ref('')
 const confirmPassword = ref('')
 const isPasswordVisible = ref(false)

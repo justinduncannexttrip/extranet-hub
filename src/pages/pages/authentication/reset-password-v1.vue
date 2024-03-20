@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import miscMaskDark from '@images/misc/misc-mask-dark.png'
 import miscMaskLight from '@images/misc/misc-mask-light.png'
 import tree1 from '@images/misc/tree1.png'
@@ -8,11 +8,7 @@ import { themeConfig } from '@themeConfig'
 
 const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
 
-definePage({
-  meta: {
-    layout: 'blank',
-  },
-})
+definePage({ meta: { layout: 'blank' } })
 
 const form = ref({
   newPassword: '',

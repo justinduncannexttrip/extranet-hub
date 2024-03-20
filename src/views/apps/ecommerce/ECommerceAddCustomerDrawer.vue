@@ -1,23 +1,21 @@
-<script setup lang="ts">
+<script setup>
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
 import { VForm } from 'vuetify/components/VForm'
 
-interface Props {
-  isDrawerOpen: boolean
-}
+const props = defineProps({
+  isDrawerOpen: {
+    type: Boolean,
+    required: true,
+  },
+})
 
-interface Emit {
-  (e: 'update:isDrawerOpen', value: boolean): void
-}
+const emit = defineEmits(['update:isDrawerOpen'])
 
-const props = defineProps<Props>()
-const emit = defineEmits<Emit>()
-
-const handleDrawerModelValueUpdate = (val: boolean) => {
+const handleDrawerModelValueUpdate = val => {
   emit('update:isDrawerOpen', val)
 }
 
-const refVForm = ref<VForm>()
+const refVForm = ref()
 const name = ref()
 const email = ref()
 const mobile = ref()

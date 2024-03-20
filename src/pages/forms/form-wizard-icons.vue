@@ -1,6 +1,5 @@
-<script setup lang="ts">
+<script setup>
 import * as demoCode from '@/views/demos/forms/form-wizard/form-wizard-icons/demoCodeFormWizardIcons'
-
 import DemoFormWizardIconsBasic from '@/views/demos/forms/form-wizard/form-wizard-icons/DemoFormWizardIconsBasic.vue'
 import DemoFormWizardIconsValidation from '@/views/demos/forms/form-wizard/form-wizard-icons/DemoFormWizardIconsValidation.vue'
 import DemoFormWizardIconsVertical from '@/views/demos/forms/form-wizard/form-wizard-icons/DemoFormWizardIconsVertical.vue'

@@ -1,6 +1,5 @@
-<script setup lang="ts">
+<script setup>
 const chartOptions = {
-
   chart: {
     type: 'bar',
     parentHeightOffset: 0,
@@ -28,12 +27,18 @@ const chartOptions = {
   tooltip: { enabled: false },
 }
 
-const series = [
-  {
-    name: '2020',
-    data: [50, 40, 110, 80, 40, 60, 40],
-  },
-]
+const series = [{
+  name: '2020',
+  data: [
+    50,
+    40,
+    110,
+    80,
+    40,
+    60,
+    40,
+  ],
+}]
 
 const websiteStatistics = [
   {

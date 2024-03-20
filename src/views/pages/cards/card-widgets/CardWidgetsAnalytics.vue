@@ -1,18 +1,18 @@
-<script setup lang="ts">
-import { useDisplay, useTheme } from 'vuetify'
-
+<script setup>
+import {
+  useDisplay,
+  useTheme,
+} from 'vuetify'
 import { hexToRgb } from '@layouts/utils'
 
 const vuetifyTheme = useTheme()
-
 const { thresholds } = useDisplay()
 
 const options = computed(() => {
   const currentTheme = ref(vuetifyTheme.current.value.colors)
   const variableTheme = ref(vuetifyTheme.current.value.variables)
-
-  const borderColor = `rgba(${hexToRgb(String(variableTheme.value['border-color']))},${variableTheme.value['border-opacity']})`
-
+  const borderColor = `rgba(${ hexToRgb(String(variableTheme.value['border-color'])) },${ variableTheme.value['border-opacity'] })`
+  
   return {
     chart: {
       offsetY: -25,
@@ -45,7 +45,11 @@ const options = computed(() => {
       lineCap: 'round',
       colors: [currentTheme.value.surface],
     },
-    colors: [currentTheme.value.success, currentTheme.value.secondary, currentTheme.value.warning],
+    colors: [
+      currentTheme.value.success,
+      currentTheme.value.secondary,
+      currentTheme.value.warning,
+    ],
     xaxis: {
       labels: { show: false },
       axisTicks: { show: false },
@@ -60,7 +64,14 @@ const options = computed(() => {
     responsive: [
       {
         breakpoint: 1560,
-        options: { plotOptions: { bar: { columnWidth: '40%', borderRadius: 6 } } },
+        options: {
+          plotOptions: {
+            bar: {
+              columnWidth: '40%',
+              borderRadius: 6,
+            },
+          },
+        },
       },
       {
         breakpoint: thresholds.value.lg,
@@ -68,11 +79,25 @@ const options = computed(() => {
       },
       {
         breakpoint: thresholds.value.md,
-        options: { plotOptions: { bar: { columnWidth: '45%', borderRadius: 8 } } },
+        options: {
+          plotOptions: {
+            bar: {
+              columnWidth: '45%',
+              borderRadius: 8,
+            },
+          },
+        },
       },
       {
         breakpoint: 768,
-        options: { plotOptions: { bar: { columnWidth: '55%', borderRadius: 6 } } },
+        options: {
+          plotOptions: {
+            bar: {
+              columnWidth: '55%',
+              borderRadius: 6,
+            },
+          },
+        },
       },
       {
         breakpoint: thresholds.value.sm,
@@ -84,7 +109,14 @@ const options = computed(() => {
       },
       {
         breakpoint: 400,
-        options: { plotOptions: { bar: { columnWidth: '45%', borderRadius: 6 } } },
+        options: {
+          plotOptions: {
+            bar: {
+              columnWidth: '45%',
+              borderRadius: 6,
+            },
+          },
+        },
       },
     ],
   }
@@ -93,15 +125,39 @@ const options = computed(() => {
 const series = [
   {
     name: 'Product A',
-    data: [16000, 12000, 16000, 18000, 15000, 35000, 16000],
+    data: [
+      16000,
+      12000,
+      16000,
+      18000,
+      15000,
+      35000,
+      16000,
+    ],
   },
   {
     name: 'Product B',
-    data: [10000, 12000, 10000, 0, 10000, 10000, 10000],
+    data: [
+      10000,
+      12000,
+      10000,
+      0,
+      10000,
+      10000,
+      10000,
+    ],
   },
   {
     name: 'Product C',
-    data: [0, 15000, 0, 0, 12000, 0, 10000],
+    data: [
+      0,
+      15000,
+      0,
+      0,
+      12000,
+      0,
+      10000,
+    ],
   },
 ]
 

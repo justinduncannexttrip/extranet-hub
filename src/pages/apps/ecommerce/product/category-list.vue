@@ -1,6 +1,5 @@
-<script setup lang="ts">
+<script setup>
 import ECommerceAddCategoryDrawer from '@/views/apps/ecommerce/EcommerceAddCategoryDrawer.vue'
-
 import product1 from '@images/ecommerce-images/product-1.png'
 import product10 from '@images/ecommerce-images/product-10.png'
 import product11 from '@images/ecommerce-images/product-11.png'
@@ -98,14 +97,28 @@ const categoryData = [
     totalEarning: 32145,
     image: product2,
   },
-
 ]
 
 const headers = [
-  { title: 'Categories', key: 'categoryTitle' },
-  { title: 'Total Products', key: 'totalProduct', align: 'end' },
-  { title: 'Total Earning', key: 'totalEarning', align: 'end' },
-  { title: 'Action', key: 'actions', sortable: false },
+  {
+    title: 'Categories',
+    key: 'categoryTitle',
+  },
+  {
+    title: 'Total Products',
+    key: 'totalProduct',
+    align: 'end',
+  },
+  {
+    title: 'Total Earning',
+    key: 'totalEarning',
+    align: 'end',
+  },
+  {
+    title: 'Action',
+    key: 'actions',
+    sortable: false,
+  },
 ]
 
 const itemsPerPage = ref(10)
@@ -113,8 +126,7 @@ const searchQuery = ref('')
 const isAddProductDrawerOpen = ref(false)
 const page = ref(1)
 
-// Update data table options
-const updateOptions = (options: any) => {
+const updateOptions = options => {
   page.value = options.page
 }
 </script>

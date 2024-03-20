@@ -1,20 +1,5 @@
-<script setup lang="ts">
-interface Language {
-  'react': string
-  'bootstrap': string
-  'vue': string
-  'angular': string
-  'javascript': string
-}
-
-interface Progress {
-  avatar: string
-  title: string
-  language: keyof Language
-  amount: number
-}
-
-const languageProgress: Progress[] = [
+<script setup>
+const languageProgress = [
   {
     avatar: 'ri-reactjs-line',
     title: 'React is a JavaScript library for building user interfaces',
@@ -47,7 +32,7 @@ const languageProgress: Progress[] = [
   },
 ]
 
-const resolveStatusColor: Language = {
+const resolveStatusColor = {
   react: 'info',
   bootstrap: 'primary',
   vue: 'success',

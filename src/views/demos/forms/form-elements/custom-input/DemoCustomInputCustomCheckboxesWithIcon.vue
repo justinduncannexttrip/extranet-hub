@@ -1,7 +1,5 @@
-<script setup lang="ts">
-import type { CustomInputContent } from '@core/types'
-
-const checkboxContent: CustomInputContent[] = [
+<script setup>
+const checkboxContent = [
   {
     title: 'Backup',
     desc: 'Backup every file from your project.',

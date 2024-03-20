@@ -1,29 +1,18 @@
-<script setup lang="ts">
+<script setup>
 import tree2 from '@images/misc/tree2.png'
 import authV2MaskDark from '@images/pages/mask-v2-dark.png'
 import authV2MaskLight from '@images/pages/mask-v2-light.png'
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 import { themeConfig } from '@themeConfig'
-
 import authV2TwoStepsIllustrationBorderedDark from '@images/pages/auth-v2-two-steps-illustration-border-dark.png'
 import authV2TwoStepsIllustrationBorderedLight from '@images/pages/auth-v2-two-steps-illustration-border-light.png'
 import authV2TwoStepsIllustrationDark from '@images/pages/auth-v2-two-steps-illustration-dark.png'
 import authV2TwoStepsIllustrationLight from '@images/pages/auth-v2-two-steps-illustration-light.png'
 
-const authThemeImg = useGenerateImageVariant(
-  authV2TwoStepsIllustrationLight,
-  authV2TwoStepsIllustrationDark,
-  authV2TwoStepsIllustrationBorderedLight,
-  authV2TwoStepsIllustrationBorderedDark,
-  true)
-
+const authThemeImg = useGenerateImageVariant(authV2TwoStepsIllustrationLight, authV2TwoStepsIllustrationDark, authV2TwoStepsIllustrationBorderedLight, authV2TwoStepsIllustrationBorderedDark, true)
 const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
 
-definePage({
-  meta: {
-    layout: 'blank',
-  },
-})
+definePage({ meta: { layout: 'blank' } })
 
 const router = useRouter()
 const otp = ref('')
@@ -31,7 +20,6 @@ const isOtpInserted = ref(false)
 
 const onFinish = () => {
   isOtpInserted.value = true
-
   setTimeout(() => {
     isOtpInserted.value = false
     router.push('/')

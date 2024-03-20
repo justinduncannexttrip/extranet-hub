@@ -1,16 +1,16 @@
-<script setup lang="ts">
-import type { DealReviewComplete } from './types'
+<script setup>
 import reviewAndComplete from '@images/pages/create-deal-review-complete.png'
 
-const props = defineProps<{
-  formData: DealReviewComplete
-}>()
+const props = defineProps({
+  formData: {
+    type: null,
+    required: true,
+  },
+})
 
-const emit = defineEmits<{
-  (e: 'update:formData', value: DealReviewComplete): void
-}>()
+const emit = defineEmits(['update:formData'])
 
-const formData = ref<DealReviewComplete>(props.formData)
+const formData = ref(props.formData)
 
 watch(formData, () => {
   emit('update:formData', formData.value)

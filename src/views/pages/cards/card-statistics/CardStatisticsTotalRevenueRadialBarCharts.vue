@@ -1,48 +1,35 @@
-<script setup lang="ts">
+<script setup>
 import { useTheme } from 'vuetify'
 import { hexToRgb } from '@layouts/utils'
 
 const vuetifyTheme = useTheme()
-
 const series = [78]
 
 const chartOptions = computed(() => {
   const currentTheme = vuetifyTheme.current.value.colors
   const variableTheme = vuetifyTheme.current.value.variables
-
+  
   return {
-    chart: {
-      sparkline: {
-        enabled: true,
-      },
-    },
+    chart: { sparkline: { enabled: true } },
     colors: [currentTheme.info],
     plotOptions: {
       radialBar: {
         startAngle: -90,
         endAngle: 90,
-        hollow: {
-          size: '65%',
-        },
+        hollow: { size: '65%' },
         dataLabels: {
-          name: {
-            show: false,
-          },
+          name: { show: false },
           value: {
             fontSize: '1.25rem',
             fontWeight: '500',
             offsetY: 0,
-            color: `rgba(${hexToRgb(currentTheme['on-surface'])},${variableTheme['high-emphasis-opacity']})`,
+            color: `rgba(${ hexToRgb(currentTheme['on-surface']) },${ variableTheme['high-emphasis-opacity'] })`,
           },
         },
-        track: {
-          background: currentTheme['track-bg'],
-        },
+        track: { background: currentTheme['track-bg'] },
       },
     },
-    stroke: {
-      lineCap: 'round',
-    },
+    stroke: { lineCap: 'round' },
   }
 })
 </script>

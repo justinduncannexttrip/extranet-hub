@@ -1,10 +1,10 @@
-<script lang="ts" setup>
-import type { ProfileTab } from '@db/pages/profile/types'
-
-interface Props {
-  data: ProfileTab
-}
-const props = defineProps<Props>()
+<script setup>
+const props = defineProps({
+  data: {
+    type: null,
+    required: true,
+  },
+})
 </script>
 
 <template>

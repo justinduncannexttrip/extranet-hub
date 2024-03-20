@@ -1,6 +1,14 @@
-<script lang="ts" setup>
+<script setup>
 const selectedRadio = ref('primary')
-const colorsRadio = ['Primary', 'Secondary', 'Success', 'Info', 'Warning', 'Error']
+
+const colorsRadio = [
+  'Primary',
+  'Secondary',
+  'Success',
+  'Info',
+  'Warning',
+  'Error',
+]
 </script>
 
 <template>

@@ -1,6 +1,5 @@
-<script setup lang="ts">
+<script setup>
 import ECommerceAddCustomerDrawer from '@/views/apps/ecommerce/ECommerceAddCustomerDrawer.vue'
-import type { Customer } from '@db/apps/ecommerce/types'
 
 const searchQuery = ref('')
 const isAddCustomerDrawerOpen = ref(false)
@@ -13,34 +12,45 @@ const orderBy = ref()
 
 // Data table Headers
 const headers = [
-  { title: 'Customer', key: 'customer' },
-  { title: 'Customer Id', key: 'customerId' },
-  { title: 'Country', key: 'country' },
-  { title: 'Orders', key: 'orders' },
-  { title: 'Total Spent', key: 'totalSpent' },
+  {
+    title: 'Customer',
+    key: 'customer',
+  },
+  {
+    title: 'Customer Id',
+    key: 'customerId',
+  },
+  {
+    title: 'Country',
+    key: 'country',
+  },
+  {
+    title: 'Orders',
+    key: 'orders',
+  },
+  {
+    title: 'Total Spent',
+    key: 'totalSpent',
+  },
 ]
 
-// Update data table options
-const updateOptions = (options: any) => {
+const updateOptions = options => {
   page.value = options.page
   sortBy.value = options.sortBy[0]?.key
   orderBy.value = options.sortBy[0]?.order
 }
 
-// Fetch customers Data
-const { data: customerData } = await useApi<any>(createUrl('/apps/ecommerce/customers',
-  {
-    query: {
-      q: searchQuery,
-      itemsPerPage,
-      page,
-      sortBy,
-      orderBy,
-    },
-  }),
-)
+const { data: customerData } = await useApi(createUrl('/apps/ecommerce/customers', {
+  query: {
+    q: searchQuery,
+    itemsPerPage,
+    page,
+    sortBy,
+    orderBy,
+  },
+}))
 
-const customers = computed((): Customer[] => customerData.value.customers)
+const customers = computed(() => customerData.value.customers)
 const totalCustomers = computed(() => customerData.value.total)
 </script>
 

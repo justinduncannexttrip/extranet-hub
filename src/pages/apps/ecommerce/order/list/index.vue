@@ -1,13 +1,28 @@
-<script setup lang="ts">
-import type { Order } from '@db/apps/ecommerce/types'
+<script setup>
 import mastercard from '@images/logos/mastercard.png'
 import paypal from '@images/logos/paypal.png'
 
 const widgetData = ref([
-  { title: 'Pending Payment', value: 56, icon: 'ri-calendar-2-line' },
-  { title: 'Completed', value: 12689, icon: 'ri-check-double-line' },
-  { title: 'Refunded', value: 124, icon: 'ri-wallet-3-line' },
-  { title: 'Failed', value: 32, icon: 'ri-error-warning-line' },
+  {
+    title: 'Pending Payment',
+    value: 56,
+    icon: 'ri-calendar-2-line',
+  },
+  {
+    title: 'Completed',
+    value: 12689,
+    icon: 'ri-check-double-line',
+  },
+  {
+    title: 'Refunded',
+    value: 124,
+    icon: 'ri-wallet-3-line',
+  },
+  {
+    title: 'Failed',
+    value: 32,
+    icon: 'ri-error-warning-line',
+  },
 ])
 
 const searchQuery = ref('')
@@ -20,65 +35,109 @@ const orderBy = ref()
 
 // Data table Headers
 const headers = [
-  { title: 'Order', key: 'order' },
-  { title: 'Date', key: 'date' },
-  { title: 'Customers', key: 'customers' },
-  { title: 'Payment', key: 'payment', sortable: false },
-  { title: 'Status', key: 'status' },
-  { title: 'Method', key: 'method', sortable: false },
-  { title: 'Actions', key: 'actions', sortable: false },
+  {
+    title: 'Order',
+    key: 'order',
+  },
+  {
+    title: 'Date',
+    key: 'date',
+  },
+  {
+    title: 'Customers',
+    key: 'customers',
+  },
+  {
+    title: 'Payment',
+    key: 'payment',
+    sortable: false,
+  },
+  {
+    title: 'Status',
+    key: 'status',
+  },
+  {
+    title: 'Method',
+    key: 'method',
+    sortable: false,
+  },
+  {
+    title: 'Actions',
+    key: 'actions',
+    sortable: false,
+  },
 ]
 
-// Update data table options
-const updateOptions = (options: any) => {
+const updateOptions = options => {
   page.value = options.page
   sortBy.value = options.sortBy[0]?.key
   orderBy.value = options.sortBy[0]?.order
 }
 
-const resolvePaymentStatus = (status: number) => {
+const resolvePaymentStatus = status => {
   if (status === 1)
-    return { text: 'Paid', color: 'success' }
+    return {
+      text: 'Paid',
+      color: 'success',
+    }
   if (status === 2)
-    return { text: 'Pending', color: 'warning' }
+    return {
+      text: 'Pending',
+      color: 'warning',
+    }
   if (status === 3)
-    return { text: 'Cancelled', color: 'secondary' }
+    return {
+      text: 'Cancelled',
+      color: 'secondary',
+    }
   if (status === 4)
-    return { text: 'Failed', color: 'error' }
+    return {
+      text: 'Failed',
+      color: 'error',
+    }
 }
 
-const resolveStatus = (status: string) => {
+const resolveStatus = status => {
   if (status === 'Delivered')
-    return { text: 'Delivered', color: 'success' }
+    return {
+      text: 'Delivered',
+      color: 'success',
+    }
   if (status === 'Out for Delivery')
-    return { text: 'Out for Delivery', color: 'primary' }
+    return {
+      text: 'Out for Delivery',
+      color: 'primary',
+    }
   if (status === 'Ready to Pickup')
-    return { text: 'Ready to Pickup', color: 'info' }
+    return {
+      text: 'Ready to Pickup',
+      color: 'info',
+    }
   if (status === 'Dispatched')
-    return { text: 'Dispatched', color: 'warning' }
+    return {
+      text: 'Dispatched',
+      color: 'warning',
+    }
 }
 
-// Fetch Orders
-const { data: ordersData, execute: fetchOrders } = await useApi<any>(createUrl('/apps/ecommerce/orders',
-  {
-    query: {
-      q: searchQuery,
-      page,
-      itemsPerPage,
-      sortBy,
-      orderBy,
-    },
+const {
+  data: ordersData,
+  execute: fetchOrders,
+} = await useApi(createUrl('/apps/ecommerce/orders', {
+  query: {
+    q: searchQuery,
+    page,
+    itemsPerPage,
+    sortBy,
+    orderBy,
   },
-))
+}))
 
-const orders = computed((): Order[] => ordersData.value.orders)
+const orders = computed(() => ordersData.value.orders)
 const totalOrder = computed(() => ordersData.value.total)
 
-// Delete Orders
-const deleteOrder = async (id: number) => {
-  await $api(`/apps/ecommerce/orders/${id}`, {
-    method: 'DELETE',
-  })
+const deleteOrder = async id => {
+  await $api(`/apps/ecommerce/orders/${ id }`, { method: 'DELETE' })
   fetchOrders()
 }
 </script>

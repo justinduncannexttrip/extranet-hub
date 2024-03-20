@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import CardAdvanceActivityTimeline from '@/views/pages/cards/card-advance/CardActivityTimeline.vue'
 import CardAdvanceAnalytics from '@/views/pages/cards/card-advance/CardAdvanceAnalytics.vue'
 import CardAdvanceCafeBadilico from '@/views/pages/cards/card-advance/CardAdvanceCafeBadilico.vue'
@@ -12,7 +12,6 @@ import CardAdvanceTotalEarning from '@/views/pages/cards/card-advance/CardAdvanc
 import CardAdvanceTransactions from '@/views/pages/cards/card-advance/CardAdvanceTransactions.vue'
 import CardAdvanceUpgradeYourPlan from '@/views/pages/cards/card-advance/CardAdvanceUpgradeYourPlan.vue'
 import CardAdvanceWebsiteStatistics from '@/views/pages/cards/card-advance/CardAdvanceWebsiteStatistics.vue'
-
 import CardAdvancedAssignmentProgress from '@/views/pages/cards/card-advance/CardAdvancedAssignmentProgress.vue'
 import CardAdvancedDeliveryPerformance from '@/views/pages/cards/card-advance/CardAdvancedDeliveryPerformance.vue'
 import CardAdvancedOrderByCountries from '@/views/pages/cards/card-advance/CardAdvancedOrderByCountries.vue'
