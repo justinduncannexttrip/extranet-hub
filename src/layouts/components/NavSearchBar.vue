@@ -122,21 +122,18 @@ const suggestionGroups = [
 const noDataSuggestions = [
   {
     title: 'Analytics Dashboard',
-    icon: 'ri-shopping-cart-line',
+    icon: 'ri-line-chart-line',
     url: { name: 'dashboards-analytics' },
   },
   {
-    title: 'Account Settings',
-    icon: 'ri-user-line',
-    url: {
-      name: 'pages-account-settings-tab',
-      params: { tab: 'account' },
-    },
+    title: 'CRM Dashboard',
+    icon: 'ri-computer-line',
+    url: { name: 'dashboards-crm' },
   },
   {
-    title: 'Pricing Page',
-    icon: 'ri-cash-line',
-    url: { name: 'pages-pricing' },
+    title: 'Media Manager',
+    icon: 'ri-gallery-line',
+    url: { name: 'media-manager'},
   },
 ]
 

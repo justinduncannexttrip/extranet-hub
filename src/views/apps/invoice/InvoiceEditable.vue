@@ -58,7 +58,7 @@ const removeProduct = id => {
         <div class="d-flex align-center mb-6">
           <!-- 👉 Logo -->
           <VNodeRenderer
-            :nodes="themeConfig.app.logo"
+            :nodes="themeConfig.app.contrastLogo"
             class="me-3"
           />
 

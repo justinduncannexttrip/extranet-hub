@@ -1,4 +1,5 @@
-import { canNavigate } from '@layouts/plugins/casl'
+import { canNavigate } from '@layouts/plugins/casl';
+import { isUserLoggedIn } from '@/utils/auth';
 
 export const setupGuards = router => {
   // 👉 router.beforeEach
@@ -15,7 +16,8 @@ export const setupGuards = router => {
          * Check if user is logged in by checking if token & user data exists in local storage
          * Feel free to update this logic to suit your needs
          */
-    const isLoggedIn = !!(useCookie('userData').value && useCookie('accessToken').value)
+    const isLoggedIn = isUserLoggedIn();
+    console.log('hit guards isLoggedIn =========> ', isLoggedIn);
 
     /*
           If user is logged in and is trying to access login like page, redirect to home
@@ -23,23 +25,10 @@ export const setupGuards = router => {
           (WARN: Don't allow executing further by return statement because next code will check for permissions)
          */
     if (to.meta.unauthenticatedOnly) {
-      if (isLoggedIn)
+      if (isLoggedIn && to.name === 'login')
         return '/'
       else
         return undefined
-    }
-    if (!canNavigate(to)) {
-      /* eslint-disable indent */
-            return isLoggedIn
-                ? { name: 'not-authorized' }
-                : {
-                    name: 'login',
-                    query: {
-                        ...to.query,
-                        to: to.fullPath !== '/' ? to.path : undefined,
-                    },
-                }
-            /* eslint-enable indent */
     }
   })
 }

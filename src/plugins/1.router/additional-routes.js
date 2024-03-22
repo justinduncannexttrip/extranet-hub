@@ -8,14 +8,11 @@ export const redirects = [
     path: '/',
     name: 'index',
     redirect: to => {
-      // TODO: Get type from backend
-      const userData = useCookie('userData')
-      const userRole = userData.value?.role
-      if (userRole === 'admin')
-        return { name: 'dashboards-crm' }
-      if (userRole === 'client')
-        return { name: 'access-control' }
-      
+      const loggedIn = !!(useCookie('userData')?.value);
+      console.log('HIT REDIRECT INDEX loggedIn   ===========>  ', loggedIn)
+      if (loggedIn) {
+        return { name: 'home', query: to.query }
+      }
       return { name: 'login', query: to.query }
     },
   },
@@ -54,18 +51,23 @@ export const routes = [
     },
   },
   {
-    path: '/dashboards/logistics',
-    name: 'dashboards-logistics',
-    component: () => import('@/pages/apps/logistics/dashboard.vue'),
-  },
-  {
     path: '/dashboards/academy',
     name: 'dashboards-academy',
     component: () => import('@/pages/apps/academy/dashboard.vue'),
+    meta: {
+      navActiveLink: 'dashboards-academy',
+      action: 'read',
+      subject: 'userPage',
+    },
   },
   {
-    path: '/apps/ecommerce/dashboard',
-    name: 'apps-ecommerce-dashboard',
-    component: () => import('@/pages/dashboards/ecommerce.vue'),
+    path: '/media-manager',
+    name: 'media-manager',
+    component: () => import('@/components/MediaManager/MediaManagerv2.vue'),
+    meta: {
+      navActiveLink: 'media-manager',
+      action: 'read',
+      subject: 'managerPage',
+    },
   },
 ]

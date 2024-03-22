@@ -35,6 +35,7 @@ export const canViewNavMenuGroup = item => {
   return can(item.action, item.subject) && hasAnyVisibleChild
 }
 export const canNavigate = to => {
+  console.log('HIT CAN NAVIGATE CHECK TO =========> ', to);
   const ability = useAbility()
   
   return to.matched.some(route => ability.can(route.meta.action, route.meta.subject))

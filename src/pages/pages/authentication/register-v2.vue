@@ -28,7 +28,7 @@ const isPasswordVisible = ref(false)
 <template>
   <RouterLink to="/">
     <div class="auth-logo d-flex align-center gap-x-3">
-      <VNodeRenderer :nodes="themeConfig.app.logo" />
+      <VNodeRenderer :nodes="themeConfig.app.contrastLogo" />
       <h1 class="auth-title">
         {{ themeConfig.app.title }}
       </h1>

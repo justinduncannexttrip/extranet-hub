@@ -46,10 +46,12 @@
 
 
 .auth-logo {
-  position: absolute;
+  position: relative;
   z-index: 2;
-  inset-block-start: 2rem;
-  inset-inline-start: 2.3rem;
+}
+
+.auth-logo img {
+  max-width: 50px;
 }
 
 .auth-title{
@@ -58,4 +60,8 @@
   letter-spacing: 0.273px;
   line-height: normal;
   text-transform: capitalize;
+}
+
+#login-form .v-input__details {
+  padding: 0;
 }

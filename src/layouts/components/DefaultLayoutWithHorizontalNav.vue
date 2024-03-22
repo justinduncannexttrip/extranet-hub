@@ -1,8 +1,6 @@
 <script setup>
 import navItems from '@/navigation/horizontal'
 import { themeConfig } from '@themeConfig'
-
-// Components
 import Footer from '@/layouts/components/Footer.vue'
 import NavBarNotifications from '@/layouts/components/NavBarNotifications.vue'
 import NavSearchBar from '@/layouts/components/NavSearchBar.vue'
@@ -37,7 +35,7 @@ watch([
         to="/"
         class="d-flex align-start gap-x-4"
       >
-        <VNodeRenderer :nodes="themeConfig.app.logo" />
+        <VNodeRenderer :nodes="themeConfig.app.contrastLogo" />
 
         <h1 class="leading-normal text-xl text-uppercase">
           {{ themeConfig.app.title }}

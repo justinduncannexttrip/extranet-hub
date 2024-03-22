@@ -1,10 +1,19 @@
 import { breakpointsVuetify } from '@vueuse/core'
 import { AppContentLayoutNav, ContentWidth, FooterType, HorizontalNavType, NavbarType } from '@layouts/enums'
+import logoFullDark from '@images/logo_full_dark.png'
+import logoFullLight from '@images/logo_full_light.png'
+import logoCompactDark from '@images/logo_compact_dark.png'
+import logoCompactLight from '@images/logo_compact_light.png'
+import contrastLogo from '@images/compact_logo_dark_contrast.png'
 
 export const layoutConfig = {
   app: {
     title: 'my-layout',
-    logo: h('img', { src: '/src/assets/logo.svg' }),
+    logoFullDark: h('img', { src: logoFullDark, alt: 'Nexttrip.com Nextranet' }),
+    logoFullLight: h('img', { src: logoFullLight, alt: 'Nexttrip.com Nextranet' }),
+    logoCompactDark: h('img', { src: logoCompactDark, alt: 'Nexttrip.com Nextranet' }),
+    logoCompactLight: h('img', { src: logoCompactLight, alt: 'Nexttrip.com Nextranet' }),
+    contrastLogo: h('img', { src: contrastLogo, alt: 'Nexttrip.com Nextranet' }),
     contentWidth: ContentWidth.Boxed,
     contentLayoutNav: AppContentLayoutNav.Vertical,
     overlayNavFromBreakpoint: breakpointsVuetify.md,

@@ -11,4 +11,17 @@ export const $api = ofetch.create({
       }
     }
   },
-})
+});
+
+export const $extranetApi = ofetch.create({
+  baseURL: import.meta.env.VITE_EXTRANET_API_BASE_URL + '/' + import.meta.env.VITE_EXTRANET_API_VERSION,
+  async onRequest({ options }) {
+    const accessToken = import.meta.env.VITE_EXTRANET_API_TOKEN;
+    if (accessToken) {
+      options.headers = {
+        ...options.headers,
+        Authorization: `Bearer ${accessToken}`,
+      }
+    }
+  },
+});

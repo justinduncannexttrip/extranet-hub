@@ -1,16 +1,12 @@
 <script setup>
-import authV2ForgotPasswordIllustrationBorderedDark from '@images/pages/auth-v2-forgot-password-illustration-dark-border.png'
-import authV2ForgotPasswordIllustrationDark from '@images/pages/auth-v2-forgot-password-illustration-dark.png'
-import authV2ForgotPasswordIllustrationBorderedLight from '@images/pages/auth-v2-forgot-password-illustration-light-border.png'
-import authV2ForgotPasswordIllustrationLight from '@images/pages/auth-v2-forgot-password-illustration-light.png'
 import tree1 from '@images/misc/tree1.png'
+import tree3 from '@images/misc/tree3.png'
 import authV2MaskDark from '@images/pages/mask-v2-dark.png'
 import authV2MaskLight from '@images/pages/mask-v2-light.png'
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 import { themeConfig } from '@themeConfig'
 
-const authThemeImg = useGenerateImageVariant(authV2ForgotPasswordIllustrationLight, authV2ForgotPasswordIllustrationDark, authV2ForgotPasswordIllustrationBorderedLight, authV2ForgotPasswordIllustrationBorderedDark, true)
-const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
+const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark, authV2MaskLight, authV2MaskDark, false)
 const email = ref('')
 
 definePage({
@@ -22,109 +18,104 @@ definePage({
 </script>
 
 <template>
-  <RouterLink to="/">
-    <div class="auth-logo d-flex align-center gap-x-3">
-      <VNodeRenderer :nodes="themeConfig.app.logo" />
-      <h1 class="auth-title">
-        {{ themeConfig.app.title }}
-      </h1>
-    </div>
-  </RouterLink>
-
-  <VRow
-    class="auth-wrapper"
-    no-gutters
-  >
-    <VCol
-      md="8"
-      class="d-none d-md-flex position-relative"
+  <div class="auth-wrapper d-flex align-center justify-center pa-4">
+    <VCard
+      class="auth-card pa-sm-4 pa-md-7 pa-0"
+      max-width="460"
     >
-      <div class="d-flex align-center justify-end w-100 h-100 pa-10 pe-0">
-        <VImg
-          width="853"
-          height="684"
-          :src="authThemeImg"
-          class="auth-illustration"
-        />
-      </div>
+      <VCardText>
+        <div class="d-flex align-center gap-x-3 justify-center mb-6">
+          <VNodeRenderer :nodes="themeConfig.app.contrastLogo" />
 
-      <img
-        class="auth-footer-mask"
-        height="360"
-        :src="authThemeMask"
-      >
+          <h1 class="auth-title">
+            {{ themeConfig.app.title }}
+          </h1>
+        </div>
 
-      <img
-        :src="tree1"
-        alt="tree image"
-        height="140"
-        class="auth-footer-tree"
-      >
-    </VCol>
+        <h4 class="text-h4 mb-1">
+          Forgot Password? 🔒
+        </h4>
+        <p class="mb-0">
+          Enter your email and we'll send you instructions to reset your password
+        </p>
+      </VCardText>
 
-    <VCol
-      cols="12"
-      md="4"
-      class="auth-card-v2 d-flex align-center justify-center"
-      style="background-color: rgb(var(--v-theme-surface));"
-    >
-      <VCard
-        flat
-        :max-width="500"
-        class="mt-12 mt-sm-0 pa-4"
-      >
-        <VCardText>
-          <h4 class="text-h4 mb-1">
-            Forgot Password? 🔒
-          </h4>
-          <p class="mb-0">
-            Enter your email and we'll send you instructions to reset your password
-          </p>
-        </VCardText>
+      <VCardText>
+        <VForm @submit.prevent="() => {}">
+          <VRow>
+            <!-- email -->
+            <VCol cols="12">
+              <VTextField
+                v-model="email"
+                autofocus
+                label="Email"
+                type="email"
+                placeholder="next.trip@nexttrip.com"
+                :rules="[
+                  (v) => !!v || 'E-mail is required',
+                  (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+                ]"
+              />
+            </VCol>
 
-        <VCardText>
-          <VForm @submit.prevent="() => {}">
-            <VRow>
-              <!-- email -->
-              <VCol cols="12">
-                <VTextField
-                  v-model="email"
-                  autofocus
-                  label="Email"
-                  placeholder="johndoe@email.com"
-                  type="email"
+            <!-- reset password -->
+            <VCol cols="12">
+              <VBtn
+                block
+                type="submit"
+              >
+                Send Reset Link
+              </VBtn>
+            </VCol>
+
+            <!-- back to login -->
+            <VCol cols="12">
+              <RouterLink
+                class="d-flex align-center justify-center"
+                :to="{ name: 'login' }"
+              >
+                <VIcon
+                  icon="ri-arrow-left-s-line"
+                  size="20"
+                  class="flip-in-rtl me-2"
                 />
-              </VCol>
+                <span>Back to login</span>
+              </RouterLink>
+            </VCol>
+          </VRow>
+        </VForm>
+      </VCardText>
+    </VCard>
 
-              <!-- Reset link -->
-              <VCol cols="12">
-                <VBtn
-                  block
-                  type="submit"
-                >
-                  Send Reset Link
-                </VBtn>
-              </VCol>
+    <div class="d-flex gap-x-2 auth-footer-start-tree">
+      <img
+        class="d-none d-md-block"
+        :src="tree3"
+        :height="120"
+        :width="67"
+      >
+      <img
+        class="d-none d-md-block align-self-end"
+        :src="tree3"
+        :height="70"
+        :width="40"
+      >
+    </div>
 
-              <!-- back to login -->
-              <VCol cols="12">
-                <RouterLink
-                  class="d-flex align-center justify-center"
-                  :to="{ name: 'pages-authentication-login-v2' }"
-                >
-                  <VIcon
-                    icon="ri-arrow-left-s-line"
-                    class="flip-in-rtl"
-                  />
-                  <span>Back to login</span>
-                </RouterLink>
-              </VCol>
-            </VRow>
-          </VForm>
-        </VCardText>
-      </VCard>
-    </VCol>
-  </VRow>
+    <img
+      :src="tree1"
+      class="auth-footer-end-tree d-none d-md-block"
+      :width="97"
+      :height="210"
+    >
+
+    <!-- bg img -->
+    <img
+      class="auth-footer-mask d-none d-md-block"
+      :src="authThemeMask"
+      height="172"
+    >
+  </div>
 </template>
 
 <style lang="scss">

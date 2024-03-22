@@ -1,18 +1,17 @@
 <script setup>
 import { VForm } from 'vuetify/components/VForm'
-import AuthProvider from '@/views/pages/authentication/AuthProvider.vue'
 import { themeConfig } from '@themeConfig'
 import tree1 from '@images/misc/tree1.png'
-import authV2LoginIllustrationBorderedDark from '@images/pages/auth-v2-login-illustration-bordered-dark.png'
-import authV2LoginIllustrationBorderedLight from '@images/pages/auth-v2-login-illustration-bordered-light.png'
-import authV2LoginIllustrationDark from '@images/pages/auth-v2-login-illustration-dark.png'
-import authV2LoginIllustrationLight from '@images/pages/auth-v2-login-illustration-light.png'
-import authV2MaskDark from '@images/pages/mask-v2-dark.png'
-import authV2MaskLight from '@images/pages/mask-v2-light.png'
+import tree3 from '@images/misc/tree3.png'
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
+import { useLoginStore } from "@core/stores/login.js";
+import miscMaskDark from '@images/misc/misc-mask-dark.png'
+import miscMaskLight from '@images/misc/misc-mask-light.png'
+import setUserAbilities from "@/plugins/casl/userAbilities";
 
-const authThemeImg = useGenerateImageVariant(authV2LoginIllustrationLight, authV2LoginIllustrationDark, authV2LoginIllustrationBorderedLight, authV2LoginIllustrationBorderedDark, true)
-const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
+
+const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
+const logo = useGenerateImageVariant(themeConfig.app.logoCompactDark, themeConfig.app.contrastLogo);
 
 definePage({
   meta: {
@@ -25,6 +24,7 @@ const isPasswordVisible = ref(false)
 const route = useRoute()
 const router = useRouter()
 const ability = useAbility()
+const error = ref();
 
 const errors = ref({
   email: undefined,
@@ -34,35 +34,46 @@ const errors = ref({
 const refVForm = ref()
 
 const credentials = ref({
-  email: 'admin@demo.com',
-  password: 'admin',
+  username: 'justin.duncan',
+  password: '123456',
 })
+const loggingIn = ref(false);
+const loginStore = useLoginStore()
 
 const rememberMe = ref(false)
 
 const login = async () => {
   try {
-    const res = await $api('/auth/login', {
-      method: 'POST',
-      body: {
-        email: credentials.value.email,
-        password: credentials.value.password,
-      },
-      onResponseError({ response }) {
-        errors.value = response._data.errors
-      },
-    })
-
-    const { accessToken, userData, userAbilityRules } = res
-
-    useCookie('userAbilityRules').value = userAbilityRules
-    ability.update(userAbilityRules)
-    useCookie('userData').value = userData
-    useCookie('accessToken').value = accessToken
-    await nextTick(() => {
-      router.replace(route.query.to ? String(route.query.to) : '/')
-    })
+    const response = await loginStore.authorize(credentials.value.username, credentials.value.password)
+    if (response?.success && response?.data?.user) {
+      let userData = response?.data?.user;
+      userData = {
+        userId: userData.userId,
+        userFirstName: userData.userFirstName,
+        userLastName: userData.userLastName,
+        status: true,
+        userTypeId: userData.userTypeId,
+        userEmail: userData.userEmail,
+        imageLocation: userData.imageLocation,
+        timeout: userData.timeout,
+      }
+      const userAbilityRules = await setUserAbilities(userData.userTypeId);
+      console.log('HIT API SET USER ABILITY RULES', userAbilityRules);
+      useCookie('userAbilityRules').value = userAbilityRules
+      ability.update(userAbilityRules)
+      useCookie('userData').value = userData
+    } else if (!response.success && response?.data?.error) {
+      console.log('Error logging in', response.data.message);
+      this.error = response.data?.error;
+    } else {
+      console.log('Error logging in', 'An error occurred while trying to login');
+      this.error = 'An error occurred while trying to login';
+    }
+    // await nextTick(() => {
+    //   router.replace(route.query.to ? String(route.query.to) : '/')
+    // })
   } catch (err) {
+    loggingIn.value = false;
     console.error(err)
   }
 }
@@ -76,110 +87,70 @@ const onSubmit = () => {
 </script>
 
 <template>
-  <RouterLink to="/">
-    <div class="auth-logo d-flex align-center gap-x-3">
-      <VNodeRenderer :nodes="themeConfig.app.logo" />
-      <h1 class="auth-title">
-        {{ themeConfig.app.title }}
-      </h1>
-    </div>
-  </RouterLink>
-
-  <VRow
-    no-gutters
-    class="auth-wrapper"
-  >
-    <VCol
-      md="8"
-      class="d-none d-md-flex position-relative"
+  <div class="auth-wrapper d-flex align-center justify-center pa-4">
+    <VCard
+      class="auth-card pa-sm-4 pa-md-7 pa-0"
+      max-width="448"
     >
-      <div class="d-flex align-center justify-end w-100 h-100 pa-10 pe-0">
-        <VImg
-          max-width="797"
-          :src="authThemeImg"
-          class="auth-illustration"
-        />
-      </div>
+      <VCardText>
+        <div class="auth-logo d-flex align-center gap-x-3 justify-center mb-6">
+          <VNodeRenderer :nodes="logo" />
 
-      <img
-        class="auth-footer-mask"
-        height="360"
-        :src="authThemeMask"
-      >
+          <h1 class="auth-title">
+            {{ themeConfig.app.title }}
+          </h1>
+        </div>
+        <p :class="loginStore.error ? 'mb-1' : ''" class="mt-0 text-center">
+          Please sign-in to your account
+        </p>
+      </VCardText>
 
-      <VImg
-        :src="tree1"
-        alt="tree image"
-        height="190"
-        width="90"
-        class="auth-footer-tree"
-      />
-    </VCol>
 
-    <VCol
-      cols="12"
-      md="4"
-      class="auth-card-v2 d-flex align-center justify-center"
-      style="background-color: rgb(var(--v-theme-surface));"
-    >
-      <VCard
-        flat
-        :max-width="500"
-        class="mt-12 mt-sm-0 pa-4"
-      >
-        <VCardText>
-          <h4 class="text-h4 mb-1">
-            Welcome to <span class="text-capitalize">{{ themeConfig.app.title }}!</span> 👋🏻
-          </h4>
-          <p class="mb-0">
-            Please sign-in to your account and start the adventure
-          </p>
-        </VCardText>
-        <VCardText>
-          <VAlert
-            color="primary"
-            variant="tonal"
-          >
-            <p class="text-caption mb-2 text-primary">
-              Admin Email: <strong>admin@demo.com</strong> / Pass: <strong>admin</strong>
-            </p>
-            <p class="text-caption mb-0 text-primary">
-              Client Email: <strong>client@demo.com</strong> / Pass: <strong>client</strong>
-            </p>
-          </VAlert>
-        </VCardText>
+      <VCardText>
+        <VForm
+          ref="refVForm"
+          @submit.prevent="onSubmit"
+          id="login-form"
+        >
+          <VRow v-if="loginStore.error">
+            <!-- error alert -->
+            <VCol cols="12 pt-0 pb-1 mb-1">
+              <VAlert
+                variant="tonal"
+                color="error"
+                density="compact"
+              >
+                {{ loginStore.error }}
+              </VAlert>
+            </VCol>
+          </VRow>
 
-        <VCardText>
-          <VForm
-            ref="refVForm"
-            @submit.prevent="onSubmit"
-          >
-            <VRow>
-              <!-- email -->
-              <VCol cols="12">
-                <VTextField
-                  v-model="credentials.email"
-                  label="Email"
-                  placeholder="johndoe@email.com"
-                  type="email"
-                  autofocus
-                  :rules="[requiredValidator, emailValidator]"
-                  :error-messages="errors.email"
-                />
-              </VCol>
+          <VRow>
+            <!-- username -->
+            <VCol cols="12">
+              <VTextField
+                v-model="credentials.username"
+                autofocus
+                label="Username"
+                type="text"
+                placeholder="next.trip"
+                :rules="[requiredValidator]"
+                :error-messages="errors.email"
+              />
+            </VCol>
 
-              <!-- password -->
-              <VCol cols="12">
-                <VTextField
-                  v-model="credentials.password"
-                  label="Password"
-                  placeholder="············"
-                  :rules="[requiredValidator]"
-                  :type="isPasswordVisible ? 'text' : 'password'"
-                  :error-messages="errors.password"
-                  :append-inner-icon="isPasswordVisible ? 'ri-eye-off-line' : 'ri-eye-line'"
-                  @click:append-inner="isPasswordVisible = !isPasswordVisible"
-                />
+            <!-- password -->
+            <VCol cols="12">
+              <VTextField
+                v-model="credentials.password"
+                label="Password"
+                placeholder="············"
+                :rules="[requiredValidator]"
+                :type="isPasswordVisible ? 'text' : 'password'"
+                :error-messages="errors.password"
+                :append-inner-icon="isPasswordVisible ? 'ri-eye-off-line' : 'ri-eye-line'"
+                @click:append-inner="isPasswordVisible = !isPasswordVisible"
+              />
 
                 <div class="d-flex align-center flex-wrap justify-space-between my-5 gap-2">
                   <VCheckbox
@@ -194,48 +165,48 @@ const onSubmit = () => {
                   </RouterLink>
                 </div>
 
-                <VBtn
-                  block
-                  type="submit"
-                >
-                  Login
-                </VBtn>
-              </VCol>
+              <VBtn
+                block
+                type="submit"
+                :loading="loggingIn.value"
+              >
+                Login
+              </VBtn>
+            </VCol>
 
-              <!-- create account -->
-              <VCol
-                cols="12"
-                class="text-center text-base"
-              >
-                <span>New on our platform?</span> <RouterLink
-                  class="text-primary d-inline-block"
-                  :to="{ name: 'register' }"
-                >
-                  Create an account
-                </RouterLink>
-              </VCol>
-              <VCol
-                cols="12"
-                class="d-flex align-center"
-              >
-                <VDivider />
-                <span class="mx-4">or</span>
-                <VDivider />
-              </VCol>
+          </VRow>
+        </VForm>
+      </VCardText>
+    </VCard>
+    <div class="d-flex gap-x-2 auth-footer-start-tree">
+      <img
+        class="d-none d-md-block"
+        :src="tree3"
+        :height="120"
+        :width="67"
+        alt="">
+      <img
+        class="d-none d-md-block align-self-end"
+        :src="tree3"
+        :height="70"
+        :width="40"
+        alt="">
+    </div>
 
-              <!-- auth providers -->
-              <VCol
-                cols="12"
-                class="text-center"
-              >
-                <AuthProvider />
-              </VCol>
-            </VRow>
-          </VForm>
-        </VCardText>
-      </VCard>
-    </VCol>
-  </VRow>
+    <img
+      :src="tree1"
+      class="auth-footer-end-tree d-none d-md-block"
+      :width="97"
+      :height="210"
+      alt="">
+
+    <!-- bg img -->
+    <img
+      class="auth-footer-mask d-none d-md-block"
+      :src="authThemeMask"
+      height="172"
+      alt="">
+  </div>
 </template>
 
 <style lang="scss">

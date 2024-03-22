@@ -40,7 +40,7 @@ const menus = [
           >
             <div class="mb-4 footer-form">
               <div class="d-flex align-center gap-x-3 mb-6">
-                <VNodeRenderer :nodes="themeConfig.app.logo" />
+                <VNodeRenderer :nodes="themeConfig.app.contrastLogo" />
                 <div class="footer-title">
                   MATERIO
                 </div>

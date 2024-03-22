@@ -241,7 +241,8 @@ const isOneTimePasswordDialogVisible = ref(false)
             Two factor authentication is not enabled yet.
           </p>
           <p class="mb-6">
-            Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.
+            Two-factor authentication adds an additional layer of security to your account by requiring more than just a
+            password to log in.
             <a
               href="javascript:void(0)"
               class="text-decoration-none"
@@ -258,59 +259,53 @@ const isOneTimePasswordDialogVisible = ref(false)
 
     <VCol cols="12">
       <!-- SECTION: Create an API key -->
-      <VCard title="Create an API key">
+      <VCard title="Create an API key (AWS CLI)">
         <VRow>
           <!-- 👉 Choose API Key -->
           <VCol
             cols="12"
-            md="5"
             order-md="0"
             order="1"
           >
-            <VCardText class="pt-7">
-              <VForm @submit.prevent="() => {}">
-                <!-- 👉 Choose API Key -->
-                <VSelect
-                  label="Choose the API key type you want to create"
-                  placeholder="Select API key type"
-                  :items="['Full Control', 'Modify', 'Read & Execute', 'List Folder Contents', 'Read Only', 'Read & Write']"
-                />
+            <VForm @submit.prevent="() => {}">
+              <VCardText class="pt-7">
+                <vRow>
+                  <vCol cols="5">
+                    <!-- 👉 Name the API Key -->
+                    <VTextField
+                      label="Name the API key"
+                      placeholder="Name the API key"
+                      class="my-5"
+                    />
+                  </vCol>
 
-                <!-- 👉 Name the API Key -->
-                <VTextField
-                  label="Name the API key"
-                  placeholder="Name the API key"
-                  class="my-5"
-                />
+                  <vCol cols="5">
+                    <!-- 👉 Choose API Key -->
+                    <VSelect
+                      label="Choose the API key type you want to create"
+                      placeholder="Select API key type"
+                      :items="['Full Control', 'Modify', 'Read & Execute', 'List Folder Contents', 'Read Only', 'Read & Write']"
+                    />
+                  </vCol>
 
-                <!-- 👉 Create Key Button -->
-                <VBtn
-                  type="submit"
-                  block
-                >
-                  Create Key
-                </VBtn>
-              </VForm>
-            </VCardText>
+                  <vCol cols="2">
+                    <!-- 👉 Create Key Button -->
+                    <VBtn
+                      type="submit"
+                      block
+                    >
+                      Create Key
+                    </VBtn>
+                  </vCol>
+                </vRow>
+
+              </VCardText>
+            </VForm>
           </VCol>
 
-          <!-- 👉 Lady image -->
-          <VCol
-            cols="12"
-            md="7"
-            order="0"
-            order-md="1"
-            class="d-flex flex-column justify-center align-center"
-          >
-            <VImg
-              :src="sittingGirlImg"
-              :width="310"
-              :style="$vuetify.display.smAndDown ? '' : 'position: absolute; bottom: 0;'"
-            />
-          </VCol>
         </VRow>
       </VCard>
-    <!-- !SECTION -->
+      <!-- !SECTION -->
     </VCol>
 
     <VCol cols="12">
@@ -322,7 +317,9 @@ const isOneTimePasswordDialogVisible = ref(false)
 
         <VCardText>
           <p class="mb-6">
-            An API key is a simple encrypted string that identifies an application without any principal. They are useful for accessing public data anonymously, and are used to associate API requests with your project for quota and billing.
+            An API key is a simple encrypted string that identifies an application without any principal. They are
+            useful for accessing public data anonymously, and are used to associate API requests with your project for
+            quota and billing.
           </p>
 
           <!-- 👉 Server Status -->
@@ -388,7 +385,7 @@ const isOneTimePasswordDialogVisible = ref(false)
             </div>
           </template>
           <!-- TODO Refactor this after vuetify provides proper solution for removing default footer -->
-          <template #bottom />
+          <template #bottom/>
         </VDataTable>
       </VCard>
     </VCol>
@@ -396,6 +393,6 @@ const isOneTimePasswordDialogVisible = ref(false)
   </VRow>
 
   <!-- SECTION Enable One time password -->
-  <TwoFactorAuthDialog v-model:isDialogVisible="isOneTimePasswordDialogVisible" />
+  <TwoFactorAuthDialog v-model:isDialogVisible="isOneTimePasswordDialogVisible"/>
   <!-- !SECTION -->
 </template>

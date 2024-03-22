@@ -167,19 +167,6 @@ const isMounted = useMounted()
         >
           {{ item.title }}
         </Component>
-
-        <!-- 👉 Badge -->
-        <Component
-          :is="layoutConfig.app.i18n.enable ? 'i18n-t' : 'span'"
-          v-bind="getDynamicI18nProps(item.badgeContent, 'span')"
-          v-show="!hideTitleAndBadge"
-          v-if="item.badgeContent"
-          key="badge"
-          class="nav-item-badge"
-          :class="item.badgeClass"
-        >
-          {{ item.badgeContent }}
-        </Component>
         <Component
           :is="layoutConfig.app.iconRenderer || 'div'"
           v-show="!hideTitleAndBadge"

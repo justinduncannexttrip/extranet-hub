@@ -1,10 +1,14 @@
-export const defineThemeConfig = userConfig => {
+export const defineThemeConfig = (userConfig) => {
   return {
     themeConfig: userConfig,
     layoutConfig: {
       app: {
         title: userConfig.app.title,
-        logo: userConfig.app.logo,
+        logoFullDark: userConfig.app.logoFullDark,
+        logoFullLight:userConfig.app.logoFullLight,
+        logoCompactDark: userConfig.app.logoCompactDark,
+        logoCompactLight: userConfig.app.logoCompactLight,
+        contrastLogo: userConfig.app.contrastLogo,
         contentWidth: userConfig.app.contentWidth,
         contentLayoutNav: userConfig.app.contentLayoutNav,
         overlayNavFromBreakpoint: userConfig.app.overlayNavFromBreakpoint,

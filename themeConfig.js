@@ -2,6 +2,11 @@ import { breakpointsVuetify } from '@vueuse/core'
 import { VIcon } from 'vuetify/components/VIcon'
 import { defineThemeConfig } from '@core'
 import { Skins } from '@core/enums'
+import logoFullDark from '@images/logo_full_dark.png'
+import logoFullLight from '@images/logo_full_light.png'
+import logoCompactDark from '@images/logo_compact_dark.png'
+import logoCompactLight from '@images/logo_compact_light.png'
+import contrastLogo from '@images/compact_logo_dark_contrast.png'
 
 // ❗ Logo SVG must be imported with ?raw suffix
 import logo from '@images/logo.svg?raw'
@@ -9,10 +14,14 @@ import { AppContentLayoutNav, ContentWidth, FooterType, NavbarType } from '@layo
 
 export const { themeConfig, layoutConfig } = defineThemeConfig({
   app: {
-    title: 'materio',
+    title: 'nextranet',
 
     // ❗ if you have SVG logo and want it to adapt according to theme color, you have to apply color as `color: rgb(var(--v-global-theme-primary))`
-    logo: h('div', { innerHTML: logo, style: 'line-height:0; color: rgb(var(--v-global-theme-primary))' }),
+    logoFullDark: h('img', { src: logoFullDark, alt: 'Nexttrip.com Nextranet' }),
+    logoFullLight: h('img', { src: logoFullLight, alt: 'Nexttrip.com Nextranet' }),
+    logoCompactDark: h('img', { src: logoCompactDark, alt: 'Nexttrip.com Nextranet' }),
+    logoCompactLight: h('img', { src: logoCompactLight, alt: 'Nexttrip.com Nextranet' }),
+    contrastLogo: h('img', { src: contrastLogo, alt: 'Nexttrip.com Nextranet' }),
     contentWidth: ContentWidth.Boxed,
     contentLayoutNav: AppContentLayoutNav.Vertical,
     overlayNavFromBreakpoint: breakpointsVuetify.md + 16, // 16 for scrollbar. Docs: https://next.vuetifyjs.com/en/features/display-and-platform/

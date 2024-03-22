@@ -49,7 +49,7 @@ const clickMe = () => {
 
         <VNodeRenderer
           v-else
-          :nodes="themeConfig.app.logo"
+          :nodes="themeConfig.app.contrastLogo"
         />
       </VFadeTransition>
     </template>

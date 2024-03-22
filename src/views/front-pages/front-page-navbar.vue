@@ -245,7 +245,7 @@ const isPageActive = computed(() => menuItems.some(item => item.navItems.some(li
             :class="$vuetify.display.mdAndUp ? 'd-none' : 'd-block'"
           >
             <div class="d-flex gap-x-3 align-center">
-              <VNodeRenderer :nodes="themeConfig.app.logo" />
+              <VNodeRenderer :nodes="themeConfig.app.contrastLogo" />
 
               <div
                 class="nav-title text-uppercase text-truncate"

@@ -33,6 +33,10 @@
         flex-shrink: 0;
         transition: transform 0.25s ease-in-out;
 
+        img {
+          max-width: 30px;
+        }
+
         @at-root {
           // Move logo a bit to align center with the icons in vertical nav mini variant
           .layout-vertical-nav-collapsed#{$sl-layout-nav-type-vertical}:not(.hovered) .nav-header .app-logo {

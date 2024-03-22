@@ -31,7 +31,7 @@ const onFinish = () => {
     >
       <VCardText>
         <div class="d-flex align-center gap-x-3 justify-center mb-6">
-          <VNodeRenderer :nodes="themeConfig.app.logo" />
+          <VNodeRenderer :nodes="themeConfig.app.contrastLogo" />
 
           <h1 class="auth-title">
             {{ themeConfig.app.title }}
